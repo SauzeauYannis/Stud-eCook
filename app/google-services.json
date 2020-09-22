@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1090250685096",
+    "firebase_url": "https://stud-ecook.firebaseio.com",
+    "project_id": "stud-ecook",
+    "storage_bucket": "stud-ecook.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090250685096:android:54b74dfe9144df1068209d",
+        "android_client_info": {
+          "package_name": "com.android.example.studecook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090250685096-3uv4m0dll2ml6ptv9becna4v7igebrft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKh6ybnWw2OGXT6PvC_aJDLX5KrM9cKoY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1090250685096-3uv4m0dll2ml6ptv9becna4v7igebrft.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
