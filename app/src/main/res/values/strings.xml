@@ -1,4 +1,11 @@
 <resources>
+    <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
+    <string name="facebook_application_id" translatable="false">661668694727397</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fb661668694727397</string>
+    <!-- Twitter consumer key and secret -->
+    <string name="twitter_consumer_key" translatable="false">QZ7v4pzJOT8JwgX5KovYNKJhb</string>
+    <string name="twitter_consumer_secret" translatable="false">sHaymV3fslkMbM8ISOU9658SirAMQJMl5wfpwdPnumowEAKZ0h</string>
+
     <string name="app_name">Stud\'eCook</string>
     <string name="title_home">Stud\'eCook 1</string>
     <string name="title_dashboard">Stud\'eCook 2</string>

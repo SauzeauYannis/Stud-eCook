@@ -54,6 +54,9 @@ dependencies {
     //Authentication
     implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
 
+    implementation 'com.facebook.android:facebook-android-sdk:4.41.0'
+    implementation 'com.twitter.sdk.android:twitter-core:3.2.0'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

@@ -10,6 +10,7 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,27 +22,32 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
 
         navView.setupWithNavController(navController)
-        createSignInIntent()
+        FirebaseAuth.AuthStateListener { firebaseAuth ->
+            if(firebaseAuth.currentUser != null) {
+                AuthUI.getInstance()
+                    .signOut(this)
+            } else {
+                createSignInIntent()
+            }
+        }
     }
 
     private fun createSignInIntent() {
         val providers = arrayListOf(
+            AuthUI.IdpConfig.AnonymousBuilder().build(),
             AuthUI.IdpConfig.EmailBuilder().build(),
             AuthUI.IdpConfig.PhoneBuilder().build(),
             AuthUI.IdpConfig.GoogleBuilder().build(),
-            //AuthUI.IdpConfig.FacebookBuilder().build(),
-            //AuthUI.IdpConfig.TwitterBuilder().build(),
-            AuthUI.IdpConfig.AppleBuilder().build(),
-            AuthUI.IdpConfig.AnonymousBuilder().build(),
-            AuthUI.IdpConfig.GitHubBuilder().build(),
-            AuthUI.IdpConfig.MicrosoftBuilder().build(),
-            AuthUI.IdpConfig.YahooBuilder().build()
+            AuthUI.IdpConfig.FacebookBuilder().build(),
+            AuthUI.IdpConfig.TwitterBuilder().build(),
+            AuthUI.IdpConfig.GitHubBuilder().build()
         )
 
         startActivityForResult(
             AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
+                .setLogo(R.drawable.ic_launcher_foreground)
                 .build(),
             RC_SIGN_IN)
     }
@@ -54,7 +60,6 @@ class MainActivity : AppCompatActivity() {
 
             if (resultCode == Activity.RESULT_OK) {
                 val user = FirebaseAuth.getInstance().currentUser
-            } else {
             }
         }
     }
