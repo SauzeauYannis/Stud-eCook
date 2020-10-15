@@ -1,13 +1,15 @@
 package com.android.example.studecook.ui.dashboard
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.android.example.studecook.R
 
-class DashboardViewModel : ViewModel() {
+class DashboardViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "Stud'eCook 1"
+        value = application.getString(R.string.text_dashboard)
     }
     val text: LiveData<String> = _text
 }

@@ -7,7 +7,18 @@
     <string name="twitter_consumer_secret" translatable="false">sHaymV3fslkMbM8ISOU9658SirAMQJMl5wfpwdPnumowEAKZ0h</string>
 
     <string name="app_name">Stud\'eCook</string>
+
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="text_dashboard">Dashboard</string>
+    <string name="text_home">Home</string>
+    <string name="text_notifications">Notifications</string>
+
+    <string name="menu_param">Paramètres</string>
+    <string name="menu_logout">Se déconnecter</string>
+
+    <string name="desc_main_menu_button">main menu button</string>
+
 </resources>
