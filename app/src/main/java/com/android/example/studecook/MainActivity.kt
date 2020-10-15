@@ -36,8 +36,7 @@ class MainActivity : AppCompatActivity() {
             AuthUI.IdpConfig.PhoneBuilder().build(),
             AuthUI.IdpConfig.GoogleBuilder().build(),
             AuthUI.IdpConfig.FacebookBuilder().build(),
-            AuthUI.IdpConfig.TwitterBuilder().build(),
-            AuthUI.IdpConfig.GitHubBuilder().build()
+            AuthUI.IdpConfig.TwitterBuilder().build()
         )
 
         startActivityForResult(
