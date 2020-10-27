@@ -1,16 +1,12 @@
 package com.android.example.studecook.settings
 
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
-import com.android.example.studecook.MainActivity
 import com.android.example.studecook.R
-import kotlinx.coroutines.coroutineScope
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -32,8 +28,10 @@ class SettingsActivity : AppCompatActivity() {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
             val darkMode = findPreference<SwitchPreference>(getString(R.string.setting_dark))
+            val sharedPreferences = this.context?.getSharedPreferences("dark", 0)
+            val isDark = sharedPreferences?.getBoolean("dark_mode", true)
 
-            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            if (isDark!!) {
                 darkMode?.setDefaultValue(true)
             } else {
                 darkMode?.setDefaultValue(false)
@@ -42,9 +40,11 @@ class SettingsActivity : AppCompatActivity() {
             darkMode?.setOnPreferenceChangeListener { _, newValue ->
                 if (newValue as Boolean) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    sharedPreferences.edit().putBoolean("dark_mode", true).apply()
                     true
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    sharedPreferences.edit().putBoolean("dark_mode", false).apply()
                     true
                 }
             }
