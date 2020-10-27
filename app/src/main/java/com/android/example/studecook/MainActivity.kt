@@ -67,7 +67,6 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     override fun onMenuItemClick(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.param -> {
-                Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
                 true
