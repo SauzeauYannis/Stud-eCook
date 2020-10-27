@@ -48,28 +48,15 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
                 .build(),
             RC_SIGN_IN)
     }
-/*
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == RC_SIGN_IN) {
-            val response = IdpResponse.fromResultIntent(data)
-
-            if (resultCode == Activity.RESULT_OK) {
-                val user = FirebaseAuth.getInstance().currentUser
-            }
-        }
-    }
-*/
     companion object {
-        private const val RC_SIGN_IN = 123
+        const val RC_SIGN_IN = 123
     }
 
     fun showMenu(v: View) {
         PopupMenu(this, v).apply {
             setOnMenuItemClickListener(this@MainActivity)
             inflate(R.menu.main_menu)
-
             show()
         }
     }
