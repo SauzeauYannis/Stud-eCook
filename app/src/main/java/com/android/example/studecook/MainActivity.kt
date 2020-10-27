@@ -1,5 +1,6 @@
 package com.android.example.studecook
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.android.example.studecook.settings.SettingsActivity
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -66,6 +68,8 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         return when (item.itemId) {
             R.id.param -> {
                 Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
                 true
             }
             R.id.logout -> {
