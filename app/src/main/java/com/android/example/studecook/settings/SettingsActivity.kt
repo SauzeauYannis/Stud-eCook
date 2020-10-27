@@ -1,12 +1,16 @@
 package com.android.example.studecook.settings
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
+import com.android.example.studecook.MainActivity
 import com.android.example.studecook.R
+import kotlinx.coroutines.coroutineScope
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -26,16 +30,24 @@ class SettingsActivity : AppCompatActivity() {
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
-            findPreference<SwitchPreference>(getString(R.string.setting_dark))
-                ?.setOnPreferenceChangeListener { _, newValue ->
-                    if (newValue as Boolean) {
-                        Toast.makeText(this.context, "TODO : change style to dark", Toast.LENGTH_LONG).show()
-                        true
-                    } else {
-                        Toast.makeText(this.context, "TODO : change style to light", Toast.LENGTH_LONG).show()
-                        true
-                    }
+
+            val darkMode = findPreference<SwitchPreference>(getString(R.string.setting_dark))
+
+            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                darkMode?.setDefaultValue(true)
+            } else {
+                darkMode?.setDefaultValue(false)
+            }
+
+            darkMode?.setOnPreferenceChangeListener { _, newValue ->
+                if (newValue as Boolean) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    true
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    true
                 }
+            }
         }
     }
 }
