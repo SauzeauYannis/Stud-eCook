@@ -8,13 +8,15 @@
 
     <string name="app_name">Stud\'eCook</string>
 
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <!-- Bottom navigation menu title -->
+    <string name="title_home">Recettes</string>
+    <string name="title_add">Ajouter</string>
+    <string name="title_account">Compte</string>
 
-    <string name="text_dashboard">Dashboard</string>
-    <string name="text_home">Home</string>
-    <string name="text_notifications">Notifications</string>
+    <!-- Text in fragment -->
+    <string name="text_home">TODO : Page des recettes</string>
+    <string name="text_add">TODO : Ajouter une recette</string>
+    <string name="text_account">TODO : Compte de %1$s</string>
 
     <string name="menu_param">Paramètres</string>
     <string name="menu_logout">Se déconnecter</string>

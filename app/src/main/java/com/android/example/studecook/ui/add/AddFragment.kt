@@ -1,4 +1,4 @@
-package com.android.example.studecook.ui.dashboard
+package com.android.example.studecook.ui.add
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.android.example.studecook.R
 import kotlinx.android.synthetic.main.fragment_dashboard.view.*
 
-class DashboardFragment : Fragment() {
+class AddFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var dashboardViewModel: AddViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -20,7 +20,7 @@ class DashboardFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         dashboardViewModel =
-                ViewModelProvider(this).get(DashboardViewModel::class.java)
+                ViewModelProvider(this).get(AddViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
         val textView: TextView = root.text_dashboard
         dashboardViewModel.text.observe(viewLifecycleOwner, {

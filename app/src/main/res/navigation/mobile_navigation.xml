@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.android.example.studecook.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:name="com.android.example.studecook.ui.add.AddFragment"
+        android:label="@string/title_add"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.android.example.studecook.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:name="com.android.example.studecook.ui.account.AccountFragment"
+        android:label="@string/title_account"
         tools:layout="@layout/fragment_notifications" />
 </navigation>
