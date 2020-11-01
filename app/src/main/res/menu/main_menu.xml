@@ -3,9 +3,11 @@
 
     <item
         android:id="@+id/param"
-        android:title="@string/menu_param" />
+        android:title="@string/menu_param"
+        android:icon="@drawable/ic_baseline_settings_24" />
     <item
         android:id="@+id/logout"
-        android:title="@string/menu_logout" />
+        android:title="@string/menu_logout"
+        android:icon="@drawable/ic_baseline_power_settings_new_24" />
 
 </menu>

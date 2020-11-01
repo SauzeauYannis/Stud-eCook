@@ -2,6 +2,7 @@ package com.android.example.studecook
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -13,8 +14,10 @@ import com.android.example.studecook.settings.SettingsActivity
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.Exception
 
-class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val sharedPreferences = getSharedPreferences("dark", 0)
@@ -26,16 +29,17 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-        navView.setupWithNavController(navController)
+        nav_view.setupWithNavController(navController)
         val user = FirebaseAuth.getInstance().currentUser
         if(user == null) {
             createSignInIntent()
         }
+
+        main_menu.setOnClickListener { v -> showMenu(v) }
     }
 
     private fun createSignInIntent() {
@@ -62,31 +66,41 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         const val RC_SIGN_IN = 123
     }
 
-    fun showMenu(v: View) {
-        PopupMenu(this, v).apply {
-            setOnMenuItemClickListener(this@MainActivity)
-            inflate(R.menu.main_menu)
-            show()
+    private fun showMenu(v: View) {
+        val popupMenu = PopupMenu(this, v)
+
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.param -> {
+                    val intent = Intent(this, SettingsActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.logout -> {
+                    AuthUI.getInstance()
+                        .signOut(this)
+                        .addOnCompleteListener {
+                        }
+                    createSignInIntent()
+                    true
+                }
+                else -> false
+            }
         }
-    }
 
+        popupMenu.inflate(R.menu.main_menu)
 
-    override fun onMenuItemClick(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.param -> {
-                val intent = Intent(this, SettingsActivity::class.java)
-                startActivity(intent)
-                true
-            }
-            R.id.logout -> {
-                AuthUI.getInstance()
-                    .signOut(this)
-                    .addOnCompleteListener {
-                    }
-                createSignInIntent()
-                true
-            }
-            else -> false
+        try {
+            val fieldMenuPopup = PopupMenu::class.java.getDeclaredField("mPopup")
+            fieldMenuPopup.isAccessible = true
+            val menuPopup = fieldMenuPopup.get(popupMenu)
+            menuPopup.javaClass
+                .getDeclaredMethod("setForceShowIcon", Boolean::class.java)
+                .invoke(menuPopup, true)
+        } catch (e: Exception) {
+            Log.e("Main", "Error showing icons in main menu", e)
+        } finally {
+            popupMenu.show()
         }
     }
 }
