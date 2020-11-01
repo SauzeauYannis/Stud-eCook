@@ -1,0 +1,14 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/appearance_header">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/setting_dark"
+            android:summaryOff="@string/dark_off"
+            android:summaryOn="@string/dark_on"
+            android:title="@string/dark_title" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

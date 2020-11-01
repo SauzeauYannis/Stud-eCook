@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "263012990539",
-    "firebase_url": "https://stud-ecook-9fe42.firebaseio.com",
-    "project_id": "stud-ecook-9fe42",
-    "storage_bucket": "stud-ecook-9fe42.appspot.com"
+    "project_number": "460122007726",
+    "firebase_url": "https://stud-ecook-145d7.firebaseio.com",
+    "project_id": "stud-ecook-145d7",
+    "storage_bucket": "stud-ecook-145d7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:263012990539:android:3f77d2a4b60325aab757ce",
+        "mobilesdk_app_id": "1:460122007726:android:f2a64bb530c7ac133ea53f",
         "android_client_info": {
-          "package_name": "com.android.example.studecook"
+          "package_name": "com.android.app.studecook"
         }
       },
       "oauth_client": [
         {
-          "client_id": "263012990539-do1dlj220kd3mqlc2ekk2012hfodgc82.apps.googleusercontent.com",
+          "client_id": "460122007726-sk450b4m103eaeouqdudf9elhhld01gb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.app.studecook",
+            "certificate_hash": "c9c7b875e2a051013be539037b49a2c479ededf0"
+          }
+        },
+        {
+          "client_id": "460122007726-cfpv1e0t4uk80h0ef7sbmq13a1ng07g1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBaDn8wnYczMAGdHBfM9mA4K7XGhHV5rQI"
+          "current_key": "AIzaSyA160Pt8Vqb-wPd78b4iHPbekFrN_p9DqE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "263012990539-do1dlj220kd3mqlc2ekk2012hfodgc82.apps.googleusercontent.com",
+              "client_id": "460122007726-cfpv1e0t4uk80h0ef7sbmq13a1ng07g1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

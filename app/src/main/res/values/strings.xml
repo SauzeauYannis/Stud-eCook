@@ -1,6 +1,33 @@
 <resources>
-    <string name="app_name">Stud\'eCook</string>
-    <string name="title_home">Stud\'eCook 1</string>
-    <string name="title_dashboard">Stud\'eCook 2</string>
-    <string name="title_notifications">Stud\'eCook 3</string>
+    <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
+    <string name="facebook_application_id" translatable="false">648008085898234</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fb648008085898234</string>
+    <!-- Twitter consumer key and secret -->
+    <string name="twitter_consumer_key" translatable="false">QZ7v4pzJOT8JwgX5KovYNKJhb</string>
+    <string name="twitter_consumer_secret" translatable="false">sHaymV3fslkMbM8ISOU9658SirAMQJMl5wfpwdPnumowEAKZ0h</string>
+
+    <string name="app_name" translatable="false">Stud\'eCook</string>
+    <string name="title_activity_settings" translatable="false">SettingsActivity</string>
+
+    <!-- Bottom navigation menu title -->
+    <string name="title_home">Recipes</string>
+    <string name="title_add">Add</string>
+    <string name="title_account">Account</string>
+
+    <!-- Text in fragment -->
+    <string name="text_home">TODO : recipes fragment</string>
+    <string name="text_add">TODO : Add a recipe</string>
+    <string name="text_account">TODO : %1$s Account</string>
+
+    <string name="menu_param">Settings</string>
+    <string name="menu_logout">Sign out</string>
+
+    <string name="desc_main_menu_button" translatable="false">main menu button</string>
+
+    <!-- Settings -->
+    <string name="appearance_header">Theme</string>
+    <string name="setting_dark" translatable="false">setting_dark</string>
+    <string name="dark_title">Activate the dark theme</string>
+    <string name="dark_off">Dark theme off</string>
+    <string name="dark_on">Dark theme on</string>
 </resources>

@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.android.example.studecook.ui.home.HomeFragment"
+        android:name="com.android.app.studecook.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.android.example.studecook.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:name="com.android.app.studecook.ui.add.AddFragment"
+        android:label="@string/title_add"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.android.example.studecook.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:name="com.android.app.studecook.ui.account.AccountFragment"
+        android:label="@string/title_account"
         tools:layout="@layout/fragment_notifications" />
 </navigation>
