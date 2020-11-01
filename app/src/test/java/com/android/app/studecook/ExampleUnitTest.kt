@@ -1,4 +1,4 @@
-package com.android.example.studecook
+package com.android.app.studecook
 
 import org.junit.Test
 

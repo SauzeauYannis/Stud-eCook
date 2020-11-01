@@ -1,12 +1,11 @@
-package com.android.example.studecook.settings
+package com.android.app.studecook.settings
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
-import com.android.example.studecook.R
+import com.android.app.studecook.R
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -29,7 +28,7 @@ class SettingsActivity : AppCompatActivity() {
 
             val darkMode = findPreference<SwitchPreference>(getString(R.string.setting_dark))
             val sharedPreferences = this.context?.getSharedPreferences("dark", 0)
-            val isDark = sharedPreferences?.getBoolean("dark_mode", true)
+            val isDark = sharedPreferences?.getBoolean("dark_mode", false)
 
             if (isDark!!) {
                 darkMode?.setDefaultValue(true)

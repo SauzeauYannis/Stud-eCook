@@ -1,10 +1,10 @@
-package com.android.example.studecook.ui.add
+package com.android.app.studecook.ui.add
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.android.example.studecook.R
+import com.android.app.studecook.R
 
 class AddViewModel(application: Application) : AndroidViewModel(application) {
 

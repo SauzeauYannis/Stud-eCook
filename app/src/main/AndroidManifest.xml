@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.example.studecook">
+    package="com.android.app.studecook">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,10 +12,10 @@
         android:theme="@style/AppTheme"
         android:allowBackup="true">
         <activity
-            android:name=".settings.SettingsActivity"
+            android:name="com.android.app.studecook.settings.SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.android.app.studecook.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
