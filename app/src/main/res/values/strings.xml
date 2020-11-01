@@ -6,29 +6,32 @@
     <string name="twitter_consumer_key" translatable="false">QZ7v4pzJOT8JwgX5KovYNKJhb</string>
     <string name="twitter_consumer_secret" translatable="false">sHaymV3fslkMbM8ISOU9658SirAMQJMl5wfpwdPnumowEAKZ0h</string>
 
-    <string name="app_name">Stud\'eCook</string>
+    <string name="app_name" translatable="false">Stud\'eCook</string>
+    <string name="title_activity_settings" translatable="false">SettingsActivity</string>
 
     <!-- Bottom navigation menu title -->
-    <string name="title_home">Recettes</string>
-    <string name="title_add">Ajouter</string>
-    <string name="title_account">Compte</string>
+    <string name="title_home">Recipes</string>
+    <string name="title_add">Add</string>
+    <string name="title_account">Account</string>
 
     <!-- Text in fragment -->
-    <string name="text_home">TODO : Page des recettes</string>
-    <string name="text_add">TODO : Ajouter une recette</string>
-    <string name="text_account">TODO : Compte de %1$s</string>
+    <string name="text_home">TODO : recipes fragment</string>
+    <string name="text_add">TODO : Add a recipe</string>
+    <string name="text_account">TODO : %1$s Account</string>
 
-    <string name="menu_param">Paramètres</string>
-    <string name="menu_logout">Se déconnecter</string>
+    <string name="menu_param">Settings</string>
+    <string name="menu_logout">Sign out</string>
 
-    <string name="desc_main_menu_button">main menu button</string>
-    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="desc_main_menu_button" translatable="false">main menu button</string>
 
     <!-- Settings -->
-    <string name="appearance_header">Thème</string>
-    <string name="setting_dark">setting_dark</string>
-    <string name="dark_title">Activer le thème sombre</string>
-    <string name="dark_off">Thème sombre désactivé</string>
-    <string name="dark_on">Thème sombre activé</string>
+    <string name="language_header">Language</string>
+    <string name="setting_language" translatable="false">countries_list</string>
+    <string name="choose_language">Choose your language</string>
+    <string name="appearance_header">Theme</string>
+    <string name="setting_dark" translatable="false">setting_dark</string>
+    <string name="dark_title">Activate the dark theme</string>
+    <string name="dark_off">Dark theme off</string>
+    <string name="dark_on">Dark theme on</string>
 
 </resources>

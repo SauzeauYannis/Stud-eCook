@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_home">Recettes</string>
+    <string name="title_add">Ajouter</string>
+    <string name="title_account">Compte</string>
+    <string name="text_home">TODO : Page des recettes</string>
+    <string name="text_add">TODO : Ajouter une recette</string>
+    <string name="text_account">TODO : Compte de %1$s</string>
+    <string name="menu_param">Paramètres</string>
+    <string name="menu_logout">Se déconnecter</string>
+    <string name="appearance_header">Thème</string>
+    <string name="dark_title">Activer le thème sombre</string>
+    <string name="dark_off">Thème sombre désactivé</string>
+    <string name="dark_on">Thème sombre activé</string>
+    <string name="language_header">Langage</string>
+    <string name="choose_language">Choisis ton langage</string>
+</resources>

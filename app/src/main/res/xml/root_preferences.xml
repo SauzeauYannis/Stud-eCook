@@ -1,5 +1,16 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <PreferenceCategory android:title="@string/language_header">
+
+        <ListPreference
+            android:key="@string/setting_language"
+            android:title="@string/choose_language"
+            android:defaultValue="Français"
+            android:entries="@array/countries"
+            android:entryValues="@array/countries" />
+
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/appearance_header">
 
         <SwitchPreference
