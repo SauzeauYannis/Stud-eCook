@@ -25,13 +25,9 @@
     <string name="desc_main_menu_button" translatable="false">main menu button</string>
 
     <!-- Settings -->
-    <string name="language_header">Language</string>
-    <string name="setting_language" translatable="false">countries_list</string>
-    <string name="choose_language">Choose your language</string>
     <string name="appearance_header">Theme</string>
     <string name="setting_dark" translatable="false">setting_dark</string>
     <string name="dark_title">Activate the dark theme</string>
     <string name="dark_off">Dark theme off</string>
     <string name="dark_on">Dark theme on</string>
-
 </resources>

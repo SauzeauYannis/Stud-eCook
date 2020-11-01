@@ -15,7 +15,11 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Exception
 
-class MainActivity : AppCompatActivity() {
+open class MainActivity : AppCompatActivity() {
+
+    companion object {
+        const val RC_SIGN_IN = 123
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val sharedPreferences = getSharedPreferences("dark", 0)
@@ -58,10 +62,6 @@ class MainActivity : AppCompatActivity() {
                 .setTheme(R.style.AppTheme)
                 .build(),
             RC_SIGN_IN)
-    }
-
-    companion object {
-        const val RC_SIGN_IN = 123
     }
 
     private fun showMenu(v: View) {

@@ -12,6 +12,4 @@
     <string name="dark_title">Activer le thème sombre</string>
     <string name="dark_off">Thème sombre désactivé</string>
     <string name="dark_on">Thème sombre activé</string>
-    <string name="language_header">Langage</string>
-    <string name="choose_language">Choisis ton langage</string>
 </resources>

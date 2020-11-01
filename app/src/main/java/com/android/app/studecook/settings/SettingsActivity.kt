@@ -1,6 +1,5 @@
 package com.android.app.studecook.settings
 
-import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -48,26 +47,6 @@ class SettingsActivity : AppCompatActivity() {
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                     sharedPreferences.edit().putBoolean("dark_mode", false).apply()
-                    true
-                }
-            }
-        }
-
-        private fun languageSetting() {
-            val language = findPreference<ListPreference>(getString(R.string.setting_language))
-            val sharedPreference = this.context?.getSharedPreferences("language", 0)
-
-            when (sharedPreference?.getString("language_value", "fr")) {
-                "fr" -> language?.setDefaultValue("Français")
-                else -> language?.setDefaultValue("English")
-            }
-
-            language?.setOnPreferenceChangeListener { _, newValue ->
-                if (newValue as String == "Français") {
-                    sharedPreference?.edit()?.putString("language_value", "fr")?.apply()
-                    true
-                } else {
-                    sharedPreference?.edit()?.putString("language_value", "en")?.apply()
                     true
                 }
             }
