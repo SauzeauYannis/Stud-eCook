@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.android.app.studecook.R
-import kotlinx.android.synthetic.main.fragment_notifications.view.*
+import kotlinx.android.synthetic.main.fragment_account.view.*
 
 class AccountFragment : Fragment() {
 
@@ -21,8 +21,8 @@ class AccountFragment : Fragment() {
     ): View? {
         notificationsViewModel =
                 ViewModelProvider(this).get(AccountViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-        val textView: TextView = root.text_notifications
+        val root = inflater.inflate(R.layout.fragment_account, container, false)
+        val textView: TextView = root.text_account
         notificationsViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })

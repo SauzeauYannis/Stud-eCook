@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.android.app.studecook.R
-import kotlinx.android.synthetic.main.fragment_dashboard.view.*
+import kotlinx.android.synthetic.main.fragment_add.view.*
 
 class AddFragment : Fragment() {
 
@@ -21,8 +21,8 @@ class AddFragment : Fragment() {
     ): View? {
         dashboardViewModel =
                 ViewModelProvider(this).get(AddViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.text_dashboard
+        val root = inflater.inflate(R.layout.fragment_add, container, false)
+        val textView: TextView = root.text_add
         dashboardViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
