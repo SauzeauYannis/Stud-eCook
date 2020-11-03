@@ -12,14 +12,42 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.android.app.studecook.ui.add.AddFragment"
-        android:label="@string/title_add"
-        tools:layout="@layout/fragment_add" />
-
-    <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_account"
         android:name="com.android.app.studecook.ui.account.AccountFragment"
         android:label="@string/title_account"
         tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/navigation_add_step1"
+        android:name="com.android.app.studecook.ui.add.AddStep1Fragment"
+        android:label="@string/title_add" >
+        <action
+            android:id="@+id/action_navigation_add_step1_to_navigation_add_step2"
+            app:destination="@id/navigation_add_step2"
+            app:enterAnim="@anim/fui_slide_in_right"
+            app:exitAnim="@anim/fui_slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_add_step2"
+        android:name="com.android.app.studecook.ui.add.AddStep2Fragment"
+        android:label="AddStep2FragmentFragment" >
+        <action
+            android:id="@+id/action_navigation_add_step2_to_navigation_add_step3"
+            app:destination="@id/navigation_add_step3"
+            app:enterAnim="@anim/fui_slide_in_right"
+            app:exitAnim="@anim/fui_slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_add_step3"
+        android:name="com.android.app.studecook.ui.add.AddStep3Fragment"
+        android:label="AddStep3FragmentFragment" >
+        <action
+            android:id="@+id/action_navigation_add_step3_to_navigation_add_step4"
+            app:destination="@id/navigation_add_step4"
+            app:enterAnim="@anim/fui_slide_in_right"
+            app:exitAnim="@anim/fui_slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_add_step4"
+        android:name="com.android.app.studecook.ui.add.AddStep4Fragment"
+        android:label="AddStep4FragmentFragment" />
 </navigation>
