@@ -35,6 +35,11 @@
             app:destination="@id/navigation_add_step3"
             app:enterAnim="@anim/fui_slide_in_right"
             app:exitAnim="@anim/fui_slide_out_left" />
+        <action
+            android:id="@+id/action_navigation_add_step2_to_navigation_add_step1"
+            app:destination="@id/navigation_add_step1"
+            app:enterAnim="@anim/my_slide_in_left"
+            app:exitAnim="@anim/my_slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/navigation_add_step3"
@@ -45,9 +50,35 @@
             app:destination="@id/navigation_add_step4"
             app:enterAnim="@anim/fui_slide_in_right"
             app:exitAnim="@anim/fui_slide_out_left" />
+        <action
+            android:id="@+id/action_navigation_add_step3_to_navigation_add_step2"
+            app:destination="@id/navigation_add_step2"
+            app:enterAnim="@anim/my_slide_in_left"
+            app:exitAnim="@anim/my_slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/navigation_add_step4"
         android:name="com.android.app.studecook.ui.add.AddStep4Fragment"
-        android:label="AddStep4FragmentFragment" />
+        android:label="AddStep4FragmentFragment" >
+        <action
+            android:id="@+id/action_navigation_add_step4_to_navigation_add_step5"
+            app:destination="@id/navigation_add_step5"
+            app:enterAnim="@anim/fui_slide_in_right"
+            app:exitAnim="@anim/fui_slide_out_left" />
+        <action
+            android:id="@+id/action_navigation_add_step4_to_navigation_add_step3"
+            app:destination="@id/navigation_add_step3"
+            app:enterAnim="@anim/my_slide_in_left"
+            app:exitAnim="@anim/my_slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_add_step5"
+        android:name="com.android.app.studecook.ui.add.AddStep5Fragment"
+        android:label="AddStep5Fragment" >
+        <action
+            android:id="@+id/action_navigation_add_step5_to_navigation_add_step4"
+            app:destination="@id/navigation_add_step4"
+            app:enterAnim="@anim/my_slide_in_left"
+            app:exitAnim="@anim/my_slide_out_right" />
+    </fragment>
 </navigation>

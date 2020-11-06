@@ -4,13 +4,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.android.app.studecook.R
 import kotlinx.android.synthetic.main.fragment_add_step2.view.*
 
 class AddStep2Fragment : Fragment() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.action_navigation_add_step2_to_navigation_add_step1)
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -23,6 +35,10 @@ class AddStep2Fragment : Fragment() {
 
         root.button_add_next.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_add_step2_to_navigation_add_step3)
+        }
+
+        root.button_back.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_add_step2_to_navigation_add_step1)
         }
 
         return root
