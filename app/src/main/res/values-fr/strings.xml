@@ -27,4 +27,11 @@
     </string-array>
     <string name="edit_text_add_name_hint">Exemple : Cookie</string>
     <string name="button_add_next">Button page suivante</string>
+    <string name="account_on">Nom du compte : %1$s</string>
+    <string name="account_off">Vous n\'etes pas connecté</string>
+    <string name="alert_setting_account">Voulez-vous être déconnecté</string>
+    <string name="alert_yes">Oui</string>
+    <string name="alert_no">Non</string>
+    <string name="anonymous">Anonyme</string>
+    <string name="account_header">Se déconnecter</string>
 </resources>

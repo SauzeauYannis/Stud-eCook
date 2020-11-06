@@ -11,4 +11,13 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/title_account">
+
+        <Preference
+            android:key="@string/setting_account"
+            android:title="@string/account_header"
+            android:summary="@string/account_off" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>

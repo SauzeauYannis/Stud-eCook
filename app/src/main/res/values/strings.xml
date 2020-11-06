@@ -9,6 +9,8 @@
     <string name="app_name" translatable="false">Stud\'eCook</string>
     <string name="title_activity_settings" translatable="false">SettingsActivity</string>
 
+    <string name="anonymous">Anonymous</string>
+
     <!-- Bottom navigation menu title -->
     <string name="title_home">Recipes</string>
     <string name="title_add">Add</string>
@@ -19,16 +21,20 @@
     <string name="text_account">TODO : %1$s Account</string>
 
     <string name="menu_param">Settings</string>
-    <string name="menu_logout">Sign out</string>
-
-    <string name="desc_main_menu_button" translatable="false">main menu button</string>
 
     <!-- Settings -->
+    <!-- Theme -->
     <string name="appearance_header">Theme</string>
     <string name="setting_dark" translatable="false">setting_dark</string>
     <string name="dark_title">Activate the dark theme</string>
     <string name="dark_off">Dark theme off</string>
     <string name="dark_on">Dark theme on</string>
+    <!-- Account -->
+    <string name="account_header">Sign out</string>
+    <string name="setting_account" translatable="false">setting_account</string>
+    <string name="account_on">Account name : %1$s</string>
+    <string name="account_off">You are already not sign</string>
+    <string name="alert_setting_account">Do you want to sign out ?</string>
 
     <!-- Add fragment -->
     <string name="text_add_title">Add your recipe Step\nStep %1$s/4</string>

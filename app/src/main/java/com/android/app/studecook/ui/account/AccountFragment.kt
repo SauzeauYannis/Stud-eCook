@@ -1,5 +1,6 @@
 package com.android.app.studecook.ui.account
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.android.app.studecook.R
+import com.android.app.studecook.settings.SettingsActivity
+import kotlinx.android.synthetic.main.fragment_account.*
 import kotlinx.android.synthetic.main.fragment_account.view.*
 
 class AccountFragment : Fragment() {
@@ -26,6 +29,12 @@ class AccountFragment : Fragment() {
         notificationsViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
+
+        root.settings_button.setOnClickListener {
+            val intent = Intent(this.context, SettingsActivity::class.java)
+            startActivity(intent)
+        }
+
         return root
     }
 }

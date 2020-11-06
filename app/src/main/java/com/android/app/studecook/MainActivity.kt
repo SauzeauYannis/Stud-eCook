@@ -40,8 +40,6 @@ open class MainActivity : AppCompatActivity() {
         if(user == null) {
             createSignInIntent()
         }
-
-        main_menu.setOnClickListener { v -> showMenu(v) }
     }
 
     private fun createSignInIntent() {
@@ -62,43 +60,5 @@ open class MainActivity : AppCompatActivity() {
                 .setTheme(R.style.AppTheme)
                 .build(),
             RC_SIGN_IN)
-    }
-
-    private fun showMenu(v: View) {
-        val popupMenu = PopupMenu(this, v)
-
-        popupMenu.setOnMenuItemClickListener { item ->
-            when (item.itemId) {
-                R.id.param -> {
-                    val intent = Intent(this, SettingsActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-                R.id.logout -> {
-                    AuthUI.getInstance()
-                        .signOut(this)
-                        .addOnCompleteListener {
-                        }
-                    createSignInIntent()
-                    true
-                }
-                else -> false
-            }
-        }
-
-        popupMenu.inflate(R.menu.main_menu)
-
-        try {
-            val fieldMenuPopup = PopupMenu::class.java.getDeclaredField("mPopup")
-            fieldMenuPopup.isAccessible = true
-            val menuPopup = fieldMenuPopup.get(popupMenu)
-            menuPopup.javaClass
-                .getDeclaredMethod("setForceShowIcon", Boolean::class.java)
-                .invoke(menuPopup, true)
-        } catch (e: Exception) {
-            Log.e("Main", "Error showing icons in main menu", e)
-        } finally {
-            popupMenu.show()
-        }
     }
 }
