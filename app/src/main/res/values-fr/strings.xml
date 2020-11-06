@@ -4,7 +4,7 @@
     <string name="title_add">Ajouter</string>
     <string name="title_account">Compte</string>
     <string name="text_home">TODO : Page des recettes</string>
-    <string name="text_add_title">Ajoute ta recette Étape %1$s/5</string>
+    <string name="text_add_title">Ajoute ta recette\nÉtape %1$s/5</string>
     <string name="text_account">TODO : Compte de %1$s</string>
     <string name="menu_param">Paramètres</string>
     <string name="appearance_header">Thème</string>

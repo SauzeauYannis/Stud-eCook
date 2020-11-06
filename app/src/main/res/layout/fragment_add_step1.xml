@@ -11,16 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:text="@string/text_add_title"
         android:textAlignment="center"
         android:textSize="20sp"
-        android:text="@string/text_add_name"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.075" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_add_name"
@@ -32,44 +31,52 @@
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.2" />
 
-    <EditText
-        android:id="@+id/edit_text_add_name"
-        android:layout_width="330dp"
-        android:layout_height="wrap_content"
-        android:autofillHints="@string/edit_text_add_name_hint"
-        android:ems="10"
-        android:hint="@string/edit_text_add_name_hint"
-        android:inputType="textPersonName"
-        android:labelFor="@id/text_add_name"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_add_name"
+        android:layout_width="334dp"
+        android:layout_height="80dp"
         app:layout_constraintBottom_toTopOf="@+id/text_add_time"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_add_name"
-        app:layout_constraintVertical_bias="0.23000002" />
+        app:layout_constraintVertical_bias="0.2"
+        app:errorEnabled="true"
+        app:counterEnabled="true"
+        app:counterMaxLength="50" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edit_text_add_name_hint"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/text_add_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/text_add_time"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/text_add_price"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/text_add_name" />
 
     <Spinner
         android:id="@+id/array_add_time"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/text_add_price"
+        android:fadeScrollbars="false"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toTopOf="@+id/array_add_price"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_add_time"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintTop_toBottomOf="@+id/text_input_add_name" />
 
     <TextView
         android:id="@+id/text_add_price"
@@ -78,10 +85,10 @@
         android:text="@string/text_add_price"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintVertical_bias="0.7" />
 
     <Spinner
         android:id="@+id/array_add_price"
@@ -89,9 +96,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_add_price"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.2" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_add_next"
@@ -100,10 +108,10 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
-        app:srcCompat="@drawable/ic_baseline_navigate_next_24"
+        android:contentDescription="@string/button_add_next"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="@string/button_add_next"
-        android:focusable="true" />
+        app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
