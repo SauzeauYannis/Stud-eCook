@@ -38,7 +38,7 @@
 
     <!-- Add fragment -->
     <string name="text_add_title">Add your recipe Step\nStep %1$s/5</string>
-    <string name="text_add_name">Name:</string>
+    <string name="text_add_name">Name of your recipe:</string>
     <string name="edit_text_add_name_hint">Example: Cookie</string>
     <string name="text_add_time">Time:</string>
     <string name="text_add_price">Price:</string>
@@ -55,4 +55,7 @@
     <string name="button_add_next">Next page button</string>
     <string name="button_add_previous">Previous page button</string>
     <string name="button_sent_data">Validate recipe button</string>
+    <string name="add_name_false_short">Recipe name too short</string>
+    <string name="add_name_false_long">Recipe name too long</string>
+    <string name="add_name_false">Name of recipe is not good</string>
 </resources>

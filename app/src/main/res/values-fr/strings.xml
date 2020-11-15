@@ -11,7 +11,7 @@
     <string name="dark_title">Activer le thème sombre</string>
     <string name="dark_off">Thème sombre désactivé</string>
     <string name="dark_on">Thème sombre activé</string>
-    <string name="text_add_name">Nom :</string>
+    <string name="text_add_name">Nom de ta recette :</string>
     <string name="text_add_time">Temps :</string>
     <string name="text_add_price">Prix :</string>
     <string-array name="time_array">
@@ -33,4 +33,7 @@
     <string name="account_header">Se déconnecter</string>
     <string name="button_sent_data">Boutton validation de recette</string>
     <string name="button_add_previous">Boutton page précédente</string>
+    <string name="add_name_false_short">Nom de recette trop court</string>
+    <string name="add_name_false_long">Nom de recette trop long</string>
+    <string name="add_name_false">Nom de recette invalide</string>
 </resources>
