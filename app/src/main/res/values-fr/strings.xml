@@ -36,4 +36,18 @@
     <string name="add_name_false_short">Nom de recette trop court</string>
     <string name="add_name_false_long">Nom de recette trop long</string>
     <string name="add_name_false">Nom de recette invalide</string>
+    <string name="text_add_nbP">Nombre de personnes : %1$s</string>
+    <string name="text_add_type">Type :</string>
+    <string-array name="type_array">
+        <item>Entrée</item>
+        <item>Plat</item>
+        <item>Dessert</item>
+        <item>Boisson</item>
+    </string-array>
+    <string name="text_add_diet">Régime</string>
+    <string-array name="diet_array">
+        <item>Normal</item>
+        <item>Végétarien</item>
+        <item>Végan</item>
+    </string-array>
 </resources>
