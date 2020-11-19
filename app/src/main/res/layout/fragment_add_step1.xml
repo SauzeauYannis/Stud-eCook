@@ -25,24 +25,24 @@
         android:id="@+id/text_add_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:text="@string/text_add_name"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.131"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.198" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_add_name"
-        android:layout_width="334dp"
-        android:layout_height="80dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         app:counterEnabled="true"
         app:counterMaxLength="50"
         app:errorEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/text_add_time"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_add_name"
         app:layout_constraintVertical_bias="0.205">
@@ -60,22 +60,23 @@
         android:id="@+id/text_add_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:text="@string/text_add_time"
         app:layout_constraintBottom_toTopOf="@+id/text_add_price"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_add_name" />
 
     <Spinner
         android:id="@+id/array_add_time"
-        android:layout_width="330dp"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:fadeScrollbars="false"
         android:spinnerMode="dropdown"
         app:layout_constraintBottom_toTopOf="@+id/array_add_price"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.456"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_input_add_name"
         app:layout_constraintVertical_bias="0.503" />
@@ -84,21 +85,22 @@
         android:id="@+id/text_add_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:text="@string/text_add_price"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.103"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.696" />
 
     <Spinner
         android:id="@+id/array_add_price"
-        android:layout_width="330dp"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.456"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_add_price"
         app:layout_constraintVertical_bias="0.203" />
@@ -114,6 +116,6 @@
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
+        app:srcCompat="@drawable/ic_next" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
