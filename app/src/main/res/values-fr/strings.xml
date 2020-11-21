@@ -50,4 +50,22 @@
         <item>Végétarien</item>
         <item>Végan</item>
     </string-array>
+    <string name="button_add_utensil">Ajouter ustensiles</string>
+    <string-array name="utensil_array">
+        <item>Bol</item>
+        <item>Plat</item>
+        <item>Friteuse</item>
+        <item>Poêle</item>
+        <item>Couteau</item>
+        <item>Micro-onde</item>
+        <item>Mixer</item>
+        <item>Four</item>
+        <item>Saladier</item>
+        <item>Casserole</item>
+        <item>Cuillère</item>
+        <item>Fouet</item>
+    </string-array>
+    <string name="dialog_titile_ustensil">Choisis les ustensiles requis</string>
+    <string name="text_add_utensils_list">Ustensiles :</string>
+    <string name="text_add_utensils_false">Vous devez ajouter au moins un ustensile</string>
 </resources>
