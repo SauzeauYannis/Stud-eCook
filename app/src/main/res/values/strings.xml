@@ -83,7 +83,7 @@
     <!-- fragment 3 -->
 
     <string name="button_add_utensil">Add utensil</string>
-    <string name="dialog_titile_ustensil">Choose utensils needed</string>
+    <string name="dialog_title_utensil">Choose utensils needed</string>
     <string name="text_add_utensils_list">Utensils:</string>
     <string name="text_add_utensils_false">You need to add at least one utensil</string>
     <string-array name="utensil_array">
@@ -99,5 +99,15 @@
         <item>Saucepan</item>
         <item>Spoon</item>
         <item>Whisk</item>
+    </string-array>
+    <string name="text_add_ingredient">Ingredients:</string>
+    <string name="edit_text_add_num_ingredient_hint">Amount</string>
+    <string name="edit_text_add_ingredient_hint">Example: Flour</string>
+    <string name="image_delete">Delete current ingredient</string>
+    <string name="button_add_ingredient">Add ingredient</string>
+    <string-array name="ingredient_type_array">
+        <item>Unit</item>
+        <item>g</item>
+        <item>ml</item>
     </string-array>
 </resources>

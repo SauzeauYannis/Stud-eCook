@@ -1,18 +1,23 @@
 package com.android.app.studecook.ui.add
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.android.app.studecook.R
+import kotlinx.android.synthetic.main.fragment_add_step2.view.*
 import kotlinx.android.synthetic.main.fragment_add_step3.view.*
+import kotlinx.android.synthetic.main.fragment_add_step3.view.button_add_next
+import kotlinx.android.synthetic.main.fragment_add_step3.view.button_back
+import kotlinx.android.synthetic.main.fragment_add_step3.view.text_add_title
+import kotlinx.android.synthetic.main.layout_add_ingredient.view.*
 import java.util.ArrayList
 import java.util.Arrays.sort
 
@@ -30,6 +35,7 @@ class AddStep3Fragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 
+    @SuppressLint("InflateParams")
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -46,7 +52,7 @@ class AddStep3Fragment : Fragment() {
 
         root.button_add_utensil.setOnClickListener {
             val mBuilder = AlertDialog.Builder(root.context)
-            mBuilder.setTitle(getString(R.string.dialog_titile_ustensil))
+            mBuilder.setTitle(getString(R.string.dialog_title_utensil))
             mBuilder.setMultiChoiceItems(listU, check) { _, position, isChecked ->
                 if (isChecked) {
                     if (!mUserUtensil.contains(position)) {
@@ -74,6 +80,21 @@ class AddStep3Fragment : Fragment() {
                 dialog.dismiss()
             }
             mBuilder.create().show()
+        }
+
+        root.button_add_ingredient.setOnClickListener {
+            val ingredientView = layoutInflater.inflate(R.layout.layout_add_ingredient, null, false)
+
+            ArrayAdapter.createFromResource(
+                    root.context,
+                    R.array.ingredient_type_array,
+                    android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                ingredientView.array_add_ingredient_type.adapter = adapter
+            }
+
+            root.layout_ingredient.addView(ingredientView)
         }
 
         root.button_add_next.setOnClickListener {
