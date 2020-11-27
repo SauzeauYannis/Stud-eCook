@@ -12,7 +12,6 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.android.app.studecook.R
-import kotlinx.android.synthetic.main.fragment_add_step2.view.*
 import kotlinx.android.synthetic.main.fragment_add_step3.view.*
 import kotlinx.android.synthetic.main.fragment_add_step3.view.button_add_next
 import kotlinx.android.synthetic.main.fragment_add_step3.view.button_back
