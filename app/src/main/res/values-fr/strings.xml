@@ -46,7 +46,7 @@
     </string-array>
     <string name="text_add_diet">Régime</string>
     <string-array name="diet_array">
-        <item>Normal</item>
+        <item>Aucun</item>
         <item>Végétarien</item>
         <item>Végan</item>
     </string-array>
@@ -69,7 +69,6 @@
     <string name="text_add_utensils_list">Ustensiles :</string>
     <string name="text_add_utensils_false">Vous devez ajouter au moins un ustensile</string>
     <string name="text_add_ingredient">Ingrédients :</string>
-    <string name="edit_text_add_num_ingredient_hint">Quantité</string>
     <string name="edit_text_add_ingredient_hint">Exemple : Farine</string>
     <string name="image_delete">Supprimer cet ingrédient</string>
     <string name="button_add_ingredient">Ajouter ingrédients</string>

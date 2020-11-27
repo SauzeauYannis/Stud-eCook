@@ -75,7 +75,7 @@
     </string-array>
     <string name="text_add_diet">Diet:</string>
     <string-array name="diet_array">
-        <item>Normal</item>
+        <item>None</item>
         <item>Vegetarian</item>
         <item>Vegan</item>
     </string-array>
@@ -101,7 +101,7 @@
         <item>Whisk</item>
     </string-array>
     <string name="text_add_ingredient">Ingredients:</string>
-    <string name="edit_text_add_num_ingredient_hint">Amount</string>
+    <string name="edit_text_add_num_ingredient_hint" translatable="false">667</string>
     <string name="edit_text_add_ingredient_hint">Example: Flour</string>
     <string name="image_delete">Delete current ingredient</string>
     <string name="button_add_ingredient">Add ingredient</string>

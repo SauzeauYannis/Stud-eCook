@@ -1,6 +1,5 @@
 package com.android.app.studecook.ui.add
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -22,6 +21,9 @@ import java.util.Arrays.sort
 
 class AddStep3Fragment : Fragment() {
 
+    val MAX_INGREDIENT = 15
+    var ingredientCount = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,7 +36,6 @@ class AddStep3Fragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 
-    @SuppressLint("InflateParams")
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -64,6 +65,7 @@ class AddStep3Fragment : Fragment() {
             mBuilder.setCancelable(false)
             mBuilder.setPositiveButton(android.R.string.ok) { _, _ ->
                 var stringItem = getString(R.string.text_add_utensils_list)
+                mUserUtensil.sort()
                 for (i in mUserUtensil) {
                     stringItem += " "
                     stringItem += listU[i]
@@ -82,18 +84,28 @@ class AddStep3Fragment : Fragment() {
         }
 
         root.button_add_ingredient.setOnClickListener {
-            val ingredientView = layoutInflater.inflate(R.layout.layout_add_ingredient, null, false)
+            if (ingredientCount < MAX_INGREDIENT) {
+                val ingredientView = layoutInflater.inflate(R.layout.layout_add_ingredient, container, false)
 
-            ArrayAdapter.createFromResource(
-                    root.context,
-                    R.array.ingredient_type_array,
-                    android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                ingredientView.array_add_ingredient_type.adapter = adapter
+                ArrayAdapter.createFromResource(
+                        root.context,
+                        R.array.ingredient_type_array,
+                        android.R.layout.simple_spinner_item
+                ).also { adapter ->
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    ingredientView.array_add_ingredient_type.adapter = adapter
+                }
+
+                ingredientView.image_ingredient_delete.setOnClickListener {
+                    root.layout_ingredient.removeView(ingredientView)
+                    ingredientCount--
+                }
+
+                root.layout_ingredient.addView(ingredientView)
+                ingredientCount++
+            } else {
+                Toast.makeText(root.context, "TODO : say it's impossible", Toast.LENGTH_LONG).show()
             }
-
-            root.layout_ingredient.addView(ingredientView)
         }
 
         root.button_add_next.setOnClickListener {
