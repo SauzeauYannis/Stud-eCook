@@ -103,7 +103,7 @@
     <string name="text_add_ingredient">Ingredients:</string>
     <string name="edit_text_add_num_ingredient_hint" translatable="false">667</string>
     <string name="edit_text_add_ingredient_hint">Example: Flour</string>
-    <string name="image_delete">Delete current ingredient</string>
+    <string name="image_delete_ingredient">Delete current ingredient</string>
     <string name="button_add_ingredient">Add ingredient</string>
     <string-array name="ingredient_type_array">
         <item>Unit</item>
@@ -114,4 +114,10 @@
     <string name="text_add_ingredient_false">You need to add at least one ingredient</string>
     <string name="text_add_ingredient_empty">You need to enter a ingredient name</string>
     <string name="text_add_ingredient_num_empty">You need to enter a quantity of ingredient</string>
+
+    <!-- fragment 4 -->
+
+    <string name="text_add_step">Steps:</string>
+    <string name="button_add_step">Add Step</string>
+    <string name="image_delete_step">Delete current step</string>
 </resources>

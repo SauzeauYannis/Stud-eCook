@@ -142,10 +142,10 @@ class AddStep3Fragment : Fragment() {
 
     private fun isIngredientListGood(layout: LinearLayout, context: Context): Boolean {
         for (l in layout) {
-            if (l.text_input_add_num_ingredient.text.toString() == "") {
+            if (l.text_input_add_num_ingredient.text.toString().isEmpty()) {
                 Toast.makeText(context, getString(R.string.text_add_ingredient_num_empty), Toast.LENGTH_LONG).show()
                 return false
-            } else if (l.text_input_add_ingredient.text.toString() == "") {
+            } else if (l.text_input_add_ingredient.text.toString().isEmpty()) {
                 Toast.makeText(context, getString(R.string.text_add_ingredient_empty), Toast.LENGTH_LONG).show()
                 return false
             }

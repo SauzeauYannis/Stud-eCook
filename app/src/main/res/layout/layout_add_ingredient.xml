@@ -40,7 +40,7 @@
         android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_weight="1"
-        app:srcCompat="@drawable/ic_delete"
-        android:contentDescription="@string/image_delete" />
+        android:contentDescription="@string/image_delete_ingredient"
+        app:srcCompat="@drawable/ic_delete" />
 
 </LinearLayout>
