@@ -1,13 +1,16 @@
 package com.android.app.studecook.ui.add
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.iterator
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.android.app.studecook.R
@@ -21,8 +24,8 @@ import java.util.Arrays.sort
 
 class AddStep3Fragment : Fragment() {
 
-    val MAX_INGREDIENT = 15
-    var ingredientCount = 0
+    private val maxIngredient = 15
+    private var ingredientCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,35 +87,49 @@ class AddStep3Fragment : Fragment() {
         }
 
         root.button_add_ingredient.setOnClickListener {
-            if (ingredientCount < MAX_INGREDIENT) {
-                val ingredientView = layoutInflater.inflate(R.layout.layout_add_ingredient, container, false)
-
-                ArrayAdapter.createFromResource(
-                        root.context,
-                        R.array.ingredient_type_array,
-                        android.R.layout.simple_spinner_item
-                ).also { adapter ->
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    ingredientView.array_add_ingredient_type.adapter = adapter
+            if (ingredientCount < maxIngredient) {
+                var isGood = true
+                if (ingredientCount != 0) {
+                    isGood = isIngredientListGood(root.layout_ingredient, root.context)
                 }
+                if (isGood) {
+                    val ingredientView = layoutInflater.inflate(R.layout.layout_add_ingredient, container, false)
 
-                ingredientView.image_ingredient_delete.setOnClickListener {
-                    root.layout_ingredient.removeView(ingredientView)
-                    ingredientCount--
+                    ArrayAdapter.createFromResource(
+                            root.context,
+                            R.array.ingredient_type_array,
+                            android.R.layout.simple_spinner_item
+                    ).also { adapter ->
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                        ingredientView.array_add_ingredient_type.adapter = adapter
+                    }
+
+                    ingredientView.image_ingredient_delete.setOnClickListener {
+                        root.layout_ingredient.removeView(ingredientView)
+                        ingredientCount--
+                    }
+
+                    root.layout_ingredient.addView(ingredientView)
+                    ingredientCount++
                 }
-
-                root.layout_ingredient.addView(ingredientView)
-                ingredientCount++
             } else {
-                Toast.makeText(root.context, "TODO : say it's impossible", Toast.LENGTH_LONG).show()
+                Toast.makeText(root.context, getString(R.string.text_add_ingredient_too_much), Toast.LENGTH_LONG).show()
             }
         }
 
         root.button_add_next.setOnClickListener {
-            if (root.text_add_utensils.text == getString(R.string.text_add_utensils_list)) {
-                Toast.makeText(root.context, getString(R.string.text_add_utensils_false), Toast.LENGTH_LONG).show()
-            } else {
-                findNavController().navigate(R.id.action_navigation_add_step3_to_navigation_add_step4)
+            when {
+                root.text_add_utensils.text == getString(R.string.text_add_utensils_list) -> {
+                    Toast.makeText(root.context, getString(R.string.text_add_utensils_false), Toast.LENGTH_LONG).show()
+                }
+                ingredientCount == 0 -> {
+                    Toast.makeText(root.context, getString(R.string.text_add_ingredient_false), Toast.LENGTH_LONG).show()
+                }
+                else -> {
+                    if (isIngredientListGood(root.layout_ingredient, root.context)) {
+                        findNavController().navigate(R.id.action_navigation_add_step3_to_navigation_add_step4)
+                    }
+                }
             }
         }
 
@@ -121,5 +138,18 @@ class AddStep3Fragment : Fragment() {
         }
 
         return root
+    }
+
+    private fun isIngredientListGood(layout: LinearLayout, context: Context): Boolean {
+        for (l in layout) {
+            if (l.text_input_add_num_ingredient.text.toString() == "") {
+                Toast.makeText(context, getString(R.string.text_add_ingredient_num_empty), Toast.LENGTH_LONG).show()
+                return false
+            } else if (l.text_input_add_ingredient.text.toString() == "") {
+                Toast.makeText(context, getString(R.string.text_add_ingredient_empty), Toast.LENGTH_LONG).show()
+                return false
+            }
+        }
+        return true
     }
 }

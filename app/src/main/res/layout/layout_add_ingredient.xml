@@ -21,7 +21,8 @@
         style="@style/Widget.AppCompat.Spinner.DropDown"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_weight="3" />
+        android:layout_weight="3"
+        android:spinnerMode="dialog" />
 
     <EditText
         android:id="@+id/text_input_add_ingredient"
