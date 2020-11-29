@@ -34,7 +34,7 @@ class AddStep5Fragment : Fragment() {
 
         root.text_add_title.text = getString(R.string.text_add_title, "5")
 
-        root.button_add_final.setOnClickListener {
+        root.button_add_next.setOnClickListener {
             Toast.makeText(root.context, "TODO: Sent to database", Toast.LENGTH_LONG).show()
         }
 

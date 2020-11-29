@@ -33,7 +33,7 @@ class AddStep4Fragment : Fragment() {
 
         root.text_add_title.text = getString(R.string.text_add_title, "4")
 
-        root.button_add_final.setOnClickListener {
+        root.button_add_next.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_add_step4_to_navigation_add_step5)
         }
 
