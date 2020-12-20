@@ -120,4 +120,8 @@
     <string name="text_add_step">Steps:</string>
     <string name="button_add_step">Add Step</string>
     <string name="image_delete_step">Delete current step</string>
+    <string name="text_add_ingredient_hint">Step %d</string>
+    <string name="text_add_step_toomuch">You can\'t add one more step</string>
+    <string name="text_add_step_empty">You need to add at least one step</string>
+    <string name="text_add_step_isEmpty">You need to complete all steps</string>
 </resources>

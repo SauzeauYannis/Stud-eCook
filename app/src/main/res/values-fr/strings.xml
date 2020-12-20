@@ -84,4 +84,8 @@
     <string name="button_add_step">Ajouter étape</string>
     <string name="image_delete_step">Supprimer cette étape</string>
     <string name="image_delete_ingredient">Supprimer cet ingrédient</string>
+    <string name="text_add_ingredient_hint">Etape %d</string>
+    <string name="text_add_step_empty">Vous devez ajouter au moins une étape</string>
+    <string name="text_add_step_toomuch">Vous ne pouvez pas ajouter d\'autres étapes</string>
+    <string name="text_add_step_isEmpty">Vous devez compléter toutes les étapes</string>
 </resources>

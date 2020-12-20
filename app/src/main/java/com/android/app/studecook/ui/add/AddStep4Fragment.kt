@@ -54,6 +54,8 @@ class AddStep4Fragment : Fragment() {
                 if (isGood) {
                     val stepView = layoutInflater.inflate(R.layout.layout_add_step, container, false)
 
+                    stepView.text_input_step.hint = getString(R.string.text_add_ingredient_hint, stepCount+1)
+
                     stepView.image_step_delete.setOnClickListener {
                         root.layout_step.removeView(stepView)
                         stepCount--
@@ -63,13 +65,13 @@ class AddStep4Fragment : Fragment() {
                     stepCount++
                 }
             } else {
-                Toast.makeText(context, "TODO count", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, getString(R.string.text_add_step_toomuch), Toast.LENGTH_LONG).show()
             }
         }
 
         root.button_add_next.setOnClickListener {
             if (stepCount == 0) {
-                Toast.makeText(context, "TODO step", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, getString(R.string.text_add_step_empty), Toast.LENGTH_LONG).show()
             } else {
                 if (isStepListGood(root.layout_step, root.context)) {
                     findNavController().navigate(R.id.action_navigation_add_step4_to_navigation_add_step5)
@@ -87,7 +89,7 @@ class AddStep4Fragment : Fragment() {
     private fun isStepListGood(layout: LinearLayout, context: Context): Boolean {
         for (l in layout) {
             if (l.text_input_step.text.toString().isEmpty()) {
-                Toast.makeText(context, "TODO empty", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, getString(R.string.text_add_step_isEmpty), Toast.LENGTH_LONG).show()
                 return false
             }
         }
