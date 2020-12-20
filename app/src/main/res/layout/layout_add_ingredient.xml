@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/text_input_add_num_ingredient"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_weight="2"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/edit_text_add_num_ingredient_hint"
+        android:inputType="numberDecimal"
+        android:textAlignment="center" />
+
+    <Spinner
+        android:id="@+id/array_add_ingredient_type"
+        style="@style/Widget.AppCompat.Spinner.DropDown"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_weight="3"
+        android:spinnerMode="dialog" />
+
+    <EditText
+        android:id="@+id/text_input_add_ingredient"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_weight="6"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/edit_text_add_ingredient_hint"
+        android:inputType="textPersonName"
+        android:text="" />
+
+    <ImageView
+        android:id="@+id/image_ingredient_delete"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/image_delete_ingredient"
+        app:srcCompat="@drawable/ic_delete" />
+
+</LinearLayout>

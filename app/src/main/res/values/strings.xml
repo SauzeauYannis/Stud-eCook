@@ -6,27 +6,118 @@
     <string name="twitter_consumer_key" translatable="false">QZ7v4pzJOT8JwgX5KovYNKJhb</string>
     <string name="twitter_consumer_secret" translatable="false">sHaymV3fslkMbM8ISOU9658SirAMQJMl5wfpwdPnumowEAKZ0h</string>
 
-    <string name="app_name">Stud\'eCook</string>
+    <string name="app_name" translatable="false">Stud\'eCook</string>
+    <string name="title_activity_settings" translatable="false">SettingsActivity</string>
 
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="anonymous">Anonymous</string>
 
-    <string name="text_dashboard">Dashboard</string>
-    <string name="text_home">Home</string>
-    <string name="text_notifications">Notifications</string>
+    <!-- Bottom navigation menu title -->
+    <string name="title_home">Recipes</string>
+    <string name="title_add">Add</string>
+    <string name="title_account">Account</string>
 
-    <string name="menu_param">Paramètres</string>
-    <string name="menu_logout">Se déconnecter</string>
+    <!-- Text in fragment -->
+    <string name="text_home">TODO : recipes fragment</string>
+    <string name="text_account">TODO : %1$s Account</string>
 
-    <string name="desc_main_menu_button">main menu button</string>
-    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="menu_param">Settings</string>
 
     <!-- Settings -->
-    <string name="appearance_header">Thème</string>
-    <string name="setting_dark">setting_dark</string>
-    <string name="dark_title">Activer le thème sombre</string>
-    <string name="dark_off">Thème sombre désactivé</string>
-    <string name="dark_on">Thème sombre activé</string>
+    <!-- Theme -->
+    <string name="appearance_header">Theme</string>
+    <string name="setting_dark" translatable="false">setting_dark</string>
+    <string name="dark_title">Activate the dark theme</string>
+    <string name="dark_off">Dark theme off</string>
+    <string name="dark_on">Dark theme on</string>
+    <!-- Account -->
+    <string name="account_header">Sign out</string>
+    <string name="setting_account" translatable="false">setting_account</string>
+    <string name="account_on">Account name : %1$s</string>
+    <string name="account_off">You are already not sign</string>
+    <string name="alert_setting_account">Do you want to sign out ?</string>
 
+    <!-- Add fragment -->
+
+    <string name="text_add_title">Add your recipe Step\nStep %1$s/5</string>
+    <string name="button_add_next">Next page button</string>
+    <string name="button_add_previous">Previous page button</string>
+
+    <!-- fragment 1 -->
+
+    <string name="text_add_name">Name of your recipe:</string>
+    <string name="edit_text_add_name_hint">Example: Cookie</string>
+    <string name="add_name_false_short">Recipe name too short</string>
+    <string name="add_name_false_long">Recipe name too long</string>
+    <string name="add_name_false">Name of recipe is not good</string>
+    <string name="text_add_time">Time:</string>
+    <string-array name="time_array">
+        <item>Fast: less than 30min</item>
+        <item>Medium: between 30min and 1h30</item>
+        <item>Long: more than 1h30</item>
+    </string-array>
+    <string name="text_add_price">Price:</string>
+    <string-array name="price_array">
+        <item>Cheap: less than 3 €</item>
+        <item>Medium: between 3 € and 5 €</item>
+        <item>Expensive: more than 5 €</item>
+    </string-array>
+    <string name="button_sent_data">Validate recipe button</string>
+
+    <!-- fragment 2 -->
+
+    <string name="text_add_nbP">Number of people: %1$s</string>
+    <string name="text_add_type">Type:</string>
+    <string-array name="type_array">
+        <item>Starter</item>
+        <item>Dish</item>
+        <item>Dessert</item>
+        <item>Drink</item>
+    </string-array>
+    <string name="text_add_diet">Diet:</string>
+    <string-array name="diet_array">
+        <item>None</item>
+        <item>Vegetarian</item>
+        <item>Vegan</item>
+    </string-array>
+
+    <!-- fragment 3 -->
+
+    <string name="button_add_utensil">Add utensil</string>
+    <string name="dialog_title_utensil">Choose utensils needed</string>
+    <string name="text_add_utensils_list">Utensils:</string>
+    <string name="text_add_utensils_false">You need to add at least one utensil</string>
+    <string-array name="utensil_array">
+        <item>Bowl</item>
+        <item>Flat</item>
+        <item>Fryer</item>
+        <item>Frying pan</item>
+        <item>Knife</item>
+        <item>Microwave</item>
+        <item>Mixer</item>
+        <item>Oven</item>
+        <item>Salad bowl</item>
+        <item>Saucepan</item>
+        <item>Spoon</item>
+        <item>Whisk</item>
+    </string-array>
+    <string name="text_add_ingredient">Ingredients:</string>
+    <string name="edit_text_add_num_ingredient_hint" translatable="false">667</string>
+    <string name="edit_text_add_ingredient_hint">Example: Flour</string>
+    <string name="image_delete_ingredient">Delete current ingredient</string>
+    <string name="button_add_ingredient">Add ingredient</string>
+    <string-array name="ingredient_type_array">
+        <item>Unit</item>
+        <item>g</item>
+        <item>ml</item>
+    </string-array>
+    <string name="text_add_ingredient_too_much">You have reach the maximum amount of ingredients</string>
+    <string name="text_add_ingredient_false">You need to add at least one ingredient</string>
+    <string name="text_add_ingredient_empty">You need to enter a ingredient name</string>
+    <string name="text_add_ingredient_num_empty">You need to enter a quantity of ingredient</string>
+
+    <!-- fragment 4 -->
+
+    <string name="text_add_step">Steps:</string>
+    <string name="button_add_step">Add Step</string>
+    <string name="image_delete_step">Delete current step</string>
 </resources>

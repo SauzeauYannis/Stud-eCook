@@ -3,12 +3,20 @@
     <PreferenceCategory android:title="@string/appearance_header">
 
         <SwitchPreference
+            android:defaultValue="false"
             android:key="@string/setting_dark"
-            android:title="@string/dark_title"
             android:summaryOff="@string/dark_off"
             android:summaryOn="@string/dark_on"
-            android:defaultValue="false">
-        </SwitchPreference>
+            android:title="@string/dark_title" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/title_account">
+
+        <Preference
+            android:key="@string/setting_account"
+            android:title="@string/account_header"
+            android:summary="@string/account_off" />
 
     </PreferenceCategory>
 

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_home">Recettes</string>
+    <string name="title_add">Ajouter</string>
+    <string name="title_account">Compte</string>
+    <string name="text_home">TODO : Page des recettes</string>
+    <string name="text_add_title">Ajoute ta recette\nÉtape %1$s/5</string>
+    <string name="text_account">TODO : Compte de %1$s</string>
+    <string name="menu_param">Paramètres</string>
+    <string name="appearance_header">Thème</string>
+    <string name="dark_title">Activer le thème sombre</string>
+    <string name="dark_off">Thème sombre désactivé</string>
+    <string name="dark_on">Thème sombre activé</string>
+    <string name="text_add_name">Nom de ta recette :</string>
+    <string name="text_add_time">Temps :</string>
+    <string name="text_add_price">Prix :</string>
+    <string-array name="time_array">
+        <item>Rapide : inférieur à 30min</item>
+        <item>Moyen : entre 30min et 1h30min</item>
+        <item>Long : supérieur à 1h30min</item>
+    </string-array>
+    <string-array name="price_array">
+        <item>Pas chère: inférieur à 3 €</item>
+        <item>Moyen : entre 3 € et 5 €</item>
+        <item>Chère : supérieur à 5 €</item>
+    </string-array>
+    <string name="edit_text_add_name_hint">Exemple : Cookie</string>
+    <string name="button_add_next">Boutton page suivante</string>
+    <string name="account_on">Nom du compte : %1$s</string>
+    <string name="account_off">Vous n\'etes pas connecté</string>
+    <string name="alert_setting_account">Voulez-vous être déconnecté</string>
+    <string name="anonymous">Anonyme</string>
+    <string name="account_header">Se déconnecter</string>
+    <string name="button_sent_data">Boutton validation de recette</string>
+    <string name="button_add_previous">Boutton page précédente</string>
+    <string name="add_name_false_short">Nom de recette trop court</string>
+    <string name="add_name_false_long">Nom de recette trop long</string>
+    <string name="add_name_false">Nom de recette invalide</string>
+    <string name="text_add_nbP">Nombre de personnes : %1$s</string>
+    <string name="text_add_type">Type :</string>
+    <string-array name="type_array">
+        <item>Entrée</item>
+        <item>Plat</item>
+        <item>Dessert</item>
+        <item>Boisson</item>
+    </string-array>
+    <string name="text_add_diet">Régime</string>
+    <string-array name="diet_array">
+        <item>Aucun</item>
+        <item>Végétarien</item>
+        <item>Végan</item>
+    </string-array>
+    <string name="button_add_utensil">Ajouter ustensiles</string>
+    <string-array name="utensil_array">
+        <item>Bol</item>
+        <item>Plat</item>
+        <item>Friteuse</item>
+        <item>Poêle</item>
+        <item>Couteau</item>
+        <item>Micro-onde</item>
+        <item>Mixer</item>
+        <item>Four</item>
+        <item>Saladier</item>
+        <item>Casserole</item>
+        <item>Cuillère</item>
+        <item>Fouet</item>
+    </string-array>
+    <string name="dialog_title_utensil">Choisis les ustensiles requis</string>
+    <string name="text_add_utensils_list">Ustensiles :</string>
+    <string name="text_add_utensils_false">Vous devez ajouter au moins un ustensile</string>
+    <string name="text_add_ingredient">Ingrédients :</string>
+    <string name="edit_text_add_ingredient_hint">Exemple : Farine</string>
+    <string name="button_add_ingredient">Ajouter ingrédients</string>
+    <string-array name="ingredient_type_array">
+        <item>Unité</item>
+        <item>g</item>
+        <item>ml</item>
+    </string-array>
+    <string name="text_add_ingredient_too_much">Vous avez atteint le nombre maximum d\'ingrédients</string>
+    <string name="text_add_ingredient_false">Vous devez ajouter au moins un ingrédient</string>
+    <string name="text_add_ingredient_empty">Vous devez remplir le champ ingrédient</string>
+    <string name="text_add_ingredient_num_empty">Vous devez remplir le champ quantité d\'ingrédient</string>
+    <string name="text_add_step">Etapes :</string>
+    <string name="button_add_step">Ajouter étape</string>
+    <string name="image_delete_step">Supprimer cette étape</string>
+    <string name="image_delete_ingredient">Supprimer cet ingrédient</string>
+</resources>
