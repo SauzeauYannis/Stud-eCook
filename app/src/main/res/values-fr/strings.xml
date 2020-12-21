@@ -92,4 +92,5 @@
     <string name="button_add_picture">Ajouter une photo</string>
     <string name="button_precedent_picture">Photo précédente</string>
     <string name="button_next_picture">Photo suivante</string>
+    <string name="text_add_picture_title">Choisir images(s) (max 3)</string>
 </resources>

@@ -65,11 +65,12 @@
         android:layout_marginStart="32dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/round_accent"
+        android:contentDescription="@string/button_precedent_picture"
         android:padding="8dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/button_add_next"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_back"
-        android:contentDescription="@string/button_precedent_picture" />
+        app:srcCompat="@drawable/ic_back" />
 
     <Button
         android:id="@+id/button_add_picture"
@@ -91,11 +92,12 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/round_accent"
+        android:contentDescription="@string/button_next_picture"
         android:padding="8dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/button_add_next"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_forward"
-        android:contentDescription="@string/button_next_picture" />
+        app:srcCompat="@drawable/ic_forward" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_add_next"

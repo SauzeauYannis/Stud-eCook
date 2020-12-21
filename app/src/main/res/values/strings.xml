@@ -128,4 +128,5 @@
     <string name="button_add_picture">Add picture</string>
     <string name="button_precedent_picture">Precedent picture</string>
     <string name="button_next_picture">Next picture</string>
+    <string name="text_add_picture_title">Select Image(s) (max 3)</string>
 </resources>
