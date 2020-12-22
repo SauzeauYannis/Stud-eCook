@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
@@ -20,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_add_step5.view.*
 
 class AddStep5Fragment : Fragment() {
 
-    //private val maxImage = 3
+    private val maxImage = 3
     private var images: ArrayList<Uri?>? = null
     private var position = 0
 
@@ -67,7 +68,7 @@ class AddStep5Fragment : Fragment() {
             if (position > 0) {
                 position--
                 imageswitcher_add_recipe.setImageURI(images!![position])
-                buttonVisibilityChanges()
+                visibilityChanges()
             }
         }
 
@@ -75,7 +76,7 @@ class AddStep5Fragment : Fragment() {
             if (position < images!!.size-1) {
                 position++
                 imageswitcher_add_recipe.setImageURI(images!![position])
-                buttonVisibilityChanges()
+                visibilityChanges()
             }
         }
 
@@ -86,7 +87,7 @@ class AddStep5Fragment : Fragment() {
         return root
     }
 
-    private fun buttonVisibilityChanges() {
+    private fun visibilityChanges() {
         if (images!!.size > 1) {
             when (position) {
                 0 -> {
@@ -102,6 +103,8 @@ class AddStep5Fragment : Fragment() {
                     button_precedent_picture.visibility = Button.VISIBLE
                 }
             }
+            text_number_pictures.visibility = TextView.VISIBLE
+            text_number_pictures.text = getString(R.string.text_number_pictures, position+1, images!!.size)
         }
     }
 
@@ -117,16 +120,20 @@ class AddStep5Fragment : Fragment() {
             if (resultCode == Activity.RESULT_OK) {
                 if(data!!.clipData != null) {
                     val count = data.clipData!!.itemCount
-                    for (i in position until count+position) {
-                        val imageUri = data.clipData!!.getItemAt(i).uri
-                        images!!.add(imageUri)
+                    if ((images!!.size + count) > maxImage) {
+                        Toast.makeText(context, getString(R.string.text_add_pictures_too_much), Toast.LENGTH_LONG).show()
+                    } else {
+                        for (i in position until count+position) {
+                            val imageUri = data.clipData!!.getItemAt(i).uri
+                            images!!.add(imageUri)
+                        }
+                        imageswitcher_add_recipe.setImageURI(images!![position])
                     }
-                    imageswitcher_add_recipe.setImageURI(images!![position])
                 } else {
                     val imageUri = data.data
                     imageswitcher_add_recipe.setImageURI(imageUri)
                 }
-                buttonVisibilityChanges()
+                visibilityChanges()
             }
         }
     }

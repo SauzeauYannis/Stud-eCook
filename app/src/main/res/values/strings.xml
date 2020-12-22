@@ -124,9 +124,14 @@
     <string name="text_add_step_toomuch">You can\'t add one more step</string>
     <string name="text_add_step_empty">You need to add at least one step</string>
     <string name="text_add_step_isEmpty">You need to complete all steps</string>
+
+    <!-- fragment 5 -->
+
     <string name="text_add_picture">Picture:</string>
     <string name="button_add_picture">Add picture</string>
     <string name="button_precedent_picture">Precedent picture</string>
     <string name="button_next_picture">Next picture</string>
     <string name="text_add_picture_title">Select Image(s) (max 3)</string>
+    <string name="text_number_pictures" translatable="false">%d/%d</string>
+    <string name="text_add_pictures_too_much">The maximum of pictures is 3</string>
 </resources>

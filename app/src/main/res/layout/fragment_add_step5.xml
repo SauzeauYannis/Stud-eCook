@@ -99,6 +99,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_forward" />
 
+    <TextView
+        android:id="@+id/text_number_pictures"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_number_pictures"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/button_add_picture"
+        app:layout_constraintEnd_toStartOf="@+id/button_next_picture"
+        app:layout_constraintStart_toEndOf="@+id/button_precedent_picture"
+        app:layout_constraintTop_toBottomOf="@+id/imageswitcher_add_recipe" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_add_next"
         android:layout_width="wrap_content"
