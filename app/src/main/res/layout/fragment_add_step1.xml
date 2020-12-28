@@ -33,7 +33,7 @@
         app:layout_constraintVertical_bias="0.198" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_add_name"
+        android:id="@+id/text_input_layout_add_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -48,6 +48,7 @@
         app:layout_constraintVertical_bias="0.205">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_input_add_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/edit_text_add_name_hint"
@@ -78,7 +79,7 @@
         app:layout_constraintBottom_toTopOf="@+id/array_add_price"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_input_add_name"
+        app:layout_constraintTop_toBottomOf="@+id/text_input_layout_add_name"
         app:layout_constraintVertical_bias="0.503" />
 
     <TextView

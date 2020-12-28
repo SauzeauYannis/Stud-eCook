@@ -134,4 +134,10 @@
     <string name="text_add_picture_title">Select Image(s) (max 3)</string>
     <string name="text_number_pictures" translatable="false">%d/%d</string>
     <string name="text_add_pictures_too_much">The maximum of pictures is 3</string>
+
+    <!-- save values -->
+
+    <string name="saved_add_name_key" translatable="false">name</string>
+    <string name="saved_add_time_key" translatable="false">time</string>
+    <string name="saved_add_price_key" translatable="false">price</string>
 </resources>
