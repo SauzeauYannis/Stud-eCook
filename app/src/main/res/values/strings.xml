@@ -121,7 +121,7 @@
     <string name="button_add_step">Add Step</string>
     <string name="image_delete_step">Delete current step</string>
     <string name="text_add_ingredient_hint">Step %d</string>
-    <string name="text_add_step_toomuch">You can\'t add one more step</string>
+    <string name="text_add_step_too_much">You can\'t add one more step</string>
     <string name="text_add_step_empty">You need to add at least one step</string>
     <string name="text_add_step_isEmpty">You need to complete all steps</string>
 
@@ -143,4 +143,9 @@
     <string name="saved_add_number_key" translatable="false">number</string>
     <string name="saved_add_type_key" translatable="false">type</string>
     <string name="saved_add_diet_key" translatable="false">diet</string>
+    <string name="saved_add_utensils_key" translatable="false">utensils</string>
+    <string name="saved_add_ingredient_number_key" translatable="false">ingredient number</string>
+    <string name="saved_add_ingredients_quantity_key" translatable="false">ingredients quantity</string>
+    <string name="saved_add_ingredients_type_key" translatable="false">ingredients type</string>
+    <string name="saved_add_ingredients_name_key" translatable="false">ingredients name</string>
 </resources>

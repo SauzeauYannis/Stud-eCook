@@ -53,6 +53,46 @@ class AddStep3Fragment : Fragment() {
         sort(listU)
         val check = BooleanArray(listU.size)
         val mUserUtensil = ArrayList<Int>()
+        val savedUtensil = sharedPref!!.getStringSet(getString(R.string.saved_add_utensils_key), HashSet<String>())
+
+        for (i in listU.indices) {
+            for (utensil in savedUtensil!!) {
+                if (listU[i] == utensil) {
+                    check[i] = true
+                    mUserUtensil.add(i)
+                }
+            }
+        }
+
+        val savedIngredientNumber = sharedPref.getInt(getString(R.string.saved_add_ingredient_number_key), 0)
+
+        ingredientCount += savedIngredientNumber
+
+        if (savedIngredientNumber > 0) {
+            val savedIngredientsQuantity = sharedPref.getStringSet(getString(R.string.saved_add_ingredients_quantity_key), HashSet<String>())
+            val savedIngredientsType = sharedPref.getStringSet(getString(R.string.saved_add_ingredients_type_key), HashSet<String>())
+            val savedIngredientsName = sharedPref.getStringSet(getString(R.string.saved_add_ingredients_name_key), HashSet<String>())
+
+            for (i in 0 until savedIngredientNumber) {
+                val ingredientView = generateIngredientView(container, root)
+
+                ingredientView!!.text_input_add_num_ingredient.setText(
+                        savedIngredientsQuantity?.elementAt(i)
+                )
+                savedIngredientsType?.elementAt(i)?.toInt()?.let {
+                    ingredientView.array_add_ingredient_type.setSelection(
+                            it
+                    )
+                }
+                ingredientView.text_input_add_ingredient.setText(
+                        savedIngredientsName?.elementAt(i)
+                )
+
+                root.layout_ingredient.addView(ingredientView)
+            }
+        }
+
+        root.text_add_utensils.text = generateUtensilsText(mUserUtensil, listU)
 
         root.button_add_utensil.setOnClickListener {
             val mBuilder = AlertDialog.Builder(root.context)
@@ -68,18 +108,7 @@ class AddStep3Fragment : Fragment() {
             }
             mBuilder.setCancelable(false)
             mBuilder.setPositiveButton(android.R.string.ok) { _, _ ->
-                var stringItem = getString(R.string.text_add_utensils_list)
-                mUserUtensil.sort()
-                for (i in mUserUtensil) {
-                    stringItem += " "
-                    stringItem += listU[i]
-                    stringItem += if (i != mUserUtensil[mUserUtensil.size - 1]) {
-                        ","
-                    } else {
-                        "."
-                    }
-                }
-                root.text_add_utensils.text = stringItem
+                root.text_add_utensils.text = generateUtensilsText(mUserUtensil, listU)
             }
             mBuilder.setNegativeButton(android.R.string.cancel) { dialog, _ ->
                 dialog.dismiss()
@@ -94,23 +123,7 @@ class AddStep3Fragment : Fragment() {
                     isGood = isIngredientListGood(root.layout_ingredient, root.context)
                 }
                 if (isGood) {
-                    val ingredientView = layoutInflater.inflate(R.layout.layout_add_ingredient, container, false)
-
-                    ArrayAdapter.createFromResource(
-                            root.context,
-                            R.array.ingredient_type_array,
-                            android.R.layout.simple_spinner_item
-                    ).also { adapter ->
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                        ingredientView.array_add_ingredient_type.adapter = adapter
-                    }
-
-                    ingredientView.image_ingredient_delete.setOnClickListener {
-                        root.layout_ingredient.removeView(ingredientView)
-                        ingredientCount--
-                    }
-
-                    root.layout_ingredient.addView(ingredientView)
+                    root.layout_ingredient.addView(generateIngredientView(container, root))
                     ingredientCount++
                 }
             } else {
@@ -129,6 +142,29 @@ class AddStep3Fragment : Fragment() {
                 else -> {
                     if (isIngredientListGood(root.layout_ingredient, root.context)) {
                         findNavController().navigate(R.id.action_navigation_add_step3_to_navigation_add_step4)
+
+                        val utensilsName = HashSet<String>()
+                        for (i in mUserUtensil) {
+                            utensilsName.add(listU[i])
+                        }
+
+                        var ingredientsQuantity = sharedPref.getStringSet(getString(R.string.saved_add_ingredients_quantity_key), HashSet<String>())
+                        var ingredientsType = sharedPref.getStringSet(getString(R.string.saved_add_ingredients_type_key), HashSet<String>())
+                        var ingredientsName = sharedPref.getStringSet(getString(R.string.saved_add_ingredients_name_key), HashSet<String>())
+                        for (view in root.layout_ingredient) {
+                            ingredientsQuantity = ingredientsQuantity?.plus(view.text_input_add_num_ingredient.text.toString())
+                            ingredientsType = ingredientsType?.plus(view.array_add_ingredient_type.selectedItemPosition.toString())
+                            ingredientsName = ingredientsName?.plus(view.text_input_add_ingredient.text.toString())
+                        }
+
+                        with (sharedPref.edit()) {
+                            putStringSet(getString(R.string.saved_add_utensils_key), utensilsName)
+                            putInt(getString(R.string.saved_add_ingredient_number_key), ingredientCount)
+                            putStringSet(getString(R.string.saved_add_ingredients_quantity_key), ingredientsQuantity)
+                            putStringSet(getString(R.string.saved_add_ingredients_type_key), ingredientsType)
+                            putStringSet(getString(R.string.saved_add_ingredients_name_key), ingredientsName)
+                            apply()
+                        }
                     }
                 }
             }
@@ -139,6 +175,40 @@ class AddStep3Fragment : Fragment() {
         }
 
         return root
+    }
+
+    private fun generateIngredientView(container: ViewGroup?, root: View): View? {
+        val ingredientView = layoutInflater.inflate(R.layout.layout_add_ingredient, container, false)
+
+        ArrayAdapter.createFromResource(
+                root.context,
+                R.array.ingredient_type_array,
+                android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            ingredientView.array_add_ingredient_type.adapter = adapter
+        }
+
+        ingredientView.image_ingredient_delete.setOnClickListener {
+            root.layout_ingredient.removeView(ingredientView)
+            ingredientCount--
+        }
+        return ingredientView
+    }
+
+    private fun generateUtensilsText(mUserUtensil: ArrayList<Int>, listU: Array<String>): String {
+        var stringItem = getString(R.string.text_add_utensils_list)
+        mUserUtensil.sort()
+        for (i in mUserUtensil) {
+            stringItem += " "
+            stringItem += listU[i]
+            stringItem += if (i != mUserUtensil[mUserUtensil.size - 1]) {
+                ","
+            } else {
+                "."
+            }
+        }
+        return stringItem
     }
 
     private fun isIngredientListGood(layout: LinearLayout, context: Context): Boolean {
