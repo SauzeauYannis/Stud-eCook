@@ -42,6 +42,7 @@ class AddStep4Fragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_add_step4, container, false)
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
 
         root.text_add_title.text = getString(R.string.text_add_title, "4")
 

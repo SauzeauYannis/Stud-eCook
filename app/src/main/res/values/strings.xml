@@ -140,4 +140,7 @@
     <string name="saved_add_name_key" translatable="false">name</string>
     <string name="saved_add_time_key" translatable="false">time</string>
     <string name="saved_add_price_key" translatable="false">price</string>
+    <string name="saved_add_number_key" translatable="false">number</string>
+    <string name="saved_add_type_key" translatable="false">type</string>
+    <string name="saved_add_diet_key" translatable="false">diet</string>
 </resources>
