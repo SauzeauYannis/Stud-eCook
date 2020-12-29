@@ -3,6 +3,7 @@ package com.android.app.studecook.ui.add
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,29 +67,26 @@ class AddStep3Fragment : Fragment() {
 
         val savedIngredientNumber = sharedPref.getInt(getString(R.string.saved_add_ingredient_number_key), 0)
 
-        ingredientCount += savedIngredientNumber
-
         if (savedIngredientNumber > 0) {
-            val savedIngredientsQuantity = sharedPref.getStringSet(getString(R.string.saved_add_ingredients_quantity_key), HashSet<String>())
-            val savedIngredientsType = sharedPref.getStringSet(getString(R.string.saved_add_ingredients_type_key), HashSet<String>())
-            val savedIngredientsName = sharedPref.getStringSet(getString(R.string.saved_add_ingredients_name_key), HashSet<String>())
+            val savedIngredientsQuantity = sharedPref.getString(getString(R.string.saved_add_ingredients_quantity_key), null)?.split(",")
+            val savedIngredientsType = sharedPref.getString(getString(R.string.saved_add_ingredients_type_key), null)?.split(",")
+            val savedIngredientsName = sharedPref.getString(getString(R.string.saved_add_ingredients_name_key), null)?.split(",")
 
             for (i in 0 until savedIngredientNumber) {
                 val ingredientView = generateIngredientView(container, root)
 
                 ingredientView!!.text_input_add_num_ingredient.setText(
-                        savedIngredientsQuantity?.elementAt(i)
+                        savedIngredientsQuantity?.get(i)
                 )
-                savedIngredientsType?.elementAt(i)?.toInt()?.let {
-                    ingredientView.array_add_ingredient_type.setSelection(
-                            it
-                    )
-                }
+                ingredientView.array_add_ingredient_type.setSelection(
+                        savedIngredientsType?.get(i)!!.toInt()
+                )
                 ingredientView.text_input_add_ingredient.setText(
-                        savedIngredientsName?.elementAt(i)
+                        savedIngredientsName?.get(i)
                 )
 
                 root.layout_ingredient.addView(ingredientView)
+                ingredientCount++
             }
         }
 
@@ -148,21 +146,21 @@ class AddStep3Fragment : Fragment() {
                             utensilsName.add(listU[i])
                         }
 
-                        var ingredientsQuantity = sharedPref.getStringSet(getString(R.string.saved_add_ingredients_quantity_key), HashSet<String>())
-                        var ingredientsType = sharedPref.getStringSet(getString(R.string.saved_add_ingredients_type_key), HashSet<String>())
-                        var ingredientsName = sharedPref.getStringSet(getString(R.string.saved_add_ingredients_name_key), HashSet<String>())
+                        val ingredientsQuantity = ArrayList<String>()
+                        val ingredientsType = ArrayList<String>()
+                        val ingredientsName = ArrayList<String>()
                         for (view in root.layout_ingredient) {
-                            ingredientsQuantity = ingredientsQuantity?.plus(view.text_input_add_num_ingredient.text.toString())
-                            ingredientsType = ingredientsType?.plus(view.array_add_ingredient_type.selectedItemPosition.toString())
-                            ingredientsName = ingredientsName?.plus(view.text_input_add_ingredient.text.toString())
+                            ingredientsQuantity.add(view.text_input_add_num_ingredient.text.toString())
+                            ingredientsType.add(view.array_add_ingredient_type.selectedItemPosition.toString())
+                            ingredientsName.add(view.text_input_add_ingredient.text.toString())
                         }
 
                         with (sharedPref.edit()) {
                             putStringSet(getString(R.string.saved_add_utensils_key), utensilsName)
                             putInt(getString(R.string.saved_add_ingredient_number_key), ingredientCount)
-                            putStringSet(getString(R.string.saved_add_ingredients_quantity_key), ingredientsQuantity)
-                            putStringSet(getString(R.string.saved_add_ingredients_type_key), ingredientsType)
-                            putStringSet(getString(R.string.saved_add_ingredients_name_key), ingredientsName)
+                            putString(getString(R.string.saved_add_ingredients_quantity_key), TextUtils.join(",", ingredientsQuantity))
+                            putString(getString(R.string.saved_add_ingredients_type_key), TextUtils.join(",", ingredientsType))
+                            putString(getString(R.string.saved_add_ingredients_name_key), TextUtils.join(",", ingredientsName))
                             apply()
                         }
                     }
