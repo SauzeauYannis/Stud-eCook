@@ -148,4 +148,6 @@
     <string name="saved_add_ingredients_quantity_key" translatable="false">ingredients quantity</string>
     <string name="saved_add_ingredients_type_key" translatable="false">ingredients type</string>
     <string name="saved_add_ingredients_name_key" translatable="false">ingredients name</string>
+    <string name="saved_add_step_number_key" translatable="false">step number</string>
+    <string name="saved_add_steps_key" translatable="false">steps</string>
 </resources>

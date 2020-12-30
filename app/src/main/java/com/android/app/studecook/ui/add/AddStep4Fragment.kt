@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_add_step4.view.button_add_next
 import kotlinx.android.synthetic.main.fragment_add_step4.view.button_back
 import kotlinx.android.synthetic.main.fragment_add_step4.view.text_add_title
 import kotlinx.android.synthetic.main.layout_add_step.view.*
+import java.util.ArrayList
 
 class AddStep4Fragment : Fragment() {
 
@@ -42,9 +43,26 @@ class AddStep4Fragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_add_step4, container, false)
-        // val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
 
         root.text_add_title.text = getString(R.string.text_add_title, "4")
+
+        val savedStepsNumber = sharedPref!!.getInt(getString(R.string.saved_add_step_number_key), 0)
+
+        if (savedStepsNumber > 0) {
+            val savedSteps = sharedPref.getString(getString(R.string.saved_add_steps_key), null)?.split("\n\n\n")
+
+            for (i in 0 until savedStepsNumber) {
+                val stepView = generateStepView(container, root)
+
+                stepView!!.text_input_step.setText(
+                        savedSteps?.get(i)
+                )
+
+                root.layout_step.addView(stepView)
+                stepCount++
+            }
+        }
 
         root.button_add_step.setOnClickListener {
             if (stepCount < maxStep) {
@@ -53,16 +71,7 @@ class AddStep4Fragment : Fragment() {
                     isGood = isStepListGood(root.layout_step, root.context)
                 }
                 if (isGood) {
-                    val stepView = layoutInflater.inflate(R.layout.layout_add_step, container, false)
-
-                    stepView.text_input_step.hint = getString(R.string.text_add_ingredient_hint, stepCount+1)
-
-                    stepView.image_step_delete.setOnClickListener {
-                        root.layout_step.removeView(stepView)
-                        stepCount--
-                    }
-
-                    root.layout_step.addView(stepView)
+                    root.layout_step.addView(generateStepView(container, root))
                     stepCount++
                 }
             } else {
@@ -76,6 +85,17 @@ class AddStep4Fragment : Fragment() {
             } else {
                 if (isStepListGood(root.layout_step, root.context)) {
                     findNavController().navigate(R.id.action_navigation_add_step4_to_navigation_add_step5)
+
+                    val steps = ArrayList<String>()
+                    for (view in root.layout_step) {
+                        steps.add(view.text_input_step.text.toString())
+                    }
+
+                    with (sharedPref.edit()) {
+                        putInt(getString(R.string.saved_add_step_number_key), stepCount)
+                        putString(getString(R.string.saved_add_steps_key), android.text.TextUtils.join("\n\n\n", steps))
+                        apply()
+                    }
                 }
             }
         }
@@ -85,6 +105,18 @@ class AddStep4Fragment : Fragment() {
         }
 
         return root
+    }
+
+    private fun generateStepView(container: ViewGroup?, root: View): View? {
+        val stepView = layoutInflater.inflate(R.layout.layout_add_step, container, false)
+
+        stepView.text_input_step.hint = getString(R.string.text_add_ingredient_hint, stepCount + 1)
+
+        stepView.image_step_delete.setOnClickListener {
+            root.layout_step.removeView(stepView)
+            stepCount--
+        }
+        return stepView
     }
 
     private fun isStepListGood(layout: LinearLayout, context: Context): Boolean {
