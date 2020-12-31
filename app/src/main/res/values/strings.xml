@@ -2,9 +2,6 @@
     <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
     <string name="facebook_application_id" translatable="false">648008085898234</string>
     <string name="facebook_login_protocol_scheme" translatable="false">fb648008085898234</string>
-    <!-- Twitter consumer key and secret -->
-    <string name="twitter_consumer_key" translatable="false">QZ7v4pzJOT8JwgX5KovYNKJhb</string>
-    <string name="twitter_consumer_secret" translatable="false">sHaymV3fslkMbM8ISOU9658SirAMQJMl5wfpwdPnumowEAKZ0h</string>
 
     <string name="app_name" translatable="false">Stud\'eCook</string>
     <string name="title_activity_settings" translatable="false">SettingsActivity</string>
@@ -150,4 +147,5 @@
     <string name="saved_add_ingredients_name_key" translatable="false">ingredients name</string>
     <string name="saved_add_step_number_key" translatable="false">step number</string>
     <string name="saved_add_steps_key" translatable="false">steps</string>
+    <string name="text_no_account">You are not sign in</string>
 </resources>

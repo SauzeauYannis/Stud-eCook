@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "460122007726-sk450b4m103eaeouqdudf9elhhld01gb.apps.googleusercontent.com",
+          "client_id": "460122007726-u5oo9lqape3m64379sqjh1m6mtqbo6e9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.android.app.studecook",
-            "certificate_hash": "c9c7b875e2a051013be539037b49a2c479ededf0"
+            "certificate_hash": "bafba515472ae1bc980d2ff9c9833e14c2d5a1ad"
           }
         },
         {

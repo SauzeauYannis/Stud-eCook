@@ -13,7 +13,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
-        versionName "0.14"
+        versionName "0.15"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
 
@@ -58,13 +58,13 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
 
     //Firebase
-    implementation platform('com.google.firebase:firebase-bom:26.0.0')
+    implementation platform('com.google.firebase:firebase-bom:26.2.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
     //Authentication
-    implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
-    implementation 'com.facebook.android:facebook-android-sdk:4.41.0'
-    implementation 'com.twitter.sdk.android:twitter:3.3.0'
+    implementation 'com.firebaseui:firebase-ui-auth:7.1.1'
+    implementation 'com.facebook.android:facebook-login:8.1.0'
+
     implementation 'androidx.preference:preference-ktx:1.1.1'
 
     testImplementation 'junit:junit:4.12'
