@@ -15,7 +15,7 @@ android {
         versionCode 1
         versionName "0.15"
         multiDexEnabled true
-        vectorDrawables.useSupportLibrary = true
+        vectorDrawables.useSupportLibrary true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -59,7 +59,8 @@ dependencies {
 
     //Firebase
     implementation platform('com.google.firebase:firebase-bom:26.2.0')
-    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx' //Analytics
+    implementation 'com.google.firebase:firebase-firestore-ktx' //Firestore
 
     //Authentication
     implementation 'com.firebaseui:firebase-ui-auth:7.1.1'

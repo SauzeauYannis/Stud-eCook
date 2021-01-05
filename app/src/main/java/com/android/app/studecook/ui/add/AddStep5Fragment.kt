@@ -52,10 +52,6 @@ class AddStep5Fragment : Fragment() {
 
         root.text_add_title.text = getString(R.string.text_add_title, "5")
 
-        root.button_add_next.setOnClickListener {
-            Toast.makeText(root.context, "TODO: Sent to database", Toast.LENGTH_LONG).show()
-        }
-
         root.imageswitcher_add_recipe.setFactory {
             ImageView(context)
         }
@@ -82,6 +78,10 @@ class AddStep5Fragment : Fragment() {
 
         root.button_back.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_add_step5_to_navigation_add_step4)
+        }
+
+        root.button_add_next.setOnClickListener {
+            Toast.makeText(root.context, "TODO: Sent to database", Toast.LENGTH_LONG).show()
         }
 
         return root
