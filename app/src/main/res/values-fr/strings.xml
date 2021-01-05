@@ -95,4 +95,5 @@
     <string name="text_add_picture_title">Choisir images(s) (max 3)</string>
     <string name="text_add_pictures_too_much">Le maximum de photo est 3</string>
     <string name="text_no_account">Vous n\'êtes pas connecté</string>
+    <string name="text_add_recipe_failure">La recette n\'a pas pu être ajouté</string>
 </resources>

@@ -13,9 +13,12 @@
     <string name="title_add">Add</string>
     <string name="title_account">Account</string>
 
-    <!-- Text in fragment -->
+    <!-- Home -->
     <string name="text_home">TODO : recipes fragment</string>
+
+    <!-- Account -->
     <string name="text_account">TODO : %1$s Account</string>
+    <string name="text_no_account">You are not sign in</string>
 
     <string name="menu_param">Settings</string>
 
@@ -131,6 +134,7 @@
     <string name="text_add_picture_title">Select Image(s) (max 3)</string>
     <string name="text_number_pictures" translatable="false">%d/%d</string>
     <string name="text_add_pictures_too_much">The maximum of pictures is 3</string>
+    <string name="text_add_recipe_failure">Error: The recipe can\'t be upload</string>
 
     <!-- save values -->
 
@@ -147,5 +151,5 @@
     <string name="saved_add_ingredients_name_key" translatable="false">ingredients name</string>
     <string name="saved_add_step_number_key" translatable="false">step number</string>
     <string name="saved_add_steps_key" translatable="false">steps</string>
-    <string name="text_no_account">You are not sign in</string>
+    <string name="saved_add_recipe_number_key" translatable="false">recipe number</string>
 </resources>
