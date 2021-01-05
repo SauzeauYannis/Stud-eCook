@@ -132,7 +132,7 @@ class AddStep5Fragment : Fragment() {
         val storageRef = storage.reference
 
         for (i in 0 until images!!.size) {
-            val imageRef = storageRef.child("images/$recipeId/image$i")
+            val imageRef = storageRef.child("images/$recipeId/${images!![i]?.lastPathSegment}")
 
             val uploadTask = images!![i]?.let { imageRef.putFile(it) }
 
@@ -200,17 +200,16 @@ class AddStep5Fragment : Fragment() {
             .set(recipe)
             .addOnSuccessListener {
                 sharedPref.edit().clear().apply()
+                sharedPref.edit {
+                    putInt(getString(R.string.saved_add_recipe_number_key), (recipeNumber + 1))
+                    commit()
+                }
                 val intent = Intent(context, MainActivity::class.java)
                 startActivity(intent)
             }
             .addOnFailureListener {
                 Toast.makeText(context, getString(R.string.text_add_recipe_failure), Toast.LENGTH_LONG).show()
             }
-
-        sharedPref.edit {
-            putInt(getString(R.string.saved_add_recipe_number_key), (recipeNumber++))
-            commit()
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
