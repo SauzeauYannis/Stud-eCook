@@ -2,6 +2,7 @@ package com.android.app.studecook.ui.add
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import androidx.core.view.iterator
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.android.app.studecook.R
+import kotlinx.android.synthetic.main.fragment_add_step3.*
 import kotlinx.android.synthetic.main.fragment_add_step3.view.*
 import kotlinx.android.synthetic.main.fragment_add_step3.view.button_add_next
 import kotlinx.android.synthetic.main.fragment_add_step3.view.button_back
@@ -33,7 +35,7 @@ class AddStep3Fragment : Fragment() {
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                findNavController().navigate(R.id.action_navigation_add_step3_to_navigation_add_step2)
+                button_back.callOnClick()
             }
         }
 
@@ -140,29 +142,7 @@ class AddStep3Fragment : Fragment() {
                 else -> {
                     if (isIngredientListGood(root.layout_ingredient, root.context)) {
                         findNavController().navigate(R.id.action_navigation_add_step3_to_navigation_add_step4)
-
-                        val utensilsName = HashSet<String>()
-                        for (i in mUserUtensil) {
-                            utensilsName.add(listU[i])
-                        }
-
-                        val ingredientsQuantity = ArrayList<String>()
-                        val ingredientsType = ArrayList<String>()
-                        val ingredientsName = ArrayList<String>()
-                        for (view in root.layout_ingredient) {
-                            ingredientsQuantity.add(view.text_input_add_num_ingredient.text.toString())
-                            ingredientsType.add(view.array_add_ingredient_type.selectedItemPosition.toString())
-                            ingredientsName.add(view.text_input_add_ingredient.text.toString())
-                        }
-
-                        with (sharedPref.edit()) {
-                            putStringSet(getString(R.string.saved_add_utensils_key), utensilsName)
-                            putInt(getString(R.string.saved_add_ingredient_number_key), ingredientCount)
-                            putString(getString(R.string.saved_add_ingredients_quantity_key), TextUtils.join(",", ingredientsQuantity))
-                            putString(getString(R.string.saved_add_ingredients_type_key), TextUtils.join(",", ingredientsType))
-                            putString(getString(R.string.saved_add_ingredients_name_key), TextUtils.join(",", ingredientsName))
-                            apply()
-                        }
+                        saveData(mUserUtensil, listU, root, sharedPref)
                     }
                 }
             }
@@ -170,9 +150,35 @@ class AddStep3Fragment : Fragment() {
 
         root.button_back.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_add_step3_to_navigation_add_step2)
+            saveData(mUserUtensil, listU, root, sharedPref)
         }
 
         return root
+    }
+
+    private fun saveData(mUserUtensil: ArrayList<Int>, listU: Array<String>, root: View, sharedPref: SharedPreferences) {
+        val utensilsName = HashSet<String>()
+        for (i in mUserUtensil) {
+            utensilsName.add(listU[i])
+        }
+
+        val ingredientsQuantity = ArrayList<String>()
+        val ingredientsType = ArrayList<String>()
+        val ingredientsName = ArrayList<String>()
+        for (view in root.layout_ingredient) {
+            ingredientsQuantity.add(view.text_input_add_num_ingredient.text.toString())
+            ingredientsType.add(view.array_add_ingredient_type.selectedItemPosition.toString())
+            ingredientsName.add(view.text_input_add_ingredient.text.toString())
+        }
+
+        with(sharedPref.edit()) {
+            putStringSet(getString(R.string.saved_add_utensils_key), utensilsName)
+            putInt(getString(R.string.saved_add_ingredient_number_key), ingredientCount)
+            putString(getString(R.string.saved_add_ingredients_quantity_key), TextUtils.join(",", ingredientsQuantity))
+            putString(getString(R.string.saved_add_ingredients_type_key), TextUtils.join(",", ingredientsType))
+            putString(getString(R.string.saved_add_ingredients_name_key), TextUtils.join(",", ingredientsName))
+            apply()
+        }
     }
 
     private fun generateIngredientView(container: ViewGroup?, root: View): View? {

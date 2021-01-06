@@ -135,6 +135,7 @@
     <string name="text_number_pictures" translatable="false">%d/%d</string>
     <string name="text_add_pictures_too_much">The maximum of pictures is 3</string>
     <string name="text_add_recipe_failure">Error: The recipe can\'t be upload</string>
+    <string name="text_add_recipe_anonymous">You can\'t add a recipe if you are anonymous\\nConnect you!</string>
 
     <!-- save values -->
 

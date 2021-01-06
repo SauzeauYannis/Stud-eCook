@@ -1,7 +1,9 @@
 package com.android.app.studecook.ui.add
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +14,7 @@ import androidx.core.view.iterator
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.android.app.studecook.R
+import kotlinx.android.synthetic.main.fragment_add_step4.*
 import kotlinx.android.synthetic.main.fragment_add_step4.view.*
 import kotlinx.android.synthetic.main.fragment_add_step4.view.button_add_next
 import kotlinx.android.synthetic.main.fragment_add_step4.view.button_back
@@ -29,7 +32,7 @@ class AddStep4Fragment : Fragment() {
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                findNavController().navigate(R.id.action_navigation_add_step4_to_navigation_add_step3)
+                button_back.callOnClick()
             }
         }
 
@@ -85,26 +88,30 @@ class AddStep4Fragment : Fragment() {
             } else {
                 if (isStepListGood(root.layout_step, root.context)) {
                     findNavController().navigate(R.id.action_navigation_add_step4_to_navigation_add_step5)
-
-                    val steps = ArrayList<String>()
-                    for (view in root.layout_step) {
-                        steps.add(view.text_input_step.text.toString())
-                    }
-
-                    with (sharedPref.edit()) {
-                        putInt(getString(R.string.saved_add_step_number_key), stepCount)
-                        putString(getString(R.string.saved_add_steps_key), android.text.TextUtils.join("\n\n\n", steps))
-                        apply()
-                    }
+                    saveData(root, sharedPref)
                 }
             }
         }
 
         root.button_back.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_add_step4_to_navigation_add_step3)
+            saveData(root, sharedPref)
         }
 
         return root
+    }
+
+    private fun saveData(root: View, sharedPref: SharedPreferences) {
+        val steps = ArrayList<String>()
+        for (view in root.layout_step) {
+            steps.add(view.text_input_step.text.toString())
+        }
+
+        with(sharedPref.edit()) {
+            putInt(getString(R.string.saved_add_step_number_key), stepCount)
+            putString(getString(R.string.saved_add_steps_key), TextUtils.join("\n\n\n", steps))
+            apply()
+        }
     }
 
     private fun generateStepView(container: ViewGroup?, root: View): View? {

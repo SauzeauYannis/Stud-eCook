@@ -17,6 +17,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.android.app.studecook.MainActivity
 import com.android.app.studecook.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -95,7 +97,12 @@ class AddStep5Fragment : Fragment() {
         }
 
         root.button_add_next.setOnClickListener {
-            sendToDataBase(sharedPref)
+            val user = FirebaseAuth.getInstance().currentUser
+            if (user!!.isAnonymous) {
+                Toast.makeText(context, getString(R.string.text_add_recipe_anonymous), Toast.LENGTH_LONG).show()
+            } else {
+                sendToDataBase(sharedPref, user)
+            }
         }
 
         return root
@@ -160,7 +167,7 @@ class AddStep5Fragment : Fragment() {
         }
     }
 
-    private fun sendToDataBase(sharedPref: SharedPreferences?) {
+    private fun sendToDataBase(sharedPref: SharedPreferences?, user: FirebaseUser?) {
         val db = Firebase.firestore
 
         recipeNumber = sharedPref?.getInt(getString(R.string.saved_add_recipe_number_key), 0)!!
@@ -193,7 +200,8 @@ class AddStep5Fragment : Fragment() {
             "ingredientsType" to ingredientsType,
             "ingredientsName" to ingredientsName,
             "steps" to steps,
-            "images" to downloadUri
+            "images" to downloadUri,
+            "uid" to user!!.uid
         )
 
         db.collection("recipes").document(recipeId)

@@ -1,6 +1,7 @@
 package com.android.app.studecook.ui.add
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -71,23 +72,27 @@ class AddStep1Fragment : Fragment() {
         }
 
         root.button_add_next.setOnClickListener {
-            if (validateUsername()) {
+            if (validateRecipename()) {
                 findNavController().navigate(R.id.action_navigation_add_step1_to_navigation_add_step2)
             } else {
                 Toast.makeText(root.context, getString(R.string.add_name_false), Toast.LENGTH_SHORT).show()
             }
-            with (sharedPref!!.edit()) {
-                putString(getString(R.string.saved_add_name_key), root.text_input_add_name.text.toString())
-                putInt(getString(R.string.saved_add_time_key), root.array_add_time.selectedItemPosition)
-                putInt(getString(R.string.saved_add_price_key), root.array_add_price.selectedItemPosition)
-                apply()
-            }
+            saveData(sharedPref, root)
         }
 
         return root
     }
 
-    private fun validateUsername() : Boolean {
+    private fun saveData(sharedPref: SharedPreferences?, root: View) {
+        with(sharedPref!!.edit()) {
+            putString(getString(R.string.saved_add_name_key), root.text_input_add_name.text.toString())
+            putInt(getString(R.string.saved_add_time_key), root.array_add_time.selectedItemPosition)
+            putInt(getString(R.string.saved_add_price_key), root.array_add_price.selectedItemPosition)
+            apply()
+        }
+    }
+
+    private fun validateRecipename() : Boolean {
         val name = textInputName.editText?.text.toString().trim()
 
         return when {
