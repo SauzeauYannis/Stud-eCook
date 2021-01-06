@@ -135,7 +135,7 @@
     <string name="text_number_pictures" translatable="false">%d/%d</string>
     <string name="text_add_pictures_too_much">The maximum of pictures is 3</string>
     <string name="text_add_recipe_failure">Error: The recipe can\'t be upload</string>
-    <string name="text_add_recipe_anonymous">You can\'t add a recipe if you are anonymous\\nConnect you!</string>
+    <string name="text_add_recipe_anonymous">You can\'t add a recipe if you are anonymous\nConnect you!</string>
 
     <!-- save values -->
 
@@ -152,5 +152,8 @@
     <string name="saved_add_ingredients_name_key" translatable="false">ingredients name</string>
     <string name="saved_add_step_number_key" translatable="false">step number</string>
     <string name="saved_add_steps_key" translatable="false">steps</string>
-    <string name="saved_add_recipe_number_key" translatable="false">recipe number</string>
+
+    <!-- Cloud Firestore (database) -->
+
+    <string name="collection_recipes" translatable="false">recipes</string>
 </resources>

@@ -12,7 +12,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
-import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.android.app.studecook.MainActivity
@@ -34,7 +33,6 @@ class AddStep5Fragment : Fragment() {
     private var images: ArrayList<Uri?>? = null
     private var downloadUri: ArrayList<Uri?>? = null
     private var position = 0
-    private var recipeNumber = 0
     private lateinit var storage: FirebaseStorage
 
     companion object {
@@ -170,23 +168,21 @@ class AddStep5Fragment : Fragment() {
     private fun sendToDataBase(sharedPref: SharedPreferences?, user: FirebaseUser?) {
         val db = Firebase.firestore
 
-        recipeNumber = sharedPref?.getInt(getString(R.string.saved_add_recipe_number_key), 0)!!
-
-        val recipeId = "recipe$recipeNumber"
+        val recipeId = db.collection(getString(R.string.collection_recipes)).document().id
 
         sendImages(recipeId)
 
-        val name = sharedPref.getString(getString(R.string.saved_add_name_key), "")
-        val time = sharedPref.getInt(getString(R.string.saved_add_time_key), 0)
-        val price = sharedPref.getInt(getString(R.string.saved_add_price_key), 0)
-        val number = sharedPref.getInt(getString(R.string.saved_add_number_key), 0)
-        val type = sharedPref.getInt(getString(R.string.saved_add_type_key), 0)
-        val diet = sharedPref.getInt(getString(R.string.saved_add_diet_key), 0)
-        val utensils = sharedPref.getStringSet(getString(R.string.saved_add_utensils_key), HashSet<String>())?.toList()
-        val ingredientsQuantity = sharedPref.getString(getString(R.string.saved_add_ingredients_quantity_key), null)?.split(",")
-        val ingredientsType = sharedPref.getString(getString(R.string.saved_add_ingredients_type_key), null)?.split(",")
-        val ingredientsName = sharedPref.getString(getString(R.string.saved_add_ingredients_name_key), null)?.split(",")
-        val steps = sharedPref.getString(getString(R.string.saved_add_steps_key), null)?.split("\n\n\n")
+        val name = sharedPref?.getString(getString(R.string.saved_add_name_key), "")
+        val time = sharedPref?.getInt(getString(R.string.saved_add_time_key), 0)
+        val price = sharedPref?.getInt(getString(R.string.saved_add_price_key), 0)
+        val number = sharedPref?.getInt(getString(R.string.saved_add_number_key), 0)
+        val type = sharedPref?.getInt(getString(R.string.saved_add_type_key), 0)
+        val diet = sharedPref?.getInt(getString(R.string.saved_add_diet_key), 0)
+        val utensils = sharedPref?.getStringSet(getString(R.string.saved_add_utensils_key), HashSet<String>())?.toList()
+        val ingredientsQuantity = sharedPref?.getString(getString(R.string.saved_add_ingredients_quantity_key), null)?.split(",")
+        val ingredientsType = sharedPref?.getString(getString(R.string.saved_add_ingredients_type_key), null)?.split(",")
+        val ingredientsName = sharedPref?.getString(getString(R.string.saved_add_ingredients_name_key), null)?.split(",")
+        val steps = sharedPref?.getString(getString(R.string.saved_add_steps_key), null)?.split("\n\n\n")
 
         val recipe = hashMapOf(
             "name" to name,
@@ -204,14 +200,10 @@ class AddStep5Fragment : Fragment() {
             "uid" to user!!.uid
         )
 
-        db.collection("recipes").document(recipeId)
+        db.collection(getString(R.string.collection_recipes)).document(recipeId)
             .set(recipe)
             .addOnSuccessListener {
-                sharedPref.edit().clear().apply()
-                sharedPref.edit {
-                    putInt(getString(R.string.saved_add_recipe_number_key), (recipeNumber + 1))
-                    commit()
-                }
+                sharedPref!!.edit().clear().apply()
                 val intent = Intent(context, MainActivity::class.java)
                 startActivity(intent)
             }
