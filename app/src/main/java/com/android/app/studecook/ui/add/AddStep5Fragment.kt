@@ -23,8 +23,6 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
-import com.google.firebase.storage.ktx.component1
-import com.google.firebase.storage.ktx.component2
 import kotlinx.android.synthetic.main.fragment_add_step5.*
 import kotlinx.android.synthetic.main.fragment_add_step5.view.*
 
@@ -32,7 +30,6 @@ class AddStep5Fragment : Fragment() {
 
     private val maxImage = 3
     private var images: ArrayList<Uri?>? = null
-    private var downloadUri: ArrayList<Uri?>? = null
     private var position = 0
     private lateinit var storage: FirebaseStorage
 
@@ -52,7 +49,6 @@ class AddStep5Fragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(callback)
 
         images = ArrayList()
-        downloadUri = ArrayList()
 
         storage = Firebase.storage
     }
@@ -134,36 +130,19 @@ class AddStep5Fragment : Fragment() {
         startActivityForResult(gallery, PICK_IMAGE_CODE)
     }
 
-    private fun sendImages(recipeId: String) {
+    private fun sendImages(recipeId: String): ArrayList<String> {
         val storageRef = storage.reference
+        val imagesPath = ArrayList<String>()
 
         for (i in 0 until images!!.size) {
-            val imageRef = storageRef.child("images/$recipeId/${images!![i]?.lastPathSegment}")
+            val pathString = "images/$recipeId/${images!![i]?.lastPathSegment}"
+            val imageRef = storageRef.child(pathString)
 
-            val uploadTask = images!![i]?.let { imageRef.putFile(it) }
-
-            progress_download_images.progress = 0
-            progress_download_images.visibility = ProgressBar.VISIBLE
-
-            uploadTask?.addOnProgressListener { (bytesTransferred, totalByteCount) ->
-                progress_download_images.progress = ((100.0 * bytesTransferred) / totalByteCount).toInt()
-            }
-
-            progress_download_images.visibility = ProgressBar.INVISIBLE
-
-            uploadTask?.continueWithTask { task ->
-                if (!task.isSuccessful) {
-                    task.exception?.let {
-                        throw it
-                    }
-                }
-                imageRef.downloadUrl
-            }?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    downloadUri?.set(i, task.result)
-                }
-            }
+            imagesPath.add(pathString)
+            images!![i]?.let { imageRef.putFile(it) }
         }
+
+        return imagesPath
     }
 
     private fun sendToDataBase(sharedPref: SharedPreferences?, user: FirebaseUser?) {
@@ -171,7 +150,7 @@ class AddStep5Fragment : Fragment() {
 
         val recipeId = db.collection(getString(R.string.collection_recipes)).document().id
 
-        sendImages(recipeId)
+        val imagesPath = sendImages(recipeId)
 
         val name = sharedPref?.getString(getString(R.string.saved_add_name_key), "")
         val time = sharedPref?.getInt(getString(R.string.saved_add_time_key), 0)
@@ -197,7 +176,7 @@ class AddStep5Fragment : Fragment() {
             "ingredientsType" to ingredientsType,
             "ingredientsName" to ingredientsName,
             "steps" to steps,
-            "images" to downloadUri,
+            "images" to imagesPath.toList(),
             "uid" to user!!.uid
         )
 
