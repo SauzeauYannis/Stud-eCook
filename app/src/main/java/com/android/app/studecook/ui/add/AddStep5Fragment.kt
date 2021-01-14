@@ -1,6 +1,7 @@
 package com.android.app.studecook.ui.add
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -204,8 +205,14 @@ class AddStep5Fragment : Fragment() {
             .set(recipe)
             .addOnSuccessListener {
                 sharedPref!!.edit().clear().apply()
-                val intent = Intent(context, MainActivity::class.java)
-                startActivity(intent)
+                AlertDialog.Builder(context)
+                        .setTitle(getString(R.string.dialog_add_title))
+                        .setMessage(getString(R.string.dialog_add_text))
+                        .setPositiveButton(getString(R.string.dialog_add_ok)) { _, _ ->
+                            val intent = Intent(context, MainActivity::class.java)
+                            startActivity(intent)
+                        }
+                        .show()
             }
             .addOnFailureListener {
                 Toast.makeText(context, getString(R.string.text_add_recipe_failure), Toast.LENGTH_LONG).show()

@@ -97,4 +97,7 @@
     <string name="text_no_account">Vous n\'êtes pas connecté</string>
     <string name="text_add_recipe_failure">La recette n\'a pas pu être ajouté</string>
     <string name="text_add_recipe_anonymous">Vous ne pouvez pas ajouté de recette en étant invité\nConnectez-vous !</string>
+    <string name="dialog_add_title">La recette a été ajouté</string>
+    <string name="dialog_add_text">Merci d\'avoir ajouté votre recette</string>
+    <string name="dialog_add_ok">Retour à l\'acceuil</string>
 </resources>
