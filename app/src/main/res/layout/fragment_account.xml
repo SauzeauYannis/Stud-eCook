@@ -12,12 +12,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        app:srcCompat="@drawable/ic_settings"
+        android:clickable="true"
+        android:contentDescription="@string/menu_param"
+        android:focusable="true"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/menu_param"
-        android:clickable="true"
-        android:focusable="true" />
+        app:srcCompat="@drawable/ic_settings" />
 
     <TextView
         android:id="@+id/text_account"

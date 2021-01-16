@@ -44,42 +44,46 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/image_search"
+        android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_search" />
 
     <ImageView
         android:id="@+id/image_home_follow"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:srcCompat="@drawable/ic_people"
+        android:contentDescription="@string/button_home_follow"
+        android:padding="5dp"
         app:layout_constraintEnd_toStartOf="@+id/image_home_disc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_home_name"
-        android:contentDescription="@string/button_home_follow" />
+        app:srcCompat="@drawable/ic_people" />
 
     <ImageView
         android:id="@+id/image_home_disc"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:srcCompat="@drawable/ic_food_bank"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/button_home_disc"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/text_home_name"
+        app:layout_constraintStart_toStartOf="@+id/text_home_name"
         app:layout_constraintTop_toBottomOf="@+id/text_home_name"
-        android:contentDescription="@string/button_home_disc" />
+        app:srcCompat="@drawable/ic_food_bank" />
 
     <ImageView
         android:id="@+id/image_home_fav"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:srcCompat="@drawable/ic_favorite"
+        android:contentDescription="@string/button_home_fav"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_home_disc"
         app:layout_constraintTop_toBottomOf="@+id/text_home_name"
-        android:contentDescription="@string/button_home_fav" />
+        app:srcCompat="@drawable/ic_favorite" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_fliter"
