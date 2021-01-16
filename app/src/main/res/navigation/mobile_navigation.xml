@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="com.android.app.studecook.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_homeSearchFragment"
+            app:destination="@id/homeSearchFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_account"
@@ -86,5 +90,13 @@
             app:destination="@id/navigation_add_step4"
             app:enterAnim="@anim/my_slide_in_left"
             app:exitAnim="@anim/my_slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeSearchFragment"
+        android:name="com.android.app.studecook.ui.home.HomeSearchFragment"
+        android:label="HomeSearchFragment" >
+        <action
+            android:id="@+id/action_homeSearchFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </fragment>
 </navigation>

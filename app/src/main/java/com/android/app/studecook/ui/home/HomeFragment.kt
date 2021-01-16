@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.android.app.studecook.R
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
@@ -25,20 +25,33 @@ class HomeFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 
-    private lateinit var homeViewModel: HomeViewModel
-
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.text_home
-        homeViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
-        })
+
+        root.image_home_search.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_homeSearchFragment)
+        }
+
+        root.image_home_follow.setOnClickListener {
+            Toast.makeText(context, getString(R.string.button_home_follow), Toast.LENGTH_SHORT).show()
+        }
+
+        root.image_home_disc.setOnClickListener {
+            Toast.makeText(context, getString(R.string.button_home_disc), Toast.LENGTH_SHORT).show()
+        }
+
+        root.image_home_fav.setOnClickListener {
+            Toast.makeText(context, getString(R.string.button_home_fav), Toast.LENGTH_SHORT).show()
+        }
+
+        root.fab_fliter.setOnClickListener {
+            Toast.makeText(context, getString(R.string.button_filter), Toast.LENGTH_SHORT).show()
+        }
+
         return root
     }
 }

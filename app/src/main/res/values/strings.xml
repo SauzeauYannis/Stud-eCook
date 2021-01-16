@@ -40,7 +40,7 @@
 
     <string name="text_add_title">Add your recipe Step\nStep %1$s/5</string>
     <string name="button_add_next">Next page button</string>
-    <string name="button_add_previous">Previous page button</string>
+    <string name="button_previous">Previous page button</string>
 
     <!-- fragment 1 -->
 
@@ -159,4 +159,9 @@
     <!-- Cloud Firestore (database) -->
 
     <string name="collection_recipes" translatable="false">recipes</string>
+    <string name="image_search">Search button</string>
+    <string name="button_filter">Filter button</string>
+    <string name="button_home_follow">Followers recipe button</string>
+    <string name="button_home_disc">Discovery recipes button</string>
+    <string name="button_home_fav">Your favorite recipes button</string>
 </resources>
