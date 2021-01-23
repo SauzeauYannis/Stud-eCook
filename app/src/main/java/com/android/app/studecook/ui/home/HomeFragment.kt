@@ -10,6 +10,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.android.app.studecook.R
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
@@ -43,21 +44,42 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_navigation_home_to_homeSearchFragment)
         }
 
+        root.view_pager.adapter = ViewPagerAdapter(arrayListOf(
+                "TODO: Follower recipes page",
+                "TODO: Discover recipes page",
+                "TODO: Favorite recipes page"
+        ))
+
+        root.view_pager.setCurrentItem(1, false)
+
         root.image_home_follow.setOnClickListener {
             changeCurrent(it as ImageView)
+            root.view_pager.setCurrentItem(0, true)
         }
 
         root.image_home_disc.setOnClickListener {
             changeCurrent(it as ImageView)
+            root.view_pager.setCurrentItem(1, true)
         }
 
         root.image_home_fav.setOnClickListener {
             changeCurrent(it as ImageView)
+            root.view_pager.setCurrentItem(2, true)
         }
 
         root.fab_fliter.setOnClickListener {
             Toast.makeText(context, getString(R.string.button_filter), Toast.LENGTH_SHORT).show()
         }
+
+        root.view_pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                when (position) {
+                    0 -> changeCurrent(root.image_home_follow)
+                    1 -> changeCurrent(root.image_home_disc)
+                    else -> changeCurrent(root.image_home_fav) }
+                super.onPageSelected(position)
+            }
+        })
 
         return root
     }
