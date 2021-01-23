@@ -25,6 +25,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.fragment_add_step5.*
 import kotlinx.android.synthetic.main.fragment_add_step5.view.*
+import java.io.IOException
 
 class AddStep5Fragment : Fragment() {
 
@@ -95,6 +96,8 @@ class AddStep5Fragment : Fragment() {
             val user = FirebaseAuth.getInstance().currentUser
             if (user!!.isAnonymous) {
                 Toast.makeText(context, getString(R.string.text_add_recipe_anonymous), Toast.LENGTH_LONG).show()
+            } else if (!isOnline()) {
+                Toast.makeText(context, getString(R.string.text_add_recipe_failure), Toast.LENGTH_LONG).show()
             } else {
                 sendToDataBase(sharedPref, user)
             }
@@ -110,7 +113,7 @@ class AddStep5Fragment : Fragment() {
                     button_next_picture.visibility = Button.VISIBLE
                     button_precedent_picture.visibility = Button.INVISIBLE
                 }
-                images!!.size-1 -> {
+                images!!.size - 1 -> {
                     button_next_picture.visibility = Button.INVISIBLE
                     button_precedent_picture.visibility = Button.VISIBLE
                 }
@@ -120,7 +123,7 @@ class AddStep5Fragment : Fragment() {
                 }
             }
             text_number_pictures.visibility = TextView.VISIBLE
-            text_number_pictures.text = getString(R.string.text_number_pictures, position+1, images!!.size)
+            text_number_pictures.text = getString(R.string.text_number_pictures, position + 1, images!!.size)
         }
     }
 
@@ -139,7 +142,9 @@ class AddStep5Fragment : Fragment() {
             val imageRef = storageRef.child(pathString)
 
             imagesPath.add(pathString)
-            images!![i]?.let { imageRef.putFile(it) }
+            images!![i]?.let { imageRef.putFile(it).addOnFailureListener {
+                Toast.makeText(context, getString(R.string.text_add_recipe_failure), Toast.LENGTH_LONG).show()
+            } }
         }
 
         return imagesPath
@@ -165,19 +170,19 @@ class AddStep5Fragment : Fragment() {
         val steps = sharedPref?.getString(getString(R.string.saved_add_steps_key), null)?.split("\n\n\n")
 
         val recipe = hashMapOf(
-            "name" to name,
-            "time" to time,
-            "price" to price,
-            "number" to number,
-            "type" to type,
-            "diet" to diet,
-            "utensils" to utensils,
-            "ingredientsQuantity" to ingredientsQuantity,
-            "ingredientsType" to ingredientsType,
-            "ingredientsName" to ingredientsName,
-            "steps" to steps,
-            "images" to imagesPath.toList(),
-            "uid" to user!!.uid
+                "name" to name,
+                "time" to time,
+                "price" to price,
+                "number" to number,
+                "type" to type,
+                "diet" to diet,
+                "utensils" to utensils,
+                "ingredientsQuantity" to ingredientsQuantity,
+                "ingredientsType" to ingredientsType,
+                "ingredientsName" to ingredientsName,
+                "steps" to steps,
+                "images" to imagesPath.toList(),
+                "uid" to user!!.uid
         )
 
         db.collection(getString(R.string.collection_recipes)).document(recipeId)
@@ -196,6 +201,18 @@ class AddStep5Fragment : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(context, getString(R.string.text_add_recipe_failure), Toast.LENGTH_LONG).show()
             }
+    }
+
+    private fun isOnline(): Boolean {
+        val runtime = Runtime.getRuntime()
+        try {
+            val ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8")
+            val exitValue = ipProcess.waitFor()
+            return exitValue == 0
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return false
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
