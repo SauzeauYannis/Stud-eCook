@@ -44,11 +44,7 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_navigation_home_to_homeSearchFragment)
         }
 
-        root.view_pager.adapter = ViewPagerAdapter(arrayListOf(
-                "TODO: Follower recipes page",
-                "TODO: Discover recipes page",
-                "TODO: Favorite recipes page"
-        ))
+        root.view_pager.adapter = ViewPagerAdapter()
 
         root.view_pager.setCurrentItem(1, false)
 

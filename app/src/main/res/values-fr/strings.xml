@@ -95,7 +95,7 @@
     <string name="text_add_picture_title">Choisir images(s) (max 3)</string>
     <string name="text_add_pictures_too_much">Le maximum de photo est 3</string>
     <string name="text_no_account">Vous n\'êtes pas connecté</string>
-    <string name="text_add_recipe_failure">La recette n\'a pas pu être ajouté</string>
+    <string name="text_add_recipe_failure">Erreur : La recette n\'a pas pu être ajouté</string>
     <string name="text_add_recipe_anonymous">Vous ne pouvez pas ajouté de recette en étant invité\nConnectez-vous !</string>
     <string name="dialog_add_title">La recette a été ajouté</string>
     <string name="dialog_add_text">Merci d\'avoir ajouté votre recette</string>
@@ -105,4 +105,6 @@
     <string name="button_home_follow">Boutton recettes de vos abonnement</string>
     <string name="button_home_disc">Boutton découvrir des recettes</string>
     <string name="button_home_fav">Boutton de vos recettes favorite</string>
+    <string name="text_add_recipe_no_net">Erreur : Echec de la connexion</string>
+    <string name="image_recipe">Image de la recette</string>
 </resources>
