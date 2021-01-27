@@ -65,6 +65,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx' // Analytics
     implementation 'com.google.firebase:firebase-firestore-ktx' // Firestore
     implementation 'com.google.firebase:firebase-storage-ktx'   // Storage
+    implementation 'com.firebaseui:firebase-ui-firestore:7.1.1' // FirebaseUI for Cloud Firestore
 
     //Authentication
     implementation 'com.firebaseui:firebase-ui-auth:7.1.1'

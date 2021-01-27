@@ -12,8 +12,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.app.studecook.R
+import com.android.app.studecook.RecipeModel
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -22,6 +25,11 @@ import kotlinx.android.synthetic.main.fragment_home.view.*
 class HomeFragment : Fragment() {
 
     private lateinit var current : ImageView
+
+    private val db = FirebaseFirestore.getInstance()
+    private val collectionReference = db.collection("recipes")
+
+    var recipeAdapter: RecipeAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,11 +75,7 @@ class HomeFragment : Fragment() {
 
         refresh(root.home_swipeRefreshLayout)
 
-        val gridLayoutManager = GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false)
-        root.home_recyclerView.layoutManager = gridLayoutManager
-
-        val items = getRecipe()
-        root.home_recyclerView.adapter = RecipeAdapater(requireContext(), items)
+        setUpRecyclerView(root.home_recyclerView)
 
         return root
     }
@@ -89,16 +93,38 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun getRecipe() : ArrayList<RecipeGrid> {
-        val items = ArrayList<RecipeGrid>()
+    private fun getRecipe() : ArrayList<String> {
+        val items = ArrayList<String>()
         Firebase.firestore.collection("recipes")
                 .get()
                 .addOnSuccessListener { result ->
                     for (document in result) {
-                        val name = document.getString("name")
-                        items.add(RecipeGrid(name!!))
+                        document.getString("name")?.let { items.add(it) }
                     }
                 }
         return items
+    }
+
+    private fun setUpRecyclerView(homeRecyclerview: RecyclerView) {
+
+        val query = collectionReference
+        val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
+            .setQuery(query, RecipeModel::class.java)
+            .build()
+
+        recipeAdapter = RecipeAdapter(firestoreRecyclerOptions)
+
+        homeRecyclerview.layoutManager = GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false)
+        homeRecyclerview.adapter = recipeAdapter
+    }
+
+    override fun onStart() {
+        super.onStart()
+        recipeAdapter!!.startListening()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        recipeAdapter!!.stopListening()
     }
 }
