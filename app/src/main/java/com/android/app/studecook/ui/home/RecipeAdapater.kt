@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.app.studecook.R
+import com.bumptech.glide.Glide
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
@@ -33,14 +34,14 @@ class RecipeAdapater(var context: Context, var arrayList: ArrayList<RecipeGrid>)
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         val recipe = arrayList[position]
 
-        val storageRef = Firebase.storage.reference.child(recipe.image!!)
+/*        val storageRef = Firebase.storage.reference.child(recipe.image!!)
         val ONE_MEGABYTE: Long = 1024 * 1024
         storageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
             holder.image.setImageBitmap(
                     BitmapFactory.decodeByteArray(it, 0, it.size)
             )
-        }
-
+        }*/
+        holder.image.setImageResource(R.drawable.ic_add)
         holder.name.text = recipe.text
     }
 }

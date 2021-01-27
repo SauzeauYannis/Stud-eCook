@@ -1,5 +1,6 @@
 package com.android.app.studecook.ui.home
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,8 @@ import com.android.app.studecook.R
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class ViewPagerAdapter() : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>() {
+
+class ViewPagerAdapter(var context: Context) : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>() {
 
     inner class Pager2ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val refreshLayout: SwipeRefreshLayout = itemView.findViewById(R.id.home_swipeRefreshLayout)
@@ -23,8 +25,27 @@ class ViewPagerAdapter() : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolde
             parent: ViewGroup,
             viewType: Int
     ): ViewPagerAdapter.Pager2ViewHolder {
-        return Pager2ViewHolder(LayoutInflater.from(parent.context)
+        val root = Pager2ViewHolder(LayoutInflater.from(parent.context)
             .inflate(R.layout.view_home, parent, false))
+
+        refresh(root.refreshLayout)
+
+        val gridLayoutManager = GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false)
+        root.recyclerView.layoutManager = gridLayoutManager
+
+        val items = ArrayList<RecipeGrid>()
+        Firebase.firestore.collection("recipes")
+                .get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
+                        val name = document.getString("name")
+                           items.add(RecipeGrid(name!!))
+                    }
+                }
+
+        root.recyclerView.adapter = RecipeAdapater(context, items)
+
+        return root
     }
 
     override fun getItemCount(): Int {
@@ -32,10 +53,6 @@ class ViewPagerAdapter() : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolde
     }
 
     override fun onBindViewHolder(holder: ViewPagerAdapter.Pager2ViewHolder, position: Int) {
-        refresh(holder.refreshLayout)
-        val gridLayoutManager = GridLayoutManager(holder.itemView.context, 2, LinearLayoutManager.VERTICAL, false)
-        holder.recyclerView.layoutManager = gridLayoutManager
-        holder.recyclerView.adapter = RecipeAdapater(holder.itemView.context, setDataInList())
     }
 
     private fun refresh(refreshLayout: SwipeRefreshLayout) {
@@ -43,21 +60,5 @@ class ViewPagerAdapter() : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolde
             Toast.makeText(refreshLayout.context, "refresh", Toast.LENGTH_SHORT).show()
             refreshLayout.isRefreshing = false
         }
-    }
-
-    private fun setDataInList() : ArrayList<RecipeGrid> {
-        val items = ArrayList<RecipeGrid>()
-
-        val db = Firebase.firestore
-
-        db.collection("recipes")
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    items.add(RecipeGrid(db, document.id))
-                }
-            }
-
-        return items
     }
 }
