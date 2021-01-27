@@ -1,6 +1,7 @@
 package com.android.app.studecook.ui.home
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.app.studecook.R
-import com.bumptech.glide.Glide
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
@@ -34,9 +34,12 @@ class RecipeAdapater(var context: Context, var arrayList: ArrayList<RecipeGrid>)
         val recipe = arrayList[position]
 
         val storageRef = Firebase.storage.reference.child(recipe.image!!)
-        Glide.with(context)
-            .load(storageRef)
-            .into(holder.image)
+        val ONE_MEGABYTE: Long = 1024 * 1024
+        storageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
+            holder.image.setImageBitmap(
+                    BitmapFactory.decodeByteArray(it, 0, it.size)
+            )
+        }
 
         holder.name.text = recipe.text
     }

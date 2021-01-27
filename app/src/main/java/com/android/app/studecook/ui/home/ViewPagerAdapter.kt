@@ -33,9 +33,9 @@ class ViewPagerAdapter() : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolde
 
     override fun onBindViewHolder(holder: ViewPagerAdapter.Pager2ViewHolder, position: Int) {
         refresh(holder.refreshLayout)
-        val gridLayoutManager = GridLayoutManager(holder.recyclerView.context, 2, LinearLayoutManager.VERTICAL, false)
+        val gridLayoutManager = GridLayoutManager(holder.itemView.context, 2, LinearLayoutManager.VERTICAL, false)
         holder.recyclerView.layoutManager = gridLayoutManager
-        holder.recyclerView.adapter = RecipeAdapater(holder.recyclerView.context, setDataInList())
+        holder.recyclerView.adapter = RecipeAdapater(holder.itemView.context, setDataInList())
     }
 
     private fun refresh(refreshLayout: SwipeRefreshLayout) {

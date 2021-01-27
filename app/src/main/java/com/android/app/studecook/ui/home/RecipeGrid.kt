@@ -14,8 +14,9 @@ class RecipeGrid(db: FirebaseFirestore, id: String) {
             .document(id)
             .get()
             .addOnSuccessListener {
-                val im = it.get("images") as ArrayList<*>
-                this.image = im[0] as String?
+/*                val im = it.get("images") as ArrayList<*>
+                this.image = im[0] as String?*/
+                this.image = "images/uDb8plKDuU7WoH4E9beL/1326807047"
                 this.text = it.getString("name")
             }
             .addOnFailureListener { exception ->
