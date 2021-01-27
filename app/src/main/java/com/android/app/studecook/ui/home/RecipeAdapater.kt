@@ -1,7 +1,6 @@
 package com.android.app.studecook.ui.home
 
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.app.studecook.R
-import com.bumptech.glide.Glide
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
 
 class RecipeAdapater(var context: Context, var arrayList: ArrayList<RecipeGrid>) : RecyclerView.Adapter<RecipeAdapater.ItemHolder>() {
 

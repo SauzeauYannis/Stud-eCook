@@ -12,9 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.app.studecook.R
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -49,38 +49,29 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_navigation_home_to_homeSearchFragment)
         }
 
-        root.view_pager.adapter = ViewPagerAdapter(requireContext())
-
-        root.view_pager.setCurrentItem(1, false)
-
         root.image_home_follow.setOnClickListener {
             changeCurrent(it as ImageView)
-            root.view_pager.setCurrentItem(0, true)
         }
 
         root.image_home_disc.setOnClickListener {
             changeCurrent(it as ImageView)
-            root.view_pager.setCurrentItem(1, true)
         }
 
         root.image_home_fav.setOnClickListener {
             changeCurrent(it as ImageView)
-            root.view_pager.setCurrentItem(2, true)
         }
 
         root.fab_fliter.setOnClickListener {
             Toast.makeText(context, getString(R.string.button_filter), Toast.LENGTH_SHORT).show()
         }
 
-        root.view_pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                when (position) {
-                    0 -> changeCurrent(root.image_home_follow)
-                    1 -> changeCurrent(root.image_home_disc)
-                    else -> changeCurrent(root.image_home_fav) }
-                super.onPageSelected(position)
-            }
-        })
+        refresh(root.home_swipeRefreshLayout)
+
+        val gridLayoutManager = GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false)
+        root.home_recyclerView.layoutManager = gridLayoutManager
+
+        val items = getRecipe()
+        root.home_recyclerView.adapter = RecipeAdapater(requireContext(), items)
 
         return root
     }
@@ -89,5 +80,25 @@ class HomeFragment : Fragment() {
         current.colorFilter = newCurrent.colorFilter
         current = newCurrent
         current.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorAccentLight))
+    }
+
+    private fun refresh(refreshLayout: SwipeRefreshLayout) {
+        refreshLayout.setOnRefreshListener {
+            Toast.makeText(refreshLayout.context, "refresh", Toast.LENGTH_SHORT).show()
+            refreshLayout.isRefreshing = false
+        }
+    }
+
+    private fun getRecipe() : ArrayList<RecipeGrid> {
+        val items = ArrayList<RecipeGrid>()
+        Firebase.firestore.collection("recipes")
+                .get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
+                        val name = document.getString("name")
+                        items.add(RecipeGrid(name!!))
+                    }
+                }
+        return items
     }
 }
