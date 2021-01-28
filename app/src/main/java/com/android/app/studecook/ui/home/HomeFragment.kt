@@ -123,8 +123,15 @@ class HomeFragment : Fragment() {
         recipeAdapter!!.startListening()
     }
 
+    override fun onStop() {
+        super.onStop()
+        recipeAdapter!!.stopListening()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        recipeAdapter!!.stopListening()
+        if (recipeAdapter != null) {
+            recipeAdapter!!.stopListening()
+        }
     }
 }

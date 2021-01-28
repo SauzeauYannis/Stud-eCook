@@ -1,6 +1,6 @@
 package com.android.app.studecook
 
-class RecipeModel {
+class RecipeModel() {
 
     var diet: Int? = null
     var images: List<String>? = null
@@ -16,5 +16,4 @@ class RecipeModel {
     var uid: String? = null
     var utensils: List<String>? = null
 
-    constructor()
 }

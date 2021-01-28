@@ -19,7 +19,6 @@ class RecipeAdapter(options: FirestoreRecyclerOptions<RecipeModel>) :
     }
 
     override fun onBindViewHolder(holder: RecipeAdapaterVH, position: Int, model: RecipeModel) {
-        holder.image.setImageResource(R.drawable.ic_add)
         holder.name.text = model.name
     }
 
