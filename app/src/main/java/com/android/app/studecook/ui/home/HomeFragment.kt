@@ -18,8 +18,6 @@ import com.android.app.studecook.R
 import com.android.app.studecook.RecipeModel
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : Fragment() {
@@ -29,7 +27,7 @@ class HomeFragment : Fragment() {
     private val db = FirebaseFirestore.getInstance()
     private val collectionReference = db.collection("recipes")
 
-    var recipeAdapter: RecipeAdapter? = null
+    private var recipeAdapter: RecipeAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,18 +89,6 @@ class HomeFragment : Fragment() {
             Toast.makeText(refreshLayout.context, "refresh", Toast.LENGTH_SHORT).show()
             refreshLayout.isRefreshing = false
         }
-    }
-
-    private fun getRecipe() : ArrayList<String> {
-        val items = ArrayList<String>()
-        Firebase.firestore.collection("recipes")
-                .get()
-                .addOnSuccessListener { result ->
-                    for (document in result) {
-                        document.getString("name")?.let { items.add(it) }
-                    }
-                }
-        return items
     }
 
     private fun setUpRecyclerView(homeRecyclerview: RecyclerView) {

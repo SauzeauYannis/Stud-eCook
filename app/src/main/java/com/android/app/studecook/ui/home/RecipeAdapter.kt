@@ -3,6 +3,7 @@ package com.android.app.studecook.ui.home
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.app.studecook.R
 import com.android.app.studecook.RecipeModel
@@ -23,8 +24,8 @@ class RecipeAdapter(options: FirestoreRecyclerOptions<RecipeModel>) :
     }
 
     class RecipeAdapaterVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var image = itemView.home_recipe_image
-        var name = itemView.home_recipe_name
+        //var image = itemView.home_recipe_image
+        var name: TextView = itemView.home_recipe_name
     }
 
 }
