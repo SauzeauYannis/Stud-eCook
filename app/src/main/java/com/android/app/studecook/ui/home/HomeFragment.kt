@@ -5,19 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.app.studecook.R
-import com.android.app.studecook.RecipeModel
+import com.android.app.studecook.ui.recipe.RecipeModel
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : Fragment() {
@@ -67,13 +65,18 @@ class HomeFragment : Fragment() {
             changeCurrent(it as ImageView)
         }
 
-        root.fab_fliter.setOnClickListener {
-            Toast.makeText(context, getString(R.string.button_filter), Toast.LENGTH_SHORT).show()
+        root.home_swipeRefreshLayout.setOnRefreshListener {
+            val query  = collectionReference.
+                    orderBy("date", Query.Direction.DESCENDING)
+            val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
+                    .setQuery(query, RecipeModel::class.java)
+                    .build()
+
+            recipeAdapter!!.updateOptions(firestoreRecyclerOptions)
+            root.home_swipeRefreshLayout.isRefreshing = false
         }
 
-        refresh(root.home_swipeRefreshLayout)
-
-        setUpRecyclerView(root.home_recyclerView)
+        setUpRecyclerView(root)
 
         return root
     }
@@ -84,24 +87,21 @@ class HomeFragment : Fragment() {
         current.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorAccentLight))
     }
 
-    private fun refresh(refreshLayout: SwipeRefreshLayout) {
-        refreshLayout.setOnRefreshListener {
-            Toast.makeText(refreshLayout.context, "refresh", Toast.LENGTH_SHORT).show()
-            refreshLayout.isRefreshing = false
-        }
-    }
+    private fun setUpRecyclerView(root: View) {
 
-    private fun setUpRecyclerView(homeRecyclerview: RecyclerView) {
+        root.home_swipeRefreshLayout.isRefreshing = true
 
-        val query = collectionReference
+        val query  = collectionReference
         val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
             .setQuery(query, RecipeModel::class.java)
             .build()
 
         recipeAdapter = RecipeAdapter(firestoreRecyclerOptions)
 
-        homeRecyclerview.layoutManager = GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false)
-        homeRecyclerview.adapter = recipeAdapter
+        root.home_recyclerView.layoutManager = GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false)
+        root.home_recyclerView.adapter = recipeAdapter
+
+        root.home_swipeRefreshLayout.isRefreshing = false
     }
 
     override fun onStart() {

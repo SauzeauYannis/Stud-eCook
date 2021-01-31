@@ -136,6 +136,7 @@
     <string name="text_add_pictures_too_much">The maximum of pictures is 3</string>
     <string name="text_add_recipe_failure">Error: The recipe can\'t be upload</string>
     <string name="text_add_recipe_no_net">Error: Connection failure!</string>
+    <string name="text_add_recipe_failure_image">Error: Image can\'t be upload!</string>
     <string name="text_add_recipe_anonymous">You can\'t add a recipe if you are anonymous\nConnect you!</string>
     <string name="dialog_add_title">Recipe has been added</string>
     <string name="dialog_add_text">Thank you for adding your recipe!</string>

@@ -107,4 +107,5 @@
     <string name="button_home_fav">Boutton de vos recettes favorite</string>
     <string name="text_add_recipe_no_net">Erreur : Echec de la connexion</string>
     <string name="image_recipe">Image de la recette</string>
+    <string name="text_add_recipe_failure_image">Erreur : Une image n\'a pas pu être envoyé</string>
 </resources>

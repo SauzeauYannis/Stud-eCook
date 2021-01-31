@@ -9,10 +9,13 @@
         android:id="@+id/navigation_home"
         android:name="com.android.app.studecook.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_navigation_home_to_homeSearchFragment"
             app:destination="@id/homeSearchFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_recipeFragment"
+            app:destination="@id/recipeFragment" />
     </fragment>
 
     <fragment
@@ -98,5 +101,17 @@
         <action
             android:id="@+id/action_homeSearchFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeFragment"
+        android:name="com.android.app.studecook.ui.recipe.RecipeFragment"
+        android:label="fragment_recipe"
+        tools:layout="@layout/fragment_recipe" >
+        <action
+            android:id="@+id/action_recipeFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+        <argument
+            android:name="currentRecipe"
+            app:argType="com.android.app.studecook.ui.recipe.RecipeModel" />
     </fragment>
 </navigation>

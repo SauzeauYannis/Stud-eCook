@@ -25,7 +25,9 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.fragment_add_step5.*
 import kotlinx.android.synthetic.main.fragment_add_step5.view.*
-import java.io.IOException
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashSet
 
 class AddStep5Fragment : Fragment() {
 
@@ -96,9 +98,9 @@ class AddStep5Fragment : Fragment() {
             val user = FirebaseAuth.getInstance().currentUser
             if (user!!.isAnonymous) {
                 Toast.makeText(context, getString(R.string.text_add_recipe_anonymous), Toast.LENGTH_LONG).show()
-            } else if (!isOnline()) {
-                Toast.makeText(context, getString(R.string.text_add_recipe_failure), Toast.LENGTH_LONG).show()
-            } else {
+            } /*else if (!isOnline()) {
+                Toast.makeText(context, getString(R.string.text_add_recipe_no_net), Toast.LENGTH_LONG).show()
+            }*/ else {
                 sendToDataBase(sharedPref, user)
             }
         }
@@ -143,7 +145,7 @@ class AddStep5Fragment : Fragment() {
 
             imagesPath.add(pathString)
             images!![i]?.let { imageRef.putFile(it).addOnFailureListener {
-                Toast.makeText(context, getString(R.string.text_add_recipe_failure), Toast.LENGTH_LONG).show()
+                Toast.makeText(context, getString(R.string.text_add_recipe_failure_image), Toast.LENGTH_LONG).show()
             } }
         }
 
@@ -182,7 +184,8 @@ class AddStep5Fragment : Fragment() {
                 "ingredientsName" to ingredientsName,
                 "steps" to steps,
                 "images" to imagesPath.toList(),
-                "uid" to user!!.uid
+                "uid" to user!!.uid,
+                "date" to Calendar.getInstance().time
         )
 
         db.collection(getString(R.string.collection_recipes)).document(recipeId)
@@ -203,7 +206,7 @@ class AddStep5Fragment : Fragment() {
             }
     }
 
-    private fun isOnline(): Boolean {
+/*    private fun isOnline(): Boolean {
         val runtime = Runtime.getRuntime()
         try {
             val ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8")
@@ -213,7 +216,7 @@ class AddStep5Fragment : Fragment() {
             e.printStackTrace()
         }
         return false
-    }
+    }*/
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

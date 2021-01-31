@@ -1,6 +1,11 @@
-package com.android.app.studecook
+package com.android.app.studecook.ui.recipe
 
-class RecipeModel {
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+import java.util.*
+
+@Parcelize
+class RecipeModel : Parcelable {
 
     var diet: Int? = null
     var images: List<String>? = null
@@ -15,5 +20,5 @@ class RecipeModel {
     var type: Int? = null
     var uid: String? = null
     var utensils: List<String>? = null
-
+    var date: Date? = null
 }
