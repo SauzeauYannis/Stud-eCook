@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
@@ -63,6 +65,13 @@ class HomeFragment : Fragment() {
 
         root.image_home_fav.setOnClickListener {
             changeCurrent(it as ImageView)
+        }
+
+        root.fab_fliter.setOnClickListener {
+            val rotation: Animation by lazy {
+                AnimationUtils.loadAnimation(context, R.anim.rotation)
+            }
+            it.startAnimation(rotation)
         }
 
         root.home_swipeRefreshLayout.setOnRefreshListener {
