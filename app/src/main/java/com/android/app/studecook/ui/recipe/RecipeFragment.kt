@@ -35,7 +35,8 @@ class RecipeFragment : Fragment() {
             findNavController().navigate(R.id.action_recipeFragment_to_navigation_home)
         }
 
-        root.text_recipe_name.text = "name : ${args.currentRecipe.name}"
+        root.text_recipe_name.text = "name : ${args.currentRecipe.name}\n\n" +
+                "type : " + resources.getStringArray(R.array.type_array)[args.currentRecipe.type!!]
 
         return root
     }
