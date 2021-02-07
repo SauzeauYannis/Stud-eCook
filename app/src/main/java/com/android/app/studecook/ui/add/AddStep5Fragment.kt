@@ -64,7 +64,9 @@ class AddStep5Fragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_add_step5, container, false)
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
 
-        root.text_add_title.text = getString(R.string.text_add_title, "5")
+        root.text_add_title.text = getString(R.string.text_add_title, 5)
+
+        root.text_add_picture.append(getString(R.string.text_add_min_max, 0, maxImage))
 
         root.imageswitcher_add_recipe.setFactory {
             ImageView(context)

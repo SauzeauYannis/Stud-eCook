@@ -4,8 +4,8 @@
     <string name="title_add">Ajouter</string>
     <string name="title_account">Compte</string>
     <string name="text_home">TODO : Page des recettes</string>
-    <string name="text_add_title">Ajoute ta recette\nÉtape %1$s/5</string>
-    <string name="text_account">TODO : Compte de %1$s</string>
+    <string name="text_add_title">Ajoute ta recette\nÉtape %d/5</string>
+    <string name="text_account">TODO : Compte de %s</string>
     <string name="menu_param">Paramètres</string>
     <string name="appearance_header">Thème</string>
     <string name="dark_title">Activer le thème sombre</string>
@@ -26,7 +26,7 @@
     </string-array>
     <string name="edit_text_add_name_hint">Exemple : Cookie</string>
     <string name="button_add_next">Boutton page suivante</string>
-    <string name="account_on">Nom du compte : %1$s</string>
+    <string name="account_on">Nom du compte : %s</string>
     <string name="account_off">Vous n\'etes pas connecté</string>
     <string name="alert_setting_account">Voulez-vous être déconnecté</string>
     <string name="anonymous">Anonyme</string>
@@ -36,7 +36,7 @@
     <string name="add_name_false_short">Nom de recette trop court</string>
     <string name="add_name_false_long">Nom de recette trop long</string>
     <string name="add_name_false">Nom de recette invalide</string>
-    <string name="text_add_nbP">Nombre de personnes : %1$s</string>
+    <string name="text_add_nbP">Nombre de personnes : %d</string>
     <string name="text_add_type">Type :</string>
     <string-array name="type_array">
         <item>Entrée</item>
@@ -68,7 +68,7 @@
     <string name="dialog_title_utensil">Choisis les ustensiles requis</string>
     <string name="text_add_utensils_list">Ustensiles :</string>
     <string name="text_add_utensils_false">Vous devez ajouter au moins un ustensile</string>
-    <string name="text_add_ingredient">Ingrédients :</string>
+    <string name="text_add_ingredient">Ingrédients</string>
     <string name="edit_text_add_ingredient_hint">Exemple : Farine</string>
     <string name="button_add_ingredient">Ajouter ingrédients</string>
     <string-array name="ingredient_type_array">
@@ -80,7 +80,7 @@
     <string name="text_add_ingredient_false">Vous devez ajouter au moins un ingrédient</string>
     <string name="text_add_ingredient_empty">Vous devez remplir le champ ingrédient</string>
     <string name="text_add_ingredient_num_empty">Vous devez remplir le champ quantité d\'ingrédient</string>
-    <string name="text_add_step">Etapes :</string>
+    <string name="text_add_step">Etapes</string>
     <string name="button_add_step">Ajouter étape</string>
     <string name="image_delete_step">Supprimer cette étape</string>
     <string name="image_delete_ingredient">Supprimer cet ingrédient</string>
@@ -88,7 +88,7 @@
     <string name="text_add_step_empty">Vous devez ajouter au moins une étape</string>
     <string name="text_add_step_too_much">Vous ne pouvez pas ajouter d\'autres étapes</string>
     <string name="text_add_step_isEmpty">Vous devez compléter toutes les étapes</string>
-    <string name="text_add_picture">Photo :</string>
+    <string name="text_add_picture">Photos</string>
     <string name="button_add_picture">Ajouter une photo</string>
     <string name="button_precedent_picture">Photo précédente</string>
     <string name="button_next_picture">Photo suivante</string>
@@ -108,4 +108,5 @@
     <string name="text_add_recipe_no_net">Erreur : Echec de la connexion</string>
     <string name="image_recipe">Image de la recette</string>
     <string name="text_add_recipe_failure_image">Erreur : Une image n\'a pas pu être envoyé</string>
+    <string name="text_add_min_max">" (%d à %d) :"</string>
 </resources>

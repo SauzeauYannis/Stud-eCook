@@ -48,7 +48,9 @@ class AddStep4Fragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_add_step4, container, false)
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
 
-        root.text_add_title.text = getString(R.string.text_add_title, "4")
+        root.text_add_title.text = getString(R.string.text_add_title, 4)
+
+        root.text_add_step.append(getString(R.string.text_add_min_max, 1, maxStep))
 
         val savedStepsNumber = sharedPref!!.getInt(getString(R.string.saved_add_step_number_key), 0)
 

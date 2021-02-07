@@ -39,7 +39,7 @@ class AddStep1Fragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_add_step1, container, false)
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
 
-        root.text_add_title.text = getString(R.string.text_add_title, "1")
+        root.text_add_title.text = getString(R.string.text_add_title, 1)
         root.text_input_add_name.setText(sharedPref?.getString(getString(R.string.saved_add_name_key), null))
 
         textInputName = root.text_input_layout_add_name

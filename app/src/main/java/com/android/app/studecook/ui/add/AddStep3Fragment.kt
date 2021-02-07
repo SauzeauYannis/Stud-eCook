@@ -50,7 +50,9 @@ class AddStep3Fragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_add_step3, container, false)
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
 
-        root.text_add_title.text = getString(R.string.text_add_title, "3")
+        root.text_add_title.text = getString(R.string.text_add_title, 3)
+
+        root.text_add_ingredients.append(getString(R.string.text_add_min_max, 1, maxIngredient))
 
         val listU = resources.getStringArray(R.array.utensil_array)
         sort(listU)

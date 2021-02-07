@@ -17,7 +17,7 @@
     <string name="text_home">TODO : recipes fragment</string>
 
     <!-- Account -->
-    <string name="text_account">TODO : %1$s Account</string>
+    <string name="text_account">TODO : %s Account</string>
     <string name="text_no_account">You are not sign in</string>
 
     <string name="menu_param">Settings</string>
@@ -32,15 +32,16 @@
     <!-- Account -->
     <string name="account_header">Sign out</string>
     <string name="setting_account" translatable="false">setting_account</string>
-    <string name="account_on">Account name : %1$s</string>
+    <string name="account_on">Account name : %s</string>
     <string name="account_off">You are already not sign</string>
     <string name="alert_setting_account">Do you want to sign out ?</string>
 
     <!-- Add fragment -->
 
-    <string name="text_add_title">Add your recipe Step\nStep %1$s/5</string>
+    <string name="text_add_title">Add your recipe Step Step %d/5</string>
     <string name="button_add_next">Next page button</string>
     <string name="button_previous">Previous page button</string>
+    <string name="text_add_min_max">" (%d to %d):"</string>
 
     <!-- fragment 1 -->
 
@@ -65,7 +66,7 @@
 
     <!-- fragment 2 -->
 
-    <string name="text_add_nbP">Number of people: %1$s</string>
+    <string name="text_add_nbP">Number of people: %d</string>
     <string name="text_add_type">Type:</string>
     <string-array name="type_array">
         <item>Starter</item>
@@ -100,7 +101,7 @@
         <item>Spoon</item>
         <item>Whisk</item>
     </string-array>
-    <string name="text_add_ingredient">Ingredients:</string>
+    <string name="text_add_ingredient">Ingredients</string>
     <string name="edit_text_add_num_ingredient_hint" translatable="false">667</string>
     <string name="edit_text_add_ingredient_hint">Example: Flour</string>
     <string name="image_delete_ingredient">Delete current ingredient</string>
@@ -117,7 +118,7 @@
 
     <!-- fragment 4 -->
 
-    <string name="text_add_step">Steps:</string>
+    <string name="text_add_step">Steps</string>
     <string name="button_add_step">Add Step</string>
     <string name="image_delete_step">Delete current step</string>
     <string name="text_add_ingredient_hint">Step %d</string>
@@ -127,7 +128,7 @@
 
     <!-- fragment 5 -->
 
-    <string name="text_add_picture">Picture:</string>
+    <string name="text_add_picture">Pictures</string>
     <string name="button_add_picture">Add picture</string>
     <string name="button_precedent_picture">Precedent picture</string>
     <string name="button_next_picture">Next picture</string>

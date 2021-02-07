@@ -39,15 +39,15 @@ class AddStep2Fragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_add_step2, container, false)
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
 
-        root.text_add_title.text = getString(R.string.text_add_title, "2")
+        root.text_add_title.text = getString(R.string.text_add_title, 2)
 
-        root.text_add_nbP.text = getString(R.string.text_add_nbP, (sharedPref!!.getInt(getString(R.string.saved_add_number_key), 0) + 1).toString())
+        root.text_add_nbP.text = getString(R.string.text_add_nbP, sharedPref!!.getInt(getString(R.string.saved_add_number_key), 0) + 1)
         root.seek_add.progress = sharedPref.getInt(getString(R.string.saved_add_number_key), 0)
 
         root.seek_add.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                root.text_add_nbP.text = getString(R.string.text_add_nbP, (root.seek_add.progress + 1).toString())
+                root.text_add_nbP.text = getString(R.string.text_add_nbP, root.seek_add.progress + 1)
             }
             override fun onStartTrackingTouch(p0: SeekBar?) {}
             override fun onStopTrackingTouch(p0: SeekBar?) {}
