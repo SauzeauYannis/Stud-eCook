@@ -67,5 +67,4 @@ class RecipeAdapter(options: FirestoreRecyclerOptions<RecipeModel>) :
         var name: TextView = itemView.home_recipe_name
         var recipe: CardView = itemView.cardView
     }
-
 }

@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.SearchView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.app.studecook.R
@@ -51,9 +53,21 @@ class HomeFragment : Fragment() {
         current = root.image_home_disc
         current.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorAccentLight))
 
-        root.image_home_search.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_homeSearchFragment)
+        root.search_home.setOnSearchClickListener {
+            root.text_home_name.visibility = TextView.INVISIBLE
         }
+
+        root.search_home.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                root.search_home.clearFocus()
+                root.text_home_name.visibility = TextView.VISIBLE
+                return false
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                return false
+            }
+        })
 
         root.image_home_follow.setOnClickListener {
             changeCurrent(it as ImageView)
@@ -82,6 +96,9 @@ class HomeFragment : Fragment() {
                     .build()
 
             recipeAdapter!!.updateOptions(firestoreRecyclerOptions)
+
+            Toast.makeText(context, getString(R.string.toast_uptodate), Toast.LENGTH_SHORT).show()
+
             root.home_swipeRefreshLayout.isRefreshing = false
         }
 
@@ -100,7 +117,8 @@ class HomeFragment : Fragment() {
 
         root.home_swipeRefreshLayout.isRefreshing = true
 
-        val query  = collectionReference
+        val query  = collectionReference.
+            orderBy("date", Query.Direction.DESCENDING)
         val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
             .setQuery(query, RecipeModel::class.java)
             .build()
