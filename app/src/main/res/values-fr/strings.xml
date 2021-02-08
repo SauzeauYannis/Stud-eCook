@@ -109,6 +109,6 @@
     <string name="image_recipe">Image de la recette</string>
     <string name="text_add_recipe_failure_image">Erreur : Une image n\'a pas pu être envoyé</string>
     <string name="text_add_min_max">" (%d à %d) :"</string>
-    <string name="toast_uptodate">Vous êtes à jour !</string>
-    <string name="text_query_hint">Chercher une recette</string>
+    <string name="toast_up_to_date">Vous êtes à jour !</string>
+    <string name="search_query">Chercher une recette</string>
 </resources>
