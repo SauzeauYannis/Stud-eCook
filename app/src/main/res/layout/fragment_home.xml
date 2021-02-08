@@ -44,13 +44,13 @@
 
     <ImageView
         android:id="@+id/image_home_disc"
-        android:layout_width="0dp"
+        android:layout_width="128dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/button_home_disc"
         android:padding="5dp"
-        app:layout_constraintEnd_toEndOf="@+id/text_home_name"
-        app:layout_constraintStart_toStartOf="@+id/text_home_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_home_name"
         app:srcCompat="@drawable/ic_food_bank" />
 
@@ -66,42 +66,14 @@
         app:layout_constraintTop_toBottomOf="@+id/text_home_name"
         app:srcCompat="@drawable/ic_favorite" />
 
-    <LinearLayout
-        android:id="@+id/layout_slide"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_home_disc">
-
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/home_swipeRefreshLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/home_recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="12dp" />
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_fliter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:contentDescription="@string/button_filter"
-        android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_filter" />
+        app:layout_constraintTop_toBottomOf="@+id/image_home_disc" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

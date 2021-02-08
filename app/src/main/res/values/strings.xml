@@ -172,6 +172,9 @@
     <string name="button_home_fav">Your favorite recipes button</string>
     <string name="image_recipe">Image recipe</string>
     <string name="toast_up_to_date">You are up to date!</string>
+    <string name="text_home_follower">Recipes of your friends</string>
+    <string name="text_home_favorite">Your favourite recipes</string>
+
 
     <!-- Search Page -->
     <string name="search_query">Look for a recipe</string>

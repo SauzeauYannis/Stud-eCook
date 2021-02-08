@@ -111,4 +111,6 @@
     <string name="text_add_min_max">" (%d à %d) :"</string>
     <string name="toast_up_to_date">Vous êtes à jour !</string>
     <string name="search_query">Chercher une recette</string>
+    <string name="text_home_follower">Les recettes de vos amis</string>
+    <string name="text_home_favorite">Vos recettes favorites</string>
 </resources>
