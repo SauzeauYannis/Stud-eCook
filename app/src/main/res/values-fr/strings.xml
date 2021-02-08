@@ -113,4 +113,5 @@
     <string name="search_query">Chercher une recette</string>
     <string name="text_home_follower">Les recettes de vos amis</string>
     <string name="text_home_favorite">Vos recettes favorites</string>
+    <string name="text_no_recipe">Pas de recettes disponibles</string>
 </resources>

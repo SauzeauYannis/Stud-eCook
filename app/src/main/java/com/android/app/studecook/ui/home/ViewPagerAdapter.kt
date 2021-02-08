@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +29,7 @@ class ViewPagerAdapter() : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolde
         val itemSwipe: SwipeRefreshLayout = itemView.findViewById(R.id.home_swipeRefreshLayout)
         val itemRecycler: RecyclerView = itemView.findViewById(R.id.home_recyclerView)
         val itemFabFilter: FloatingActionButton = itemView.findViewById(R.id.fab_filter)
+        val itemText: TextView = itemView.findViewById(R.id.text_slide)
     }
 
     override fun onCreateViewHolder(
@@ -50,40 +52,49 @@ class ViewPagerAdapter() : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolde
         }
 
         holder.itemSwipe.setOnRefreshListener {
-            val query  = collectionReference.
+/*            val query  = collectionReference.
             orderBy("date", Query.Direction.DESCENDING)
             val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
                     .setQuery(query, RecipeModel::class.java)
                     .build()
 
-            recipeAdapter!!.updateOptions(firestoreRecyclerOptions)
+            recipeAdapter!!.updateOptions(firestoreRecyclerOptions)*/
 
             Toast.makeText(holder.itemView.context, holder.itemView.context.getString(R.string.toast_up_to_date), Toast.LENGTH_SHORT).show()
 
             holder.itemSwipe.isRefreshing = false
         }
 
-        setUpRecyclerView(holder.itemRecycler, holder.itemSwipe)
+        setUpRecyclerView(holder, position)
 
         recipeAdapter!!.startListening()
     }
 
-    private fun setUpRecyclerView(home_recyclerView: RecyclerView, home_swipeRefreshLayout: SwipeRefreshLayout) {
+    private fun setUpRecyclerView(holder: Pager2ViewHolder, position: Int) {
+        holder.itemSwipe.isRefreshing = true
 
-        home_swipeRefreshLayout.isRefreshing = true
+        if (position == 1) {
+            var query  = collectionReference.orderBy("date", Query.Direction.DESCENDING)
+            val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
+                    .setQuery(query, RecipeModel::class.java)
+                    .build()
 
-        val query  = collectionReference.
-        orderBy("date", Query.Direction.DESCENDING)
-        val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
-                .setQuery(query, RecipeModel::class.java)
-                .build()
+            recipeAdapter = RecipeAdapter(firestoreRecyclerOptions)
 
-        recipeAdapter = RecipeAdapter(firestoreRecyclerOptions)
+            holder.itemRecycler.layoutManager = GridLayoutManager(holder.itemRecycler.context, 2, LinearLayoutManager.VERTICAL, false)
+            holder.itemRecycler.adapter = recipeAdapter
+        } else {
+            holder.itemText.visibility = TextView.VISIBLE
+            holder.itemFabFilter.visibility = FloatingActionButton.INVISIBLE
+        }
 
-        home_recyclerView.layoutManager = GridLayoutManager(home_recyclerView.context, 2, LinearLayoutManager.VERTICAL, false)
-        home_recyclerView.adapter = recipeAdapter
+        holder.itemSwipe.isRefreshing = false
+    }
 
-        home_swipeRefreshLayout.isRefreshing = false
+    fun startListening() {
+        if (recipeAdapter != null) {
+            recipeAdapter!!.startListening()
+        }
     }
 
     fun stopListening() {

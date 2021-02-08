@@ -96,13 +96,13 @@ class HomeFragment : Fragment() {
         current.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorAccentLight))
     }
 
-    override fun onStop() {
-        super.onStop()
-        viewPagerAdapter.stopListening()
+    override fun onStart() {
+        super.onStart()
+        viewPagerAdapter.startListening()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onStop() {
+        super.onStop()
         viewPagerAdapter.stopListening()
     }
 }
