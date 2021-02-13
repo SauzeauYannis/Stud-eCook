@@ -48,7 +48,7 @@ class RecipeFragment : Fragment() {
                     .into(root.image_recipe)
             }
         } else
-            root.image_recipe.visibility = ImageView.INVISIBLE
+            root.image_recipe.visibility = ImageView.GONE
 
         return root
     }
