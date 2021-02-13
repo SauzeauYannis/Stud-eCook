@@ -32,12 +32,12 @@ class RecipeAdapter(options: FirestoreRecyclerOptions<RecipeModel>) :
         for (elem in holder.times) {
             elem.alpha = 0.1F
         }
-        if (model.images!!.isNotEmpty()) {
-            val storageReference = FirebaseStorage.getInstance().reference.child(model.images!![0])
+        if (model.image != null) {
+            val storageReference = FirebaseStorage.getInstance().reference.child(model.image!!)
             storageReference.downloadUrl.addOnSuccessListener { uri ->
                 Glide.with(holder.recipe.context)
-                        .load(uri)
-                        .into(holder.image)
+                    .load(uri)
+                    .into(holder.image)
             }
         }
         for (i in 0..model.price!!) {

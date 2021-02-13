@@ -1,44 +1,39 @@
 package com.android.app.studecook.ui.add
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.android.app.studecook.MainActivity
 import com.android.app.studecook.R
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
+import com.canhub.cropper.CropImage
+import com.canhub.cropper.CropImageView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.ktx.firestore
 import kotlinx.android.synthetic.main.fragment_add_step5.*
 import kotlinx.android.synthetic.main.fragment_add_step5.view.*
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
+
 
 class AddStep5Fragment : Fragment() {
 
-    private val maxImage = 3
-    private var images: ArrayList<Uri?>? = null
-    private var position = 0
+    private var imageUri: Uri? = null
     private lateinit var storage: FirebaseStorage
-
-    companion object {
-        private const val PICK_IMAGE_CODE = 0
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,45 +46,30 @@ class AddStep5Fragment : Fragment() {
 
         requireActivity().onBackPressedDispatcher.addCallback(callback)
 
-        images = ArrayList()
-
         storage = Firebase.storage
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_add_step5, container, false)
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
 
         root.text_add_title.text = getString(R.string.text_add_title, 5)
 
-        root.text_add_picture.append(getString(R.string.text_add_min_max, 0, maxImage))
-
-        root.imageswitcher_add_recipe.setFactory {
-            ImageView(context)
-        }
-
         root.button_add_picture.setOnClickListener {
-            pickImagesIntent()
+            CropImage.activity()
+                .setGuidelines(CropImageView.Guidelines.ON)
+                .setAspectRatio(4, 3)
+                .setFixAspectRatio(true)
+                .start(requireContext(), this)
         }
 
-        root.button_precedent_picture.setOnClickListener {
-            if (position > 0) {
-                position--
-                imageswitcher_add_recipe.setImageURI(images!![position])
-                visibilityChanges()
-            }
-        }
-
-        root.button_next_picture.setOnClickListener {
-            if (position < images!!.size-1) {
-                position++
-                imageswitcher_add_recipe.setImageURI(images!![position])
-                visibilityChanges()
-            }
+        root.button_delete_pic.setOnClickListener {
+            imageUri = null
+            root.image_add_recipe.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_no_image))
         }
 
         root.button_back.setOnClickListener {
@@ -100,9 +80,7 @@ class AddStep5Fragment : Fragment() {
             val user = FirebaseAuth.getInstance().currentUser
             if (user!!.isAnonymous) {
                 Toast.makeText(context, getString(R.string.text_add_recipe_anonymous), Toast.LENGTH_LONG).show()
-            } /*else if (!isOnline()) {
-                Toast.makeText(context, getString(R.string.text_add_recipe_no_net), Toast.LENGTH_LONG).show()
-            }*/ else {
+            } else {
                 sendToDataBase(sharedPref, user)
             }
         }
@@ -110,48 +88,27 @@ class AddStep5Fragment : Fragment() {
         return root
     }
 
-    private fun visibilityChanges() {
-        if (images!!.size > 1) {
-            when (position) {
-                0 -> {
-                    button_next_picture.visibility = Button.VISIBLE
-                    button_precedent_picture.visibility = Button.INVISIBLE
-                }
-                images!!.size - 1 -> {
-                    button_next_picture.visibility = Button.INVISIBLE
-                    button_precedent_picture.visibility = Button.VISIBLE
-                }
-                else -> {
-                    button_next_picture.visibility = Button.VISIBLE
-                    button_precedent_picture.visibility = Button.VISIBLE
-                }
-            }
-            text_number_pictures.visibility = TextView.VISIBLE
-            text_number_pictures.text = getString(R.string.text_number_pictures, position + 1, images!!.size)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            val result = CropImage.getActivityResult(data)
+            imageUri = result!!.uri
+            image_add_recipe.setImageURI(result.uri)
         }
     }
 
-    private fun pickImagesIntent() {
-        val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-        gallery.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-        startActivityForResult(gallery, PICK_IMAGE_CODE)
-    }
+    private fun sendImages(recipeId: String): String? {
+        return if (imageUri != null) {
+            val storageRef = storage.reference
+            val imagePath = "images/$recipeId"
+            val imageRef = storageRef.child(imagePath)
 
-    private fun sendImages(recipeId: String): ArrayList<String> {
-        val storageRef = storage.reference
-        val imagesPath = ArrayList<String>()
-
-        for (i in 0 until images!!.size) {
-            val pathString = "images/$recipeId/${images!![i]?.lastPathSegment}"
-            val imageRef = storageRef.child(pathString)
-
-            imagesPath.add(pathString)
-            images!![i]?.let { imageRef.putFile(it).addOnFailureListener {
+            imageRef.putFile(imageUri!!).addOnFailureListener {
                 Toast.makeText(context, getString(R.string.text_add_recipe_failure_image), Toast.LENGTH_LONG).show()
-            } }
-        }
+            }
 
-        return imagesPath
+            imagePath
+        } else
+            null
     }
 
     private fun sendToDataBase(sharedPref: SharedPreferences?, user: FirebaseUser?) {
@@ -159,7 +116,7 @@ class AddStep5Fragment : Fragment() {
 
         val recipeId = db.collection(getString(R.string.collection_recipes)).document().id
 
-        val imagesPath = sendImages(recipeId)
+        val imagePath = sendImages(recipeId)
 
         val name = sharedPref?.getString(getString(R.string.saved_add_name_key), "")
         val time = sharedPref?.getInt(getString(R.string.saved_add_time_key), 0)
@@ -185,7 +142,7 @@ class AddStep5Fragment : Fragment() {
                 "ingredientsType" to ingredientsType,
                 "ingredientsName" to ingredientsName,
                 "steps" to steps,
-                "images" to imagesPath.toList(),
+                "image" to imagePath,
                 "uid" to user!!.uid,
                 "date" to Calendar.getInstance().time
         )
@@ -206,41 +163,5 @@ class AddStep5Fragment : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(context, getString(R.string.text_add_recipe_failure), Toast.LENGTH_LONG).show()
             }
-    }
-
-/*    private fun isOnline(): Boolean {
-        val runtime = Runtime.getRuntime()
-        try {
-            val ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8")
-            val exitValue = ipProcess.waitFor()
-            return exitValue == 0
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return false
-    }*/
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_IMAGE_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                if(data!!.clipData != null) {
-                    val count = data.clipData!!.itemCount
-                    if ((images!!.size + count) > maxImage) {
-                        Toast.makeText(context, getString(R.string.text_add_pictures_too_much), Toast.LENGTH_LONG).show()
-                    } else {
-                        for (i in position until count+position) {
-                            val imageUri = data.clipData!!.getItemAt(i).uri
-                            images!!.add(imageUri)
-                        }
-                        imageswitcher_add_recipe.setImageURI(images!![position])
-                    }
-                } else {
-                    val imageUri = data.data
-                    imageswitcher_add_recipe.setImageURI(imageUri)
-                }
-                visibilityChanges()
-            }
-        }
     }
 }

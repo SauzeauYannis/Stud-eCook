@@ -128,13 +128,15 @@
 
     <!-- fragment 5 -->
 
-    <string name="text_add_picture">Pictures</string>
+    <string name="text_add_picture">Picture (optional)</string>
     <string name="button_add_picture">Add picture</string>
-    <string name="button_precedent_picture">Precedent picture</string>
+    <string name="button_delete_picture">Delete picture</string>
+    <string name="image_desc_add">Recipe image</string>
+<!--    <string name="button_precedent_picture">Precedent picture</string>
     <string name="button_next_picture">Next picture</string>
-    <string name="text_add_picture_title">Select Image(s) (max 3)</string>
+    <string name="text_add_picture_title">Select Image</string>
     <string name="text_number_pictures" translatable="false">%d/%d</string>
-    <string name="text_add_pictures_too_much">The maximum of pictures is 3</string>
+    <string name="text_add_pictures_too_much">The maximum of pictures is 3</string>-->
     <string name="text_add_recipe_failure">Error: The recipe can\'t be upload</string>
     <string name="text_add_recipe_no_net">Error: Connection failure!</string>
     <string name="text_add_recipe_failure_image">Error: Image can\'t be upload!</string>

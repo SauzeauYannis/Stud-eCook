@@ -18,7 +18,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
-class ViewPagerAdapter() : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>() {
+class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>() {
 
     private val db = FirebaseFirestore.getInstance()
     private val collectionReference = db.collection("recipes")
@@ -74,7 +74,7 @@ class ViewPagerAdapter() : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolde
         holder.itemSwipe.isRefreshing = true
 
         if (position == 1) {
-            var query  = collectionReference.orderBy("date", Query.Direction.DESCENDING)
+            val query  = collectionReference.orderBy("date", Query.Direction.DESCENDING)
             val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
                     .setQuery(query, RecipeModel::class.java)
                     .build()

@@ -8,7 +8,7 @@ import java.util.*
 class RecipeModel : Parcelable {
 
     var diet: Int? = null
-    var images: List<String>? = null
+    var image: String? = null
     var ingredientsName: List<String>? = null
     var ingredientsQuantity: List<String>? = null
     var ingredientsType: List<String>? = null

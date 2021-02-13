@@ -88,12 +88,12 @@
     <string name="text_add_step_empty">Vous devez ajouter au moins une étape</string>
     <string name="text_add_step_too_much">Vous ne pouvez pas ajouter d\'autres étapes</string>
     <string name="text_add_step_isEmpty">Vous devez compléter toutes les étapes</string>
-    <string name="text_add_picture">Photos</string>
+    <string name="text_add_picture">Photo (optionnel)</string>
     <string name="button_add_picture">Ajouter une photo</string>
-    <string name="button_precedent_picture">Photo précédente</string>
+<!--    <string name="button_precedent_picture">Photo précédente</string>
     <string name="button_next_picture">Photo suivante</string>
     <string name="text_add_picture_title">Choisir images(s) (max 3)</string>
-    <string name="text_add_pictures_too_much">Le maximum de photo est 3</string>
+    <string name="text_add_pictures_too_much">Le maximum de photo est 3</string>-->
     <string name="text_no_account">Vous n\'êtes pas connecté</string>
     <string name="text_add_recipe_failure">Erreur : La recette n\'a pas pu être ajouté</string>
     <string name="text_add_recipe_anonymous">Vous ne pouvez pas ajouté de recette en étant invité\nConnectez-vous !</string>
@@ -114,4 +114,6 @@
     <string name="text_home_follower">Les recettes de vos amis</string>
     <string name="text_home_favorite">Vos recettes favorites</string>
     <string name="text_no_recipe">Pas de recettes disponibles</string>
+    <string name="image_desc_add">Image de la recette</string>
+    <string name="button_delete_picture">Supprimer la photo</string>
 </resources>

@@ -24,6 +24,6 @@
         android:layout_height="35dp"
         android:layout_weight="1"
         android:contentDescription="@string/image_delete_step"
-        app:srcCompat="@drawable/ic_delete" />
+        app:srcCompat="@drawable/ic_cancel" />
 
 </LinearLayout>

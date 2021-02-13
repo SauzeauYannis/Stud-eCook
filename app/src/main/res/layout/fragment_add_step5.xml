@@ -44,72 +44,47 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.2" />
 
-    <ImageSwitcher
-        android:id="@+id/imageswitcher_add_recipe"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_precedent_picture"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_add_picture">
-
-    </ImageSwitcher>
-
-    <ImageButton
-        android:id="@+id/button_precedent_picture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/round_accent"
-        android:contentDescription="@string/button_precedent_picture"
-        android:padding="8dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/button_add_next"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_back" />
-
     <Button
         android:id="@+id/button_add_picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:background="@drawable/round_accent"
         android:drawableStart="@drawable/ic_add2"
         android:padding="8dp"
         android:text="@string/button_add_picture"
-        app:layout_constraintBottom_toTopOf="@+id/button_add_next"
-        app:layout_constraintEnd_toStartOf="@+id/button_next_picture"
-        app:layout_constraintStart_toEndOf="@+id/button_precedent_picture"
-        app:layout_constraintTop_toBottomOf="@+id/imageswitcher_add_recipe" />
-
-    <ImageButton
-        android:id="@+id/button_next_picture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/round_accent"
-        android:contentDescription="@string/button_next_picture"
-        android:padding="8dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/button_add_next"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_forward" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_add_picture" />
 
-    <TextView
-        android:id="@+id/text_number_pictures"
+    <ImageView
+        android:id="@+id/image_add_recipe"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/image_recipe"
+        app:layout_constraintDimensionRatio="4:3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_add_picture"
+        app:srcCompat="@drawable/ic_no_image">
+
+    </ImageView>
+
+    <Button
+        android:id="@+id/button_delete_pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_number_pictures"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/button_add_picture"
-        app:layout_constraintEnd_toStartOf="@+id/button_next_picture"
-        app:layout_constraintStart_toEndOf="@+id/button_precedent_picture"
-        app:layout_constraintTop_toBottomOf="@+id/imageswitcher_add_recipe" />
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/round_accent"
+        android:drawableStart="@drawable/ic_delete"
+        android:padding="8dp"
+        android:text="@string/button_delete_picture"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_add_recipe" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_add_next"
