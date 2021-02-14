@@ -40,13 +40,14 @@ class RecipeAdapter(options: FirestoreRecyclerOptions<RecipeModel>) :
                     .into(holder.image)
             }
         }
-        for (i in 0..model.price!!) {
+        for (i in 0..model.price!!)
             holder.euros[i].alpha = 1.0F
-        }
-        for (i in 0..model.time!!) {
+        for (i in 0..model.time!!)
             holder.times[i].alpha = 1.0F
-        }
-        holder.name.text = model.name
+        if (model.name!!.length > 23)
+            holder.name.text = model.name!!.substring(0, 20).plus("...")
+        else
+            holder.name.text = model.name
         holder.recipe.setOnClickListener {
             val homeFragment = holder.itemView.findFragment<HomeFragment>()
             val action = HomeFragmentDirections.actionNavigationHomeToRecipeFragment(model)

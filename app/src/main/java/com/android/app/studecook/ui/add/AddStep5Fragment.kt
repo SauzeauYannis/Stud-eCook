@@ -144,7 +144,8 @@ class AddStep5Fragment : Fragment() {
                 "steps" to steps,
                 "image" to imagePath,
                 "uid" to user!!.uid,
-                "date" to Calendar.getInstance().time
+                "date" to Calendar.getInstance().time,
+                "fav" to 0
         )
 
         db.collection(getString(R.string.collection_recipes)).document(recipeId)

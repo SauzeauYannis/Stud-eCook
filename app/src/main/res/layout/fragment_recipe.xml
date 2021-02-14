@@ -20,8 +20,11 @@
 
     <TextView
         android:id="@+id/text_recipe_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toTopOf="@+id/scroll_recipe"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,28 +61,141 @@
                 app:srcCompat="@drawable/ic_no_image" />
 
             <TextView
-                android:id="@+id/test_scroll"
+                android:id="@+id/separator_recipe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:padding="8dp"
-                android:text="
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam commodo libero eget metus tempor, nec gravida leo dapibus. Fusce ut dapibus lorem. Maecenas consectetur eu risus sit amet maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et velit non ipsum lobortis congue eget vitae lorem. Integer diam felis, convallis a tellus non, dapibus vestibulum ante. Donec ac ligula vel nisl suscipit dapibus ac eu eros. Nunc vulputate viverra arcu et fermentum. In hac habitasse platea dictumst.
-
-Vivamus posuere mattis vestibulum. Cras id condimentum eros, sit amet porta lacus. Ut pulvinar nibh vel mauris dapibus sagittis. Pellentesque vel turpis facilisis, egestas orci ac, tincidunt ante. Proin sed bibendum dui. Ut posuere nisl non sapien molestie, sed efficitur ex fringilla. Quisque ut elit eleifend mauris tincidunt congue a a arcu. Suspendisse a augue ante. Cras tincidunt iaculis dolor, id luctus magna feugiat at. Aliquam quis tincidunt sapien. Maecenas auctor placerat elit, at vehicula lectus faucibus at. Quisque blandit, risus non fermentum interdum, urna sapien venenatis nibh, ut ornare ligula nisi a ex. Morbi ut tellus nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis erat dui. Morbi ut lorem euismod, sollicitudin elit ac, vestibulum nisl.
-
-Maecenas accumsan placerat pretium. Proin maximus sagittis libero, a varius felis egestas a. Nam lacinia nunc quis sem lacinia venenatis. In pretium accumsan odio at eleifend. Vivamus sed tortor eget ante rhoncus aliquet sit amet sed odio. Maecenas pulvinar velit a sodales viverra. Pellentesque sit amet mi sed urna viverra condimentum. Duis imperdiet massa quis risus mollis, non blandit dolor convallis. Ut nec arcu at ipsum efficitur faucibus ut nec eros. Praesent in dui quis ipsum suscipit fermentum. Ut a lectus suscipit, pellentesque dui in, ultrices nisl. Curabitur ultrices eros non suscipit feugiat. Sed porta est maximus ipsum posuere bibendum. Donec egestas fringilla tincidunt.
-
-Etiam rutrum est porta, luctus quam at, scelerisque ipsum. Suspendisse in erat euismod, facilisis massa sit amet, condimentum ante. Morbi dapibus ipsum commodo, fringilla magna tincidunt, scelerisque nisl. Mauris sit amet mi ipsum. Vivamus bibendum dui ipsum, nec viverra urna volutpat et. Suspendisse potenti. Sed sit amet tellus eu leo congue cursus in nec urna. Nam imperdiet a lectus ac blandit. Vestibulum finibus venenatis ultricies. Mauris egestas id justo vitae vulputate. Aliquam eget lorem lobortis, ullamcorper neque non, dapibus tortor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-
-Quisque eu magna ut quam hendrerit cursus. Phasellus luctus diam et augue ullamcorper, vel bibendum lectus aliquam. Mauris sed erat fringilla, dapibus lacus eu, egestas nisl. Nullam dignissim sit amet mauris vitae rutrum. Etiam vitae risus eget nisl lobortis porta eu sit amet erat. Proin gravida, neque a semper imperdiet, nibh lorem volutpat odio, ut pellentesque orci risus ut neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. "
-                android:textAlignment="viewStart"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_recipe_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/text_type"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/separator_recipe"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/image_recipe" />
+
+            <TextView
+                android:id="@+id/text_recipe_diet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/text_diet"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/separator_recipe"
+                app:layout_constraintTop_toBottomOf="@+id/image_recipe" />
+
+            <ImageView
+                android:id="@+id/image_recipe_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:alpha="0.2"
+                android:contentDescription="@string/image_price"
+                app:layout_constraintEnd_toStartOf="@+id/image_recipe_price2"
+                app:layout_constraintTop_toBottomOf="@+id/text_recipe_type"
+                app:srcCompat="@drawable/ic_euro" />
+
+            <ImageView
+                android:id="@+id/image_recipe_price2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:alpha="0.2"
+                android:contentDescription="@string/image_price"
+                app:layout_constraintEnd_toStartOf="@+id/separator_recipe"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_recipe_type"
+                app:srcCompat="@drawable/ic_euro" />
+
+            <ImageView
+                android:id="@+id/image_recipe_price3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:alpha="0.2"
+                android:contentDescription="@string/image_price"
+                app:layout_constraintStart_toEndOf="@+id/image_recipe_price2"
+                app:layout_constraintTop_toBottomOf="@+id/text_recipe_type"
+                app:srcCompat="@drawable/ic_euro" />
+
+            <TextView
+                android:id="@+id/text_recipe_fav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="4dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/image_recipe_fav"
+                app:layout_constraintTop_toBottomOf="@+id/text_recipe_type" />
+
+            <ImageView
+                android:id="@+id/image_recipe_fav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:contentDescription="@string/image_fav"
+                app:layout_constraintStart_toEndOf="@+id/separator_recipe"
+                app:layout_constraintTop_toBottomOf="@+id/text_recipe_diet"
+                app:srcCompat="@drawable/ic_favorite" />
+
+            <ImageView
+                android:id="@+id/image_recipe_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:alpha="0.2"
+                android:contentDescription="@string/image_time"
+                app:layout_constraintEnd_toStartOf="@+id/image_recipe_time2"
+                app:layout_constraintTop_toBottomOf="@+id/text_recipe_diet"
+                app:srcCompat="@drawable/ic_time" />
+
+            <ImageView
+                android:id="@+id/image_recipe_time2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:alpha="0.2"
+                android:contentDescription="@string/image_time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/separator_recipe"
+                app:layout_constraintTop_toBottomOf="@+id/text_recipe_diet"
+                app:srcCompat="@drawable/ic_time" />
+
+            <ImageView
+                android:id="@+id/image_recipe_time3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:alpha="0.2"
+                android:contentDescription="@string/image_time"
+                app:layout_constraintStart_toEndOf="@+id/image_recipe_time2"
+                app:layout_constraintTop_toBottomOf="@+id/text_recipe_diet"
+                app:srcCompat="@drawable/ic_time" />
+
+            <TextView
+                android:id="@+id/text_recipe_owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:clickable="true"
+                android:text="@string/text_propoced_by"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_recipe_fav"
+                android:focusable="true" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

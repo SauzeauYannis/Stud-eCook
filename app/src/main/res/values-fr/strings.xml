@@ -3,7 +3,6 @@
     <string name="title_home">Recettes</string>
     <string name="title_add">Ajouter</string>
     <string name="title_account">Compte</string>
-    <string name="text_home">TODO : Page des recettes</string>
     <string name="text_add_title">Ajoute ta recette\nÉtape %d/5</string>
     <string name="text_account">TODO : Compte de %s</string>
     <string name="menu_param">Paramètres</string>
@@ -12,8 +11,8 @@
     <string name="dark_off">Thème sombre désactivé</string>
     <string name="dark_on">Thème sombre activé</string>
     <string name="text_add_name">Nom de ta recette :</string>
-    <string name="text_add_time">Temps :</string>
-    <string name="text_add_price">Prix :</string>
+    <string name="text_time">Temps :</string>
+    <string name="text_price">Prix :</string>
     <string-array name="time_array">
         <item>Rapide : inférieur à 30min</item>
         <item>Moyen : entre 30min et 1h30min</item>
@@ -37,14 +36,14 @@
     <string name="add_name_false_long">Nom de recette trop long</string>
     <string name="add_name_false">Nom de recette invalide</string>
     <string name="text_add_nbP">Nombre de personnes : %d</string>
-    <string name="text_add_type">Type :</string>
+    <string name="text_type">Type :</string>
     <string-array name="type_array">
         <item>Entrée</item>
         <item>Plat</item>
         <item>Dessert</item>
         <item>Boisson</item>
     </string-array>
-    <string name="text_add_diet">Régime</string>
+    <string name="text_diet">Régime :</string>
     <string-array name="diet_array">
         <item>Aucun</item>
         <item>Végétarien</item>
@@ -114,4 +113,7 @@
     <string name="button_delete_picture">Supprimer la photo</string>
     <string name="image_time">Image durée</string>
     <string name="image_price">Image prix</string>
+    <string name="text_fav">Aime :</string>
+    <string name="image_fav">Image aime</string>
+    <string name="text_propoced_by">"Proposé par "</string>
 </resources>

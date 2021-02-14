@@ -1,11 +1,17 @@
 package com.android.app.studecook.ui.recipe
 
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -33,23 +39,66 @@ class RecipeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_recipe, container, false)
+        val recipe = args.currentRecipe
 
         root.image_recipe_prev.setOnClickListener {
             findNavController().navigate(R.id.action_recipeFragment_to_navigation_home)
         }
 
-        root.text_recipe_name.text = args.currentRecipe.name
+        root.text_recipe_name.text = recipe.name
 
-        if (args.currentRecipe.image != null) {
-            val storageReference = FirebaseStorage.getInstance().reference.child(args.currentRecipe.image!!)
-            storageReference.downloadUrl.addOnSuccessListener { uri ->
-                Glide.with(requireContext())
-                    .load(uri)
-                    .into(root.image_recipe)
-            }
-        } else
-            root.image_recipe.visibility = ImageView.GONE
+        loadImage(recipe.image, root.image_recipe)
+
+        root.text_recipe_type.append(" " + resources.getStringArray(R.array.type_array)[recipe.type!!])
+
+        root.text_recipe_diet.append(" " + resources.getStringArray(R.array.diet_array)[recipe.diet!!])
+
+        loadIcons(root, recipe)
+
+        clickableOwner(root.text_recipe_owner, "<nom du créateur>") // TODO: 14-Feb-21: Remplacer "<nom du créateur>" par recipe.uid.name
 
         return root
+    }
+
+    private fun loadImage(imagePath: String?, imageView: ImageView) {
+        if (imagePath != null) {
+            val storageReference = FirebaseStorage.getInstance().reference.child(imagePath)
+            storageReference.downloadUrl.addOnSuccessListener { uri ->
+                Glide.with(requireContext())
+                        .load(uri)
+                        .into(imageView)
+            }
+        } else
+            imageView.visibility = ImageView.GONE
+    }
+
+    private fun loadIcons(root: View, recipe: RecipeModel) {
+        val pricesImages = listOf<ImageView>(
+                root.image_recipe_price,
+                root.image_recipe_price2,
+                root.image_recipe_price3)
+        val timesImages = listOf<ImageView>(
+                root.image_recipe_time,
+                root.image_recipe_time2,
+                root.image_recipe_time3)
+
+        for (i in 0..recipe.price!!)
+            pricesImages[i].alpha = 1.0F
+        for (i in 0..recipe.time!!)
+            timesImages[i].alpha = 1.0F
+
+        root.text_recipe_fav.text = recipe.fav.toString()
+    }
+
+    private fun clickableOwner(text: TextView, name: String) {
+        val clickableName = SpannableString(name)
+        clickableName.setSpan(object: ClickableSpan(){
+            override fun onClick(p0: View) {
+                Toast.makeText(context, "TODO: envoyer sur la page perso du créateur $name", Toast.LENGTH_LONG).show()
+            }
+        }, 0, name.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        text.append(" ")
+        text.append(clickableName)
+        text.movementMethod = LinkMovementMethod.getInstance()
     }
 }

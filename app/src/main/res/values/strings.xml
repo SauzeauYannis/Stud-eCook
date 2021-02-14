@@ -6,23 +6,46 @@
     <string name="app_name" translatable="false">Stud\'eCook</string>
     <string name="title_activity_settings" translatable="false">SettingsActivity</string>
 
+    <!-- General -->
     <string name="anonymous">Anonymous</string>
+    <string name="text_type">Type:</string>
+    <string name="text_diet">Diet:</string>
+    <string name="text_time">Time:</string>
+    <string name="text_price">Price:</string>
+    <string name="image_time">Time image</string>
+    <string name="image_price">Price image</string>
+    <string name="image_fav">Like image</string>
 
     <!-- Bottom navigation menu title -->
     <string name="title_home">Recipes</string>
     <string name="title_add">Add</string>
     <string name="title_account">Account</string>
-
+    
     <!-- Home -->
-    <string name="text_home">TODO : recipes fragment</string>
+    <string name="image_search">Search button</string>
+    <string name="button_filter">Filter button</string>
+    <string name="button_home_follow">Followers recipe button</string>
+    <string name="button_home_disc">Discovery recipes button</string>
+    <string name="button_home_fav">Your favorite recipes button</string>
+    <string name="image_recipe">Image recipe</string>
+    <string name="toast_up_to_date">You are up to date!</string>
+    <string name="text_home_follower">Recipes of your friends</string>
+    <string name="text_home_favorite">Your favourite recipes</string>
+    <string name="text_no_recipe">No recipes available</string>
+
+    <!-- Recipe Page -->
+    <string name="text_fav">Like:</string>
+    <string name="text_propoced_by">Proposed by</string>
+    
+    <!-- Search Page -->
+    <string name="search_query">Look for a recipe</string>
 
     <!-- Account -->
     <string name="text_account">TODO : %s Account</string>
     <string name="text_no_account">You are not sign in</string>
 
-    <string name="menu_param">Settings</string>
-
     <!-- Settings -->
+    <string name="menu_param">Settings</string>
     <!-- Theme -->
     <string name="appearance_header">Theme</string>
     <string name="setting_dark" translatable="false">setting_dark</string>
@@ -37,52 +60,41 @@
     <string name="alert_setting_account">Do you want to sign out ?</string>
 
     <!-- Add fragment -->
-
     <string name="text_add_title">Add your recipe Step Step %d/5</string>
     <string name="button_add_next">Next page button</string>
     <string name="button_previous">Previous page button</string>
     <string name="text_add_min_max">" (%d to %d):"</string>
-
     <!-- fragment 1 -->
-
     <string name="text_add_name">Name of your recipe:</string>
     <string name="edit_text_add_name_hint">Example: Cookie</string>
     <string name="add_name_false_short">Recipe name too short</string>
     <string name="add_name_false_long">Recipe name too long</string>
     <string name="add_name_false">Name of recipe is not good</string>
-    <string name="text_add_time">Time:</string>
     <string-array name="time_array">
         <item>Fast: less than 30min</item>
         <item>Medium: between 30min and 1h30</item>
         <item>Long: more than 1h30</item>
     </string-array>
-    <string name="text_add_price">Price:</string>
     <string-array name="price_array">
         <item>Cheap: less than 3 €</item>
         <item>Medium: between 3 € and 5 €</item>
         <item>Expensive: more than 5 €</item>
     </string-array>
     <string name="button_sent_data">Validate recipe button</string>
-
     <!-- fragment 2 -->
-
     <string name="text_add_nbP">Number of people: %d</string>
-    <string name="text_add_type">Type:</string>
     <string-array name="type_array">
         <item>Starter</item>
         <item>Dish</item>
         <item>Dessert</item>
         <item>Drink</item>
     </string-array>
-    <string name="text_add_diet">Diet:</string>
     <string-array name="diet_array">
         <item>None</item>
         <item>Vegetarian</item>
         <item>Vegan</item>
     </string-array>
-
     <!-- fragment 3 -->
-
     <string name="button_add_utensil">Add utensil</string>
     <string name="dialog_title_utensil">Choose utensils needed</string>
     <string name="text_add_utensils_list">Utensils:</string>
@@ -115,9 +127,7 @@
     <string name="text_add_ingredient_false">You need to add at least one ingredient</string>
     <string name="text_add_ingredient_empty">You need to enter a ingredient name</string>
     <string name="text_add_ingredient_num_empty">You need to enter a quantity of ingredient</string>
-
     <!-- fragment 4 -->
-
     <string name="text_add_step">Steps</string>
     <string name="button_add_step">Add Step</string>
     <string name="image_delete_step">Delete current step</string>
@@ -125,9 +135,7 @@
     <string name="text_add_step_too_much">You can\'t add one more step</string>
     <string name="text_add_step_empty">You need to add at least one step</string>
     <string name="text_add_step_isEmpty">You need to complete all steps</string>
-
     <!-- fragment 5 -->
-
     <string name="text_add_picture">Picture (optional)</string>
     <string name="button_add_picture">Add picture</string>
     <string name="button_delete_picture">Delete picture</string>
@@ -141,7 +149,6 @@
     <string name="dialog_add_ok">Return to home</string>
 
     <!-- save values -->
-
     <string name="saved_add_name_key" translatable="false">name</string>
     <string name="saved_add_time_key" translatable="false">time</string>
     <string name="saved_add_price_key" translatable="false">price</string>
@@ -157,24 +164,5 @@
     <string name="saved_add_steps_key" translatable="false">steps</string>
 
     <!-- Cloud Firestore (database) -->
-
     <string name="collection_recipes" translatable="false">recipes</string>
-
-    <!-- Home Page -->
-
-    <string name="image_search">Search button</string>
-    <string name="button_filter">Filter button</string>
-    <string name="button_home_follow">Followers recipe button</string>
-    <string name="button_home_disc">Discovery recipes button</string>
-    <string name="button_home_fav">Your favorite recipes button</string>
-    <string name="image_recipe">Image recipe</string>
-    <string name="toast_up_to_date">You are up to date!</string>
-    <string name="text_home_follower">Recipes of your friends</string>
-    <string name="text_home_favorite">Your favourite recipes</string>
-    <string name="text_no_recipe">No recipes available</string>
-    <string name="image_time">Time image</string>
-    <string name="image_price">Price image</string>
-
-    <!-- Search Page -->
-    <string name="search_query">Look for a recipe</string>
 </resources>

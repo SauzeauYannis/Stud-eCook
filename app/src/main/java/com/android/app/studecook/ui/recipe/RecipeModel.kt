@@ -21,4 +21,5 @@ class RecipeModel : Parcelable {
     var uid: String? = null
     var utensils: List<String>? = null
     var date: Date? = null
+    var fav: Int? = null
 }
