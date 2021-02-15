@@ -52,13 +52,13 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
         }
 
         holder.itemSwipe.setOnRefreshListener {
-/*            val query  = collectionReference.
+            val query  = collectionReference.
             orderBy("date", Query.Direction.DESCENDING)
             val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
                     .setQuery(query, RecipeModel::class.java)
                     .build()
 
-            recipeAdapter!!.updateOptions(firestoreRecyclerOptions)*/
+            recipeAdapter!!.updateOptions(firestoreRecyclerOptions)
 
             Toast.makeText(holder.itemView.context, holder.itemView.context.getString(R.string.toast_up_to_date), Toast.LENGTH_SHORT).show()
 
@@ -92,9 +92,7 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
     }
 
     fun startListening() {
-        if (recipeAdapter != null) {
-            recipeAdapter!!.startListening()
-        }
+        recipeAdapter?.startListening()
     }
 
     fun stopListening() {

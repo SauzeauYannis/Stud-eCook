@@ -1,11 +1,9 @@
 package com.android.app.studecook
 
-import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.NavHostFragment
@@ -13,12 +11,13 @@ import androidx.navigation.ui.setupWithNavController
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 
 open class MainActivity : AppCompatActivity() {
 
     companion object {
-        const val TAG = "MainFragment"
         const val RC_SIGN_IN = 123
     }
 
@@ -46,7 +45,6 @@ open class MainActivity : AppCompatActivity() {
         val providers = arrayListOf(
             AuthUI.IdpConfig.AnonymousBuilder().build(),
             AuthUI.IdpConfig.EmailBuilder().build(),
-            AuthUI.IdpConfig.PhoneBuilder().setDefaultCountryIso("fr").build(),
             AuthUI.IdpConfig.GoogleBuilder().build(),
             AuthUI.IdpConfig.FacebookBuilder().build(),
             AuthUI.IdpConfig.TwitterBuilder().build()
@@ -65,19 +63,32 @@ open class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
-            val response = IdpResponse.fromResultIntent(data)
-            if (resultCode == Activity.RESULT_OK) {
-                // User successfully signed in
-                Log.i(
-                    TAG,
-                    "Successfully signed in user ${FirebaseAuth.getInstance().currentUser?.displayName}!"
-                )
-            } else {
-                // Sign in failed. If response is null the user canceled the
-                // sign-in flow using the back button. Otherwise check
-                // response.getError().getErrorCode() and handle the error.
-                Log.i(TAG, "Sign in unsuccessful ${response?.error?.errorCode}")
-            }
+            if (resultCode == Activity.RESULT_OK)
+                if (!FirebaseAuth.getInstance().currentUser!!.isAnonymous)
+                    saveUser()
         }
+    }
+
+    private fun saveUser() {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val db = Firebase.firestore
+        val user = hashMapOf(
+                "name" to currentUser?.displayName,
+                "image" to "",
+                "description" to "",
+                "subs" to ArrayList<String>(),
+                "favorites" to ArrayList<String>()
+        )
+        val userRef = db.collection(getString(R.string.collection_users)).document(currentUser!!.uid)
+
+        userRef.get()
+                .addOnSuccessListener { doc ->
+                    if (doc == null) {
+                        userRef.set(user)
+                                .addOnSuccessListener {
+                                    Toast.makeText(this, getString(R.string.toast_welcome), Toast.LENGTH_LONG).show()
+                                }
+                    }
+                }
     }
 }

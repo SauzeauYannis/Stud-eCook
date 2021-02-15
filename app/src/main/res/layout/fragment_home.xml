@@ -35,7 +35,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:contentDescription="@string/button_home_follow"
+        android:contentDescription="@string/button_home_sub"
         android:padding="5dp"
         app:layout_constraintEnd_toStartOf="@+id/image_home_disc"
         app:layout_constraintStart_toStartOf="parent"

@@ -6,8 +6,9 @@ import java.util.*
 
 @Parcelize
 class RecipeModel : Parcelable {
-
+    var date: Date? = null
     var diet: Int? = null
+    var fav: Int? = null
     var image: String? = null
     var ingredientsName: List<String>? = null
     var ingredientsQuantity: List<String>? = null
@@ -20,6 +21,4 @@ class RecipeModel : Parcelable {
     var type: Int? = null
     var uid: String? = null
     var utensils: List<String>? = null
-    var date: Date? = null
-    var fav: Int? = null
 }

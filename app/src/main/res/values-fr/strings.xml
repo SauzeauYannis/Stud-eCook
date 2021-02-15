@@ -97,7 +97,7 @@
     <string name="dialog_add_ok">Retour à l\'acceuil</string>
     <string name="image_search">Boutton de recherche</string>
     <string name="button_filter">Boutton de filtre</string>
-    <string name="button_home_follow">Boutton recettes de vos abonnement</string>
+    <string name="button_home_sub">Boutton recettes de vos abonnement</string>
     <string name="button_home_disc">Boutton découvrir des recettes</string>
     <string name="button_home_fav">Boutton de vos recettes favorite</string>
     <string name="text_add_recipe_no_net">Erreur : Echec de la connexion</string>
@@ -106,7 +106,7 @@
     <string name="text_add_min_max">" (%d à %d) :"</string>
     <string name="toast_up_to_date">Vous êtes à jour !</string>
     <string name="search_query">Chercher une recette</string>
-    <string name="text_home_follower">Les recettes de vos amis</string>
+    <string name="text_home_sub">Les recettes de vos amis</string>
     <string name="text_home_favorite">Vos recettes favorites</string>
     <string name="text_no_recipe">Pas de recettes disponibles</string>
     <string name="image_desc_add">Image de la recette</string>
@@ -116,4 +116,12 @@
     <string name="text_fav">Aime :</string>
     <string name="image_fav">Image aime</string>
     <string name="text_propoced_by">"Proposé par "</string>
+    <string name="toast_welcome">Bienvenue sur Stud\'eCook</string>
+    <string name="text_account_anonymous">Vous devez avoir un compte pour accéder à cette page</string>
+    <string name="text_account_title">Votre compte</string>
+    <string name="image_my_account">Votre photo de profil</string>
+    <string name="button_account_sub">Mes abonnements</string>
+    <string name="button_account_edit">Editer mon profil</string>
+    <string name="text_account_my_recipe">Mes recettes partagées :</string>
+    <string name="toast_no_subs">Vous n\'avez aucun abonnement</string>
 </resources>

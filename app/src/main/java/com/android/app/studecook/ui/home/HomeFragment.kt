@@ -53,7 +53,7 @@ class HomeFragment : Fragment() {
         root.image_home_follow.setOnClickListener {
             changeCurrent(it as ImageView)
             root.view_pager.setCurrentItem(0, true)
-            root.text_home_name.text = getString(R.string.text_home_follower)
+            root.text_home_name.text = getString(R.string.text_home_sub)
         }
 
         root.image_home_disc.setOnClickListener {
@@ -73,7 +73,7 @@ class HomeFragment : Fragment() {
                 when (position) {
                     0 -> {
                         changeCurrent(root.image_home_follow)
-                        root.text_home_name.text = getString(R.string.text_home_follower)
+                        root.text_home_name.text = getString(R.string.text_home_sub)
                     }
                     1 -> {
                         changeCurrent(root.image_home_disc)

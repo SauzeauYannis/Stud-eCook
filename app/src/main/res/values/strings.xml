@@ -15,6 +15,7 @@
     <string name="image_time">Time image</string>
     <string name="image_price">Price image</string>
     <string name="image_fav">Like image</string>
+    <string name="toast_welcome">Welcome to Stud\'eCook!</string>
 
     <!-- Bottom navigation menu title -->
     <string name="title_home">Recipes</string>
@@ -24,12 +25,12 @@
     <!-- Home -->
     <string name="image_search">Search button</string>
     <string name="button_filter">Filter button</string>
-    <string name="button_home_follow">Followers recipe button</string>
+    <string name="button_home_sub">Subscriptions recipe button</string>
     <string name="button_home_disc">Discovery recipes button</string>
     <string name="button_home_fav">Your favorite recipes button</string>
     <string name="image_recipe">Image recipe</string>
     <string name="toast_up_to_date">You are up to date!</string>
-    <string name="text_home_follower">Recipes of your friends</string>
+    <string name="text_home_sub">Recipes of your subscriptions</string>
     <string name="text_home_favorite">Your favourite recipes</string>
     <string name="text_no_recipe">No recipes available</string>
 
@@ -41,8 +42,14 @@
     <string name="search_query">Look for a recipe</string>
 
     <!-- Account -->
-    <string name="text_account">TODO : %s Account</string>
     <string name="text_no_account">You are not sign in</string>
+    <string name="text_account_anonymous">You need to have an account to see this page</string>
+    <string name="text_account_title">Your account</string>
+    <string name="image_my_account">Your account picture</string>
+    <string name="button_account_sub">My subscriptions</string>
+    <string name="button_account_edit">Edit my account</string>
+    <string name="text_account_my_recipe">My shared recipes:</string>
+    <string name="toast_no_subs">You haven\'t subscriptions</string>
 
     <!-- Settings -->
     <string name="menu_param">Settings</string>
@@ -165,4 +172,5 @@
 
     <!-- Cloud Firestore (database) -->
     <string name="collection_recipes" translatable="false">recipes</string>
+    <string name="collection_users" translatable="false">users</string>
 </resources>
