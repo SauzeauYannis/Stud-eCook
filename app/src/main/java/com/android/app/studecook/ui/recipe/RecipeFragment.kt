@@ -1,6 +1,7 @@
 package com.android.app.studecook.ui.recipe
 
 import android.os.Bundle
+import android.os.UserManager
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.method.LinkMovementMethod
@@ -16,13 +17,19 @@ import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.android.app.studecook.R
+import com.android.app.studecook.ui.account.UserModel
 import com.bumptech.glide.Glide
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_recipe.view.*
 
 class RecipeFragment : Fragment() {
 
+    private val db = FirebaseFirestore.getInstance()
+
     private val args by navArgs<RecipeFragmentArgs>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +62,14 @@ class RecipeFragment : Fragment() {
 
         loadIcons(root, recipe)
 
-        clickableOwner(root.text_recipe_owner, "<nom du créateur>") // TODO: 14-Feb-21: Remplacer "<nom du créateur>" par recipe.uid.name
+        db.collection("users")
+                .document(recipe.uid!!)
+                .get().addOnSuccessListener { doc ->
+                    val user = doc.toObject<UserModel>()!!
+                    val name = user.name!!
+                    clickableOwner(root.text_recipe_owner, name)
+                }
+
 
         return root
     }
