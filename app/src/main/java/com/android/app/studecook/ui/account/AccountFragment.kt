@@ -27,7 +27,7 @@ class AccountFragment : Fragment() {
     private val db = FirebaseFirestore.getInstance()
     private val currentUser = FirebaseAuth.getInstance().currentUser
 
-    private var recipeAdapter: RecipeAdapter? = null
+    private var recipeAdapter: MyRecipeAdapter? = null
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -91,7 +91,7 @@ class AccountFragment : Fragment() {
                     .setQuery(query, RecipeModel::class.java)
                     .build()
 
-        recipeAdapter = RecipeAdapter(firestoreRecyclerOptions)
+        recipeAdapter = MyRecipeAdapter(firestoreRecyclerOptions)
 
         root.recycler_account.layoutManager = GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false)
         root.recycler_account.adapter = recipeAdapter
