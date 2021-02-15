@@ -16,6 +16,7 @@ import com.android.app.studecook.ui.recipe.RecipeModel
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.android.synthetic.main.fragment_account.view.*
 import kotlinx.android.synthetic.main.fragment_account.view.settings_button
@@ -78,11 +79,14 @@ class AccountFragment : Fragment() {
         }
 
         setUpRecyclerView(root, uid)
+
+        recipeAdapter!!.startListening()
     }
 
     private fun setUpRecyclerView(root: View, uid: String) {
         val query  = db.collection("recipes")
                 .whereEqualTo("uid", uid)
+                .orderBy("date", Query.Direction.DESCENDING)
         val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
                     .setQuery(query, RecipeModel::class.java)
                     .build()
