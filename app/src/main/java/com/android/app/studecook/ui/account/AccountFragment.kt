@@ -104,6 +104,6 @@ class AccountFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        recipeAdapter!!.stopListening()
+        recipeAdapter?.stopListening()
     }
 }

@@ -3,6 +3,7 @@ package com.android.app.studecook
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -52,38 +53,39 @@ open class MainActivity : AppCompatActivity() {
 
         startActivityForResult(
             AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setAvailableProviders(providers)
-                .setTheme(R.style.AppTheme)
-                .enableAnonymousUsersAutoUpgrade()
-                .build(),
+                    .createSignInIntentBuilder()
+                    .setAvailableProviders(providers)
+                    .setTheme(R.style.AppTheme)
+                    .enableAnonymousUsersAutoUpgrade()
+                    .build(),
             RC_SIGN_IN)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
-            if (resultCode == Activity.RESULT_OK)
+            if (resultCode == Activity.RESULT_OK) {
                 if (!FirebaseAuth.getInstance().currentUser!!.isAnonymous)
                     saveUser()
+            }
         }
     }
 
     private fun saveUser() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val db = Firebase.firestore
-        val user = hashMapOf(
-                "name" to currentUser?.displayName,
-                "image" to "",
-                "description" to "",
-                "subs" to ArrayList<String>(),
-                "favorites" to ArrayList<String>()
-        )
         val userRef = db.collection(getString(R.string.collection_users)).document(currentUser!!.uid)
 
         userRef.get()
                 .addOnSuccessListener { doc ->
-                    if (doc == null) {
+                    if (!doc.exists()) {
+                        val user = hashMapOf(
+                                "name" to currentUser.displayName,
+                                "image" to "",
+                                "description" to "",
+                                "subs" to ArrayList<String>(),
+                                "favorites" to ArrayList<String>()
+                        )
                         userRef.set(user)
                                 .addOnSuccessListener {
                                     Toast.makeText(this, getString(R.string.toast_welcome), Toast.LENGTH_LONG).show()
