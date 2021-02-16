@@ -1,19 +1,20 @@
 package com.android.app.studecook.ui.recipe
 
 import android.os.Bundle
-import android.os.UserManager
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.ViewCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.android.app.studecook.R
@@ -41,8 +42,10 @@ class RecipeFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val root = inflater.inflate(R.layout.fragment_recipe, container, false)
         val recipe = args.currentRecipe
 
@@ -60,9 +63,13 @@ class RecipeFragment : Fragment() {
 
         loadIcons(root, recipe)
 
-        db.collection(getString(R.string.collection_users)).document(recipe.uid!!)
-                .get()
-                .addOnSuccessListener { doc ->
+        ViewCompat.setNestedScrollingEnabled(root.listView1,true)
+
+        root.listView1.adapter=ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1, recipe.steps!!.toTypedArray())
+
+        db.collection("users")
+                .document(recipe.uid!!)
+                .get().addOnSuccessListener { doc ->
                     val user = doc.toObject<UserModel>()!!
                     val name = user.name!!
                     clickableOwner(root.text_recipe_owner, name)
@@ -85,13 +92,15 @@ class RecipeFragment : Fragment() {
 
     private fun loadIcons(root: View, recipe: RecipeModel) {
         val pricesImages = listOf<ImageView>(
-                root.image_recipe_price,
-                root.image_recipe_price2,
-                root.image_recipe_price3)
+            root.image_recipe_price,
+            root.image_recipe_price2,
+            root.image_recipe_price3
+        )
         val timesImages = listOf<ImageView>(
-                root.image_recipe_time,
-                root.image_recipe_time2,
-                root.image_recipe_time3)
+            root.image_recipe_time,
+            root.image_recipe_time2,
+            root.image_recipe_time3
+        )
 
         for (i in 0..recipe.price!!)
             pricesImages[i].alpha = 1.0F
@@ -105,7 +114,11 @@ class RecipeFragment : Fragment() {
         val clickableName = SpannableString(name)
         clickableName.setSpan(object : ClickableSpan() {
             override fun onClick(p0: View) {
-                Toast.makeText(context, "TODO: envoyer sur la page perso du créateur $name", Toast.LENGTH_LONG).show() // TODO: 15-Feb-21 Envoyer sur la page perso
+                Toast.makeText(
+                    context,
+                    "TODO: envoyer sur la page perso du créateur $name",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }, 0, name.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         text.append(" ")
