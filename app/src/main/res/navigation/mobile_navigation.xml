@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_navigation_account_to_recipeFragment"
             app:destination="@id/recipeFragment" />
+        <action
+            android:id="@+id/action_navigation_account_to_accountEditFragment"
+            app:destination="@id/accountEditFragment" />
     </fragment>
 
     <fragment
@@ -120,5 +123,19 @@
         <argument
             android:name="currentRecipe"
             app:argType="com.android.app.studecook.ui.recipe.RecipeModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountEditFragment"
+        android:name="com.android.app.studecook.ui.account.AccountEditFragment"
+        android:label="AccountEditFragment" >
+        <action
+            android:id="@+id/action_accountEditFragment_to_navigation_account"
+            app:destination="@id/navigation_account" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.android.app.studecook.ui.account.UserModel" />
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
 </navigation>

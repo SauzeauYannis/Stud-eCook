@@ -43,7 +43,7 @@ class AddStep1Fragment : Fragment() {
         root.text_input_add_name.setText(sharedPref?.getString(getString(R.string.saved_add_name_key), null))
 
         textInputName = root.text_input_layout_add_name
-        root.text_input_layout_add_name.editText?.setOnClickListener {
+        textInputName.editText?.setOnClickListener {
             textInputName.error = null
         }
 

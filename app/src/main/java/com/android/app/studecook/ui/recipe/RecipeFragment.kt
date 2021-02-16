@@ -27,9 +27,7 @@ import kotlinx.android.synthetic.main.fragment_recipe.view.*
 class RecipeFragment : Fragment() {
 
     private val db = FirebaseFirestore.getInstance()
-
     private val args by navArgs<RecipeFragmentArgs>()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,14 +60,13 @@ class RecipeFragment : Fragment() {
 
         loadIcons(root, recipe)
 
-        db.collection("users")
-                .document(recipe.uid!!)
-                .get().addOnSuccessListener { doc ->
+        db.collection(getString(R.string.collection_users)).document(recipe.uid!!)
+                .get()
+                .addOnSuccessListener { doc ->
                     val user = doc.toObject<UserModel>()!!
                     val name = user.name!!
                     clickableOwner(root.text_recipe_owner, name)
                 }
-
 
         return root
     }
@@ -106,9 +103,9 @@ class RecipeFragment : Fragment() {
 
     private fun clickableOwner(text: TextView, name: String) {
         val clickableName = SpannableString(name)
-        clickableName.setSpan(object: ClickableSpan(){
+        clickableName.setSpan(object : ClickableSpan() {
             override fun onClick(p0: View) {
-                Toast.makeText(context, "TODO: envoyer sur la page perso du créateur $name", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "TODO: envoyer sur la page perso du créateur $name", Toast.LENGTH_LONG).show() // TODO: 15-Feb-21 Envoyer sur la page perso
             }
         }, 0, name.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         text.append(" ")

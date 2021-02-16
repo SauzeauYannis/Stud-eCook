@@ -5,19 +5,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.app.studecook.R
 import com.android.app.studecook.settings.SettingsActivity
-import com.android.app.studecook.ui.home.RecipeAdapter
 import com.android.app.studecook.ui.recipe.RecipeModel
+import com.bumptech.glide.Glide
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_account.view.*
 import kotlinx.android.synthetic.main.fragment_account.view.settings_button
 import kotlinx.android.synthetic.main.fragment_account_anonymous.view.*
@@ -45,7 +48,7 @@ class AccountFragment : Fragment() {
         }
 
         if (currentUser == null || currentUser.isAnonymous)
-            root.text_account_anonymous.text = getString(R.string.text_account_anonymous)
+            root.text_account_anonymous.text = getString(R.string.text_account_anonymous) // TODO: 16-Feb-21 Quand il est anonyme rajouter un bouton qui l'emmmène sur la page de connexion
         else
             loadUserData(root)
 
@@ -75,16 +78,33 @@ class AccountFragment : Fragment() {
         }
 
         root.button_acount_edit.setOnClickListener {
-            Toast.makeText(context, "TODO: Afficher la page d'édition de compte", Toast.LENGTH_LONG).show() // TODO: 15-Feb-21 Afficher la page d'édition de compte
+            val action = AccountFragmentDirections.actionNavigationAccountToAccountEditFragment(user, uid)
+            findNavController().navigate(action)
         }
+
+        loadImage(user.image, root.image_my_account)
 
         setUpRecyclerView(root, uid)
 
         recipeAdapter!!.startListening()
     }
 
+    private fun loadImage(imagePath: String?, imageView: ImageView) {
+        if (imagePath != null) {
+            if (imagePath != "") {
+                FirebaseStorage.getInstance().reference.child(imagePath)
+                    .downloadUrl.addOnSuccessListener { uri ->
+                        Glide.with(requireContext())
+                            .load(uri)
+                            .circleCrop()
+                            .into(imageView)
+                    }
+            }
+        }
+    }
+
     private fun setUpRecyclerView(root: View, uid: String) {
-        val query  = db.collection("recipes")
+        val query  = db.collection(getString(R.string.collection_recipes))
                 .whereEqualTo("uid", uid)
                 .orderBy("date", Query.Direction.DESCENDING)
         val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()

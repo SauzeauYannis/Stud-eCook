@@ -96,7 +96,7 @@ class AddStep5Fragment : Fragment() {
         }
     }
 
-    private fun sendImages(recipeId: String): String? {
+    private fun sendImage(recipeId: String): String? {
         return if (imageUri != null) {
             val storageRef = storage.reference
             val imagePath = "images/$recipeId"
@@ -116,7 +116,7 @@ class AddStep5Fragment : Fragment() {
 
         val recipeId = db.collection(getString(R.string.collection_recipes)).document().id
 
-        val imagePath = sendImages(recipeId)
+        val imagePath = sendImage(recipeId)
 
         val name = sharedPref?.getString(getString(R.string.saved_add_name_key), "")
         val time = sharedPref?.getInt(getString(R.string.saved_add_time_key), 0)

@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.findFragment
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.android.app.studecook.R
@@ -39,7 +40,8 @@ class RecipeAdapter(options: FirestoreRecyclerOptions<RecipeModel>) :
                     .load(uri)
                     .into(holder.image)
             }
-        }
+        } else
+            holder.image.setImageResource(R.drawable.ic_no_image)
         for (i in 0..model.price!!)
             holder.euros[i].alpha = 1.0F
         for (i in 0..model.time!!)
@@ -50,7 +52,7 @@ class RecipeAdapter(options: FirestoreRecyclerOptions<RecipeModel>) :
             holder.name.text = model.name
         holder.recipe.setOnClickListener {
             val homeFragment = holder.itemView.findFragment<HomeFragment>()
-            val action = HomeFragmentDirections.actionNavigationHomeToRecipeFragment(model)
+            val action: NavDirections = HomeFragmentDirections.actionNavigationHomeToRecipeFragment(model)
             findNavController(homeFragment).navigate(action)
         }
     }

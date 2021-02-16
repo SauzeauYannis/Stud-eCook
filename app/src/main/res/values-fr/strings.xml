@@ -4,7 +4,6 @@
     <string name="title_add">Ajouter</string>
     <string name="title_account">Compte</string>
     <string name="text_add_title">Ajoute ta recette\nÉtape %d/5</string>
-    <string name="text_account">TODO : Compte de %s</string>
     <string name="menu_param">Paramètres</string>
     <string name="appearance_header">Thème</string>
     <string name="dark_title">Activer le thème sombre</string>
@@ -121,7 +120,17 @@
     <string name="text_account_title">Votre compte</string>
     <string name="image_my_account">Votre photo de profil</string>
     <string name="button_account_sub">Mes abonnements</string>
-    <string name="button_account_edit">Editer mon profil</string>
+    <string name="account_edit">Editer mon profil</string>
     <string name="text_account_my_recipe">Mes recettes partagées :</string>
     <string name="toast_no_subs">Vous n\'avez aucun abonnement</string>
+    <string name="text_account_name">Nom du compte :</string>
+    <string name="text_account_desc">Description du compte :</string>
+    <string name="button_account_edit_validate">Valider les modifications</string>
+    <string name="account_name_false_short">Nom de compte trop court</string>
+    <string name="account_name_false_long">Nom de compte trop long</string>
+    <string name="desc_name_false_long">Description trop longue</string>
+    <string name="alert_account_edit_title">Confirmation</string>
+    <string name="alert_account_edit_message">Êtes de vous sûr de vouloir ignorer les modifications ?</string>
+    <string name="alert_account_edit_validate">Les modifications ont bien étés prises en compte</string>
+    <string name="error_account_edit">Erreur : Connexion avec le serveur</string>
 </resources>

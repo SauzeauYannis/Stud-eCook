@@ -40,7 +40,8 @@ class MyRecipeAdapter(options: FirestoreRecyclerOptions<RecipeModel>) :
                     .load(uri)
                     .into(holder.image)
             }
-        }
+        } else
+            holder.image.setImageResource(R.drawable.ic_no_image)
         for (i in 0..model.price!!)
             holder.euros[i].alpha = 1.0F
         for (i in 0..model.time!!)

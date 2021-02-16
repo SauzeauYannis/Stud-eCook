@@ -89,7 +89,7 @@
         android:background="@drawable/round_accent"
         android:drawableStart="@drawable/ic_edit"
         android:padding="4dp"
-        android:text="@string/button_account_edit"
+        android:text="@string/account_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_account_description" />

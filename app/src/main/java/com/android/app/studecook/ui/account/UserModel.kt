@@ -1,6 +1,10 @@
 package com.android.app.studecook.ui.account
 
-class UserModel {
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+class UserModel : Parcelable {
     var description: String? = null
     var favorites: List<String>? = null
     var subs: List<String>? = null
