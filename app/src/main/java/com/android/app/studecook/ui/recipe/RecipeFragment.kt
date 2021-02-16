@@ -125,4 +125,8 @@ class RecipeFragment : Fragment() {
         text.append(clickableName)
         text.movementMethod = LinkMovementMethod.getInstance()
     }
+
+    private fun clickableFavorite() {
+        //TODO: 16-Feb-21 ajouter ou enlever la recette des favoris
+    }
 }
