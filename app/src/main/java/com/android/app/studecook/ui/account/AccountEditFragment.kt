@@ -194,18 +194,14 @@ class AccountEditFragment : Fragment() {
                     db.collection(getString(R.string.collection_users)).document(args.id)
                             .update("description", textInputDesc.editText?.text.toString())
                             .addOnCompleteListener {
-                                if (imageUri == null) {
-                                    dialogSuccess()
-                                } else {
-                                    db.collection(getString(R.string.collection_users)).document(args.id)
-                                            .update("image", sendImage(args.id))
-                                            .addOnCompleteListener {
-                                                dialogSuccess()
-                                            }
-                                            .addOnFailureListener {
-                                                Toast.makeText(context, getString(R.string.text_add_recipe_failure), Toast.LENGTH_LONG).show()
-                                            }
-                                }
+                                db.collection(getString(R.string.collection_users)).document(args.id)
+                                        .update("image", sendImage(args.id))
+                                        .addOnCompleteListener {
+                                            dialogSuccess()
+                                        }
+                                        .addOnFailureListener {
+                                            Toast.makeText(context, getString(R.string.text_add_recipe_failure), Toast.LENGTH_LONG).show()
+                                        }
                             }
                             .addOnFailureListener {
                                 Toast.makeText(context, getString(R.string.text_add_recipe_failure), Toast.LENGTH_LONG).show()

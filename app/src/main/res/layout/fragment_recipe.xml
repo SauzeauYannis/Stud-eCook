@@ -190,29 +190,36 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:clickable="true"
+                android:focusable="true"
                 android:text="@string/text_propoced_by"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_recipe_fav"
-                android:focusable="true" />
+                app:layout_constraintTop_toBottomOf="@+id/image_recipe_fav" />
 
-            <ListView
-                android:id="@+id/listView1"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+            <TextView
+                android:id="@+id/text_recipe_steps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/text_recipe_steps"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_recipe_owner" />
+
+            <LinearLayout
+                android:id="@+id/layout_steps"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_recipe_owner"/><![CDATA[
+                app:layout_constraintTop_toBottomOf="@+id/text_recipe_steps" />
 
-            "
-                app:layout_constraintTop_toBottomOf="@+id/listView1"
-                tools:layout_editor_absoluteX="181dp" />
-
-        ]]>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

@@ -117,7 +117,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_account_my_recipe">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_account"
+            android:id="@+id/recycler_view_acc"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

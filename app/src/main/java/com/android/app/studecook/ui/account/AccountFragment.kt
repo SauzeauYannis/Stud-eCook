@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.app.studecook.R
+import com.android.app.studecook.adapter.MyRecipeAdapter
 import com.android.app.studecook.settings.SettingsActivity
 import com.android.app.studecook.ui.recipe.RecipeModel
 import com.bumptech.glide.Glide
@@ -113,8 +114,8 @@ class AccountFragment : Fragment() {
 
         recipeAdapter = MyRecipeAdapter(firestoreRecyclerOptions)
 
-        root.recycler_account.layoutManager = GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false)
-        root.recycler_account.adapter = recipeAdapter
+        root.recycler_view_acc.layoutManager = GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false)
+        root.recycler_view_acc.adapter = recipeAdapter
     }
 
     override fun onStart() {

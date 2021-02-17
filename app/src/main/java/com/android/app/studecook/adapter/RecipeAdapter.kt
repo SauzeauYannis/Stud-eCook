@@ -1,4 +1,4 @@
-package com.android.app.studecook.ui.home
+package com.android.app.studecook.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,9 +6,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.fragment.app.findFragment
-import androidx.navigation.NavDirections
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.android.app.studecook.R
 import com.android.app.studecook.ui.recipe.RecipeModel
@@ -18,7 +15,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.grid_layout_list_recipe.view.*
 
-class RecipeAdapter(options: FirestoreRecyclerOptions<RecipeModel>) :
+open class RecipeAdapter(options: FirestoreRecyclerOptions<RecipeModel>) :
     FirestoreRecyclerAdapter<RecipeModel, RecipeAdapter.RecipeAdapaterVH>(options) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeAdapaterVH {
@@ -50,11 +47,6 @@ class RecipeAdapter(options: FirestoreRecyclerOptions<RecipeModel>) :
             holder.name.text = model.name!!.substring(0, 20).plus("...")
         else
             holder.name.text = model.name
-        holder.recipe.setOnClickListener {
-            val homeFragment = holder.itemView.findFragment<HomeFragment>()
-            val action: NavDirections = HomeFragmentDirections.actionNavigationHomeToRecipeFragment(model)
-            findNavController(homeFragment).navigate(action)
-        }
     }
 
     class RecipeAdapaterVH(itemView: View) : RecyclerView.ViewHolder(itemView) {

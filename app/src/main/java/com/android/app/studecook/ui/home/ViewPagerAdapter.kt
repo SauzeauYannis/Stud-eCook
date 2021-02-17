@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.app.studecook.R
+import com.android.app.studecook.adapter.HomeRecipeAdapter
+import com.android.app.studecook.adapter.RecipeAdapter
 import com.android.app.studecook.ui.recipe.RecipeModel
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -70,7 +72,7 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
                     .setQuery(query, RecipeModel::class.java)
                     .build()
 
-            recipeAdapter = RecipeAdapter(firestoreRecyclerOptions)
+            recipeAdapter = HomeRecipeAdapter(firestoreRecyclerOptions)
 
             holder.itemRecycler.layoutManager = GridLayoutManager(holder.itemRecycler.context, 2, LinearLayoutManager.VERTICAL, false)
             holder.itemRecycler.adapter = recipeAdapter

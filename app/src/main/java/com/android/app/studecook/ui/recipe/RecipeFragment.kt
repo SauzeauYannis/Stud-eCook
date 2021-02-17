@@ -8,12 +8,9 @@ import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -63,16 +60,27 @@ class RecipeFragment : Fragment() {
 
         loadIcons(root, recipe)
 
-        ViewCompat.setNestedScrollingEnabled(root.listView1,true)
+        // TODO: 17-Feb-21  Afficher la liste des recettes
 
-        root.listView1.adapter=ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1, recipe.steps!!.toTypedArray())
+        // TODO: 17-Feb-21  Afficher le nombre de personnes
+
+        // TODO: 17-Feb-21  Afficher la liste des ingrédients
+
+        var count = 1
+        for (steps in recipe.steps!!) {
+            val stepText = TextView(context)
+            val text = "$count) $steps\n"
+            stepText.text = text
+            stepText.textSize = 16F
+            root.layout_steps.addView(stepText)
+            count++
+        }
 
         db.collection("users")
                 .document(recipe.uid!!)
                 .get().addOnSuccessListener { doc ->
                     val user = doc.toObject<UserModel>()!!
-                    val name = user.name!!
-                    clickableOwner(root.text_recipe_owner, name)
+                    clickableOwner(root.text_recipe_owner, user, recipe.uid!!)
                 }
 
         return root
@@ -110,15 +118,13 @@ class RecipeFragment : Fragment() {
         root.text_recipe_fav.text = recipe.fav.toString()
     }
 
-    private fun clickableOwner(text: TextView, name: String) {
+    private fun clickableOwner(text: TextView, user: UserModel, uid: String) {
+        val name = user.name!!
         val clickableName = SpannableString(name)
         clickableName.setSpan(object : ClickableSpan() {
             override fun onClick(p0: View) {
-                Toast.makeText(
-                    context,
-                    "TODO: envoyer sur la page perso du créateur $name",
-                    Toast.LENGTH_LONG
-                ).show()
+                val action = RecipeFragmentDirections.actionRecipeFragmentToAccountViewFragment(user, uid)
+                findNavController().navigate(action)
             }
         }, 0, name.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         text.append(" ")

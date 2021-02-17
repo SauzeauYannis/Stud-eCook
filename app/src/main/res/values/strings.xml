@@ -40,6 +40,7 @@
     <!-- Recipe Page -->
     <string name="text_fav">Like:</string>
     <string name="text_propoced_by">Proposed by</string>
+    <string name="text_recipe_steps">Steps list:</string>
     
     <!-- Search Page -->
     <string name="search_query">Look for a recipe</string>
@@ -63,6 +64,11 @@
     <string name="alert_account_edit_message">Are you sure you want to ignore the changes?</string>
     <string name="alert_account_edit_validate">The changes have been taken into consideration</string>
     <string name="error_account_edit">Error: Connection with server</string>
+    <!-- Fragment Account Subs -->
+    <string name="image_subs_account">%s account picture</string>
+    <string name="button_subs">Subscribe</string>
+    <string name="button_unsubs">Unsubscribe</string>
+    <string name="text_view_acc_recipe">His shared recipes:</string>
 
     <!-- Settings -->
     <string name="menu_param">Settings</string>
