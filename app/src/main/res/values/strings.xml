@@ -190,4 +190,5 @@
     <!-- Cloud Firestore (database) -->
     <string name="collection_recipes" translatable="false">recipes</string>
     <string name="collection_users" translatable="false">users</string>
+    <string name="settings">Settings</string>
 </resources>
