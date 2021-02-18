@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
@@ -16,11 +17,14 @@ import com.android.app.studecook.adapter.HisRecipeAdapter
 import com.android.app.studecook.ui.recipe.RecipeModel
 import com.bumptech.glide.Glide
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.fragment_view_account.*
-import kotlinx.android.synthetic.main.fragment_view_account.view.*
+import kotlinx.android.synthetic.main.fragment_account_view.*
+import kotlinx.android.synthetic.main.fragment_account_view.view.*
 
 class AccountViewFragment : Fragment() {
 
@@ -42,7 +46,7 @@ class AccountViewFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.fragment_view_account, container, false)
+        val root = inflater.inflate(R.layout.fragment_account_view, container, false)
         val user = args.currentUser
         val uid = args.id
 
@@ -54,7 +58,7 @@ class AccountViewFragment : Fragment() {
 
         root.text_view_acc_desc.text = user.description
 
-        // TODO: 17-Feb-21 Faire marcher les boutons abonnements et désabonnements 
+        initButtons(root, uid)
 
         loadImage(user.image, root.image_view_acc)
 
@@ -63,6 +67,47 @@ class AccountViewFragment : Fragment() {
         recipeAdapter!!.startListening()
 
         return root
+    }
+
+    private fun initButtons(root: View, uid: String) {
+        db.collection(getString(R.string.collection_users))
+                .document(FirebaseAuth.getInstance().currentUser!!.uid)
+                .get()
+                .addOnSuccessListener { doc ->
+                    val user = doc.toObject<UserModel>()!!
+                    if (user.subs!!.contains(uid)) {
+                        root.button_view_acc_sub.alpha = 0.1F
+                        root.button_view_acc_unsub.alpha = 1F
+                    }
+                }
+
+        root.button_view_acc_sub.setOnClickListener {
+            sub(root.button_view_acc_sub, root.button_view_acc_unsub, uid)
+        }
+
+        root.button_view_acc_unsub.setOnClickListener {
+            unsub(root.button_view_acc_unsub, root.button_view_acc_sub, uid)
+        }
+    }
+
+    private fun sub(subButton: Button, unsubButton: Button, uid: String) {
+        if (subButton.alpha == 1F) {
+            db.collection(getString(R.string.collection_users))
+                    .document(FirebaseAuth.getInstance().currentUser!!.uid)
+                    .update("subs", FieldValue.arrayUnion(uid))
+            subButton.alpha = 0.1F
+            unsubButton.alpha = 1F
+        }
+    }
+
+    private fun unsub(unsubButton: Button, subButton: Button, uid: String) {
+        if (unsubButton.alpha == 1F) {
+            db.collection(getString(R.string.collection_users))
+                    .document(FirebaseAuth.getInstance().currentUser!!.uid)
+                    .update("subs", FieldValue.arrayRemove(uid))
+            unsubButton.alpha = 0.1F
+            subButton.alpha = 1F
+        }
     }
 
     private fun loadImage(imagePath: String?, imageView: ImageView) {

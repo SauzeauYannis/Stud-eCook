@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_navigation_account_to_accountEditFragment"
             app:destination="@id/accountEditFragment" />
+        <action
+            android:id="@+id/action_navigation_account_to_accountSubsFragment"
+            app:destination="@id/accountSubsFragment" />
     </fragment>
 
     <fragment
@@ -126,6 +129,9 @@
         <action
             android:id="@+id/action_recipeFragment_to_accountViewFragment"
             app:destination="@id/accountViewFragment" />
+        <action
+            android:id="@+id/action_recipeFragment_to_navigation_account"
+            app:destination="@id/navigation_account" />
     </fragment>
     <fragment
         android:id="@+id/accountEditFragment"
@@ -157,5 +163,13 @@
         <action
             android:id="@+id/action_accountViewFragment_to_recipeFragment"
             app:destination="@id/recipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountSubsFragment"
+        android:name="com.android.app.studecook.ui.account.AccountSubsFragment"
+        android:label="AccountSubsFragment" >
+        <action
+            android:id="@+id/action_accountSubsFragment_to_navigation_account"
+            app:destination="@id/navigation_account" />
     </fragment>
 </navigation>

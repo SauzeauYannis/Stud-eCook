@@ -17,6 +17,7 @@ import androidx.navigation.fragment.navArgs
 import com.android.app.studecook.R
 import com.android.app.studecook.ui.account.UserModel
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FirebaseStorage
@@ -123,8 +124,11 @@ class RecipeFragment : Fragment() {
         val clickableName = SpannableString(name)
         clickableName.setSpan(object : ClickableSpan() {
             override fun onClick(p0: View) {
-                val action = RecipeFragmentDirections.actionRecipeFragmentToAccountViewFragment(user, uid)
-                findNavController().navigate(action)
+                if (uid != FirebaseAuth.getInstance().currentUser!!.uid) {
+                    val action = RecipeFragmentDirections.actionRecipeFragmentToAccountViewFragment(user, uid)
+                    findNavController().navigate(action)
+                } else
+                    findNavController().navigate(R.id.action_recipeFragment_to_navigation_account)
             }
         }, 0, name.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         text.append(" ")

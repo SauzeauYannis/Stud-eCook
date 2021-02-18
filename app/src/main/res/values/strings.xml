@@ -19,6 +19,7 @@
     <string name="account_edit">Edit my account</string>
     <string name="button_add_picture">Add picture</string>
     <string name="button_delete_picture">Delete picture</string>
+    <string name="account_sub">My subscriptions</string>
 
     <!-- Bottom navigation menu title -->
     <string name="title_home">Recipes</string>
@@ -50,7 +51,6 @@
     <string name="text_account_anonymous">You need to have an account to see this page</string>
     <string name="text_account_title">Your account</string>
     <string name="image_my_account">Your account picture</string>
-    <string name="button_account_sub">My subscriptions</string>
     <string name="text_account_my_recipe">My shared recipes:</string>
     <string name="toast_no_subs">You haven\'t subscriptions</string>
     <!-- Fragment Account Edit -->
@@ -64,8 +64,8 @@
     <string name="alert_account_edit_message">Are you sure you want to ignore the changes?</string>
     <string name="alert_account_edit_validate">The changes have been taken into consideration</string>
     <string name="error_account_edit">Error: Connection with server</string>
-    <!-- Fragment Account Subs -->
-    <string name="image_subs_account">%s account picture</string>
+    <!-- Fragment Account View -->
+    <string name="image_subs_account">Account picture</string>
     <string name="button_subs">Subscribe</string>
     <string name="button_unsubs">Unsubscribe</string>
     <string name="text_view_acc_recipe">His shared recipes:</string>

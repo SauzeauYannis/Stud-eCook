@@ -64,7 +64,7 @@
         android:background="@drawable/round_accent"
         android:drawableStart="@drawable/ic_people"
         android:padding="4dp"
-        android:text="@string/button_account_sub"
+        android:text="@string/account_sub"
         app:layout_constraintBottom_toTopOf="@+id/text_account_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_my_account"

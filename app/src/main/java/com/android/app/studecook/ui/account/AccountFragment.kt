@@ -75,7 +75,7 @@ class AccountFragment : Fragment() {
             if (user.subs!!.isEmpty())
                 Toast.makeText(context, getString(R.string.toast_no_subs), Toast.LENGTH_LONG).show()
             else
-                Toast.makeText(context, "TODO: Afficher la page des abonnements", Toast.LENGTH_LONG).show() // TODO: 15-Feb-21 Afficher la page des abonnements
+                findNavController().navigate(R.id.action_navigation_account_to_accountSubsFragment)
         }
 
         root.button_acount_edit.setOnClickListener {
