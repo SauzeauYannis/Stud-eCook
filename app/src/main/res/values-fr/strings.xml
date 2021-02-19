@@ -138,4 +138,9 @@
     <string name="button_subs">S\'abonner</string>
     <string name="button_unsubs">Se désabonner</string>
     <string name="text_view_acc_recipe">Ses recettes partagées :</string>
+    <string name="dialog_title_ano">Connexion en tant qu\'invité</string>
+    <string name="dialog_message_ano">La connexion en tant qu\'invité permet de regarder toutes les recettes disponibles sur l\'application.\nCependant, vous ne pouvez pas :\n- Ajouter une recette\n- Vous abonnez à une personne\n- Ajouter des recettes en favoris\nCes actions sont réservés à ceux qui ont un compte.\nVoulez vous continuer en tant qu\'invité ?</string>
+    <string name="text_forbid_ano">Connectez-vous pour cette fonctionnalité !</string>
+    <string name="button_ano_connection">Se connecter</string>
+    <string name="dialog_continue_ano">Continuer en tant qu\'invité</string>
 </resources>

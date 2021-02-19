@@ -20,6 +20,11 @@
     <string name="button_add_picture">Add picture</string>
     <string name="button_delete_picture">Delete picture</string>
     <string name="account_sub">My subscriptions</string>
+    <string name="dialog_title_ano">Anonymous connection</string>
+    <string name="dialog_message_ano">Logging in as a guest allows you to view all the recipes available on the application.\nHowever, you cannot :\n- Add a recipe\n- You subscribe to a person\n- Add recipes to your favourites\nThese actions are reserved for those who have an account.\nWould you like to continue as a guest?\n</string>
+    <string name="text_forbid_ano">Login for this feature!</string>
+    <string name="button_ano_connection">Login</string>
+    <string name="dialog_continue_ano">Continue as a guest</string>
 
     <!-- Bottom navigation menu title -->
     <string name="title_home">Recipes</string>
@@ -167,7 +172,7 @@
     <string name="text_add_recipe_failure">Error: The recipe can\'t be upload</string>
     <string name="text_add_recipe_no_net">Error: Connection failure!</string>
     <string name="text_add_recipe_failure_image">Error: Image can\'t be upload!</string>
-    <string name="text_add_recipe_anonymous">You can\'t add a recipe if you are anonymous\nConnect you!</string>
+    <string name="text_add_recipe_anonymous">You can\'t add a recipe if you are anonymous\nPlease login!</string>
     <string name="dialog_add_title">Recipe has been added</string>
     <string name="dialog_add_text">Thank you for adding your recipe!</string>
     <string name="dialog_add_ok">Return to home</string>
@@ -190,5 +195,4 @@
     <!-- Cloud Firestore (database) -->
     <string name="collection_recipes" translatable="false">recipes</string>
     <string name="collection_users" translatable="false">users</string>
-    <string name="settings">Settings</string>
 </resources>

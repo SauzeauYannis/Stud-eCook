@@ -1,4 +1,4 @@
-package com.android.app.studecook.ui.add
+package com.android.app.studecook.fragment.add
 
 import android.app.AlertDialog
 import android.content.Context
@@ -21,6 +21,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import com.canhub.cropper.CropImage
 import com.canhub.cropper.CropImageView
+import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.ktx.firestore
@@ -78,14 +79,30 @@ class AddStep5Fragment : Fragment() {
 
         root.button_add_next.setOnClickListener {
             val user = FirebaseAuth.getInstance().currentUser
-            if (user!!.isAnonymous) {
-                Toast.makeText(context, getString(R.string.text_add_recipe_anonymous), Toast.LENGTH_LONG).show()
+            if (user == null || user.isAnonymous) {
+                dialogAnonymous()
             } else {
                 sendToDataBase(sharedPref, user)
             }
         }
 
         return root
+    }
+
+    private fun dialogAnonymous() {
+        AlertDialog.Builder(requireContext())
+                .setMessage(getString(R.string.text_add_recipe_anonymous))
+                .setPositiveButton(getString(R.string.button_ano_connection)) { _, _ ->
+                    AuthUI.getInstance()
+                        .signOut(requireContext())
+                        .addOnCompleteListener {
+                            startActivity(Intent(requireContext(), MainActivity::class.java))
+                        }
+                }
+                .setNegativeButton(getString(R.string.dialog_continue_ano)) { dialog, _ ->
+                    dialog.cancel()
+                }
+                .show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

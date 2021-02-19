@@ -3,9 +3,9 @@ package com.android.app.studecook.adapter
 import androidx.fragment.app.findFragment
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.NavHostFragment
-import com.android.app.studecook.ui.home.HomeFragment
-import com.android.app.studecook.ui.home.HomeFragmentDirections
-import com.android.app.studecook.ui.recipe.RecipeModel
+import com.android.app.studecook.fragment.home.HomeFragment
+import com.android.app.studecook.fragment.home.HomeFragmentDirections
+import com.android.app.studecook.model.RecipeModel
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
 class HomeRecipeAdapter(options: FirestoreRecyclerOptions<RecipeModel>) : RecipeAdapter(options) {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.add.AddStep1Fragment">
+    tools:context=".fragment.add.AddStep1Fragment">
 
     <TextView
         android:id="@+id/text_add_title"

@@ -1,4 +1,4 @@
-package com.android.app.studecook.ui.recipe
+package com.android.app.studecook.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

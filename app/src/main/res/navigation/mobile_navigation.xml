@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.android.app.studecook.ui.home.HomeFragment"
+        android:name="com.android.app.studecook.fragment.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/navigation_account"
-        android:name="com.android.app.studecook.ui.account.AccountFragment"
+        android:name="com.android.app.studecook.fragment.account.AccountFragment"
         android:label="@string/title_account"
         tools:layout="@layout/fragment_account" >
         <action
@@ -36,7 +36,7 @@
 
     <fragment
         android:id="@+id/navigation_add_step1"
-        android:name="com.android.app.studecook.ui.add.AddStep1Fragment"
+        android:name="com.android.app.studecook.fragment.add.AddStep1Fragment"
         android:label="@string/title_add" >
         <action
             android:id="@+id/action_navigation_add_step1_to_navigation_add_step2"
@@ -50,7 +50,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_add_step2"
-        android:name="com.android.app.studecook.ui.add.AddStep2Fragment"
+        android:name="com.android.app.studecook.fragment.add.AddStep2Fragment"
         android:label="AddStep2FragmentFragment" >
         <action
             android:id="@+id/action_navigation_add_step2_to_navigation_add_step3"
@@ -66,7 +66,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_add_step3"
-        android:name="com.android.app.studecook.ui.add.AddStep3Fragment"
+        android:name="com.android.app.studecook.fragment.add.AddStep3Fragment"
         android:label="AddStep3FragmentFragment" >
         <action
             android:id="@+id/action_navigation_add_step3_to_navigation_add_step4"
@@ -81,7 +81,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_add_step4"
-        android:name="com.android.app.studecook.ui.add.AddStep4Fragment"
+        android:name="com.android.app.studecook.fragment.add.AddStep4Fragment"
         android:label="AddStep4FragmentFragment" >
         <action
             android:id="@+id/action_navigation_add_step4_to_navigation_add_step5"
@@ -96,7 +96,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_add_step5"
-        android:name="com.android.app.studecook.ui.add.AddStep5Fragment"
+        android:name="com.android.app.studecook.fragment.add.AddStep5Fragment"
         android:label="AddStep5Fragment" >
         <action
             android:id="@+id/action_navigation_add_step5_to_navigation_add_step4"
@@ -106,7 +106,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeSearchFragment"
-        android:name="com.android.app.studecook.ui.home.HomeSearchFragment"
+        android:name="com.android.app.studecook.fragment.home.HomeSearchFragment"
         android:label="HomeSearchFragment" >
         <action
             android:id="@+id/action_homeSearchFragment_to_navigation_home"
@@ -117,7 +117,7 @@
     </fragment>
     <fragment
         android:id="@+id/recipeFragment"
-        android:name="com.android.app.studecook.ui.recipe.RecipeFragment"
+        android:name="com.android.app.studecook.fragment.recipe.RecipeFragment"
         android:label="fragment_recipe"
         tools:layout="@layout/fragment_recipe" >
         <action
@@ -125,7 +125,7 @@
             app:destination="@id/navigation_home" />
         <argument
             android:name="currentRecipe"
-            app:argType="com.android.app.studecook.ui.recipe.RecipeModel" />
+            app:argType="com.android.app.studecook.model.RecipeModel" />
         <action
             android:id="@+id/action_recipeFragment_to_accountViewFragment"
             app:destination="@id/accountViewFragment" />
@@ -135,25 +135,25 @@
     </fragment>
     <fragment
         android:id="@+id/accountEditFragment"
-        android:name="com.android.app.studecook.ui.account.AccountEditFragment"
+        android:name="com.android.app.studecook.fragment.account.AccountEditFragment"
         android:label="AccountEditFragment" >
         <action
             android:id="@+id/action_accountEditFragment_to_navigation_account"
             app:destination="@id/navigation_account" />
         <argument
             android:name="currentUser"
-            app:argType="com.android.app.studecook.ui.account.UserModel" />
+            app:argType="com.android.app.studecook.model.UserModel" />
         <argument
             android:name="id"
             app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/accountViewFragment"
-        android:name="com.android.app.studecook.ui.account.AccountViewFragment"
+        android:name="com.android.app.studecook.fragment.account.AccountViewFragment"
         android:label="AccountViewFragment" >
         <argument
             android:name="currentUser"
-            app:argType="com.android.app.studecook.ui.account.UserModel" />
+            app:argType="com.android.app.studecook.model.UserModel" />
         <argument
             android:name="id"
             app:argType="string" />
@@ -166,10 +166,16 @@
     </fragment>
     <fragment
         android:id="@+id/accountSubsFragment"
-        android:name="com.android.app.studecook.ui.account.AccountSubsFragment"
+        android:name="com.android.app.studecook.fragment.account.AccountSubsFragment"
         android:label="AccountSubsFragment" >
         <action
             android:id="@+id/action_accountSubsFragment_to_navigation_account"
             app:destination="@id/navigation_account" />
+        <argument
+            android:name="subs"
+            app:argType="string[]" />
+        <action
+            android:id="@+id/action_accountSubsFragment_to_accountViewFragment"
+            app:destination="@id/accountViewFragment" />
     </fragment>
 </navigation>

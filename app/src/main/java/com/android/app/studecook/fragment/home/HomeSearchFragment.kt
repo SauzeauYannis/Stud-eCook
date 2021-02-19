@@ -1,4 +1,4 @@
-package com.android.app.studecook.ui.home
+package com.android.app.studecook.fragment.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.android.app.studecook.R
-import com.android.app.studecook.ui.recipe.RecipeModel
+import com.android.app.studecook.model.RecipeModel
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.android.synthetic.main.fragment_search.view.*

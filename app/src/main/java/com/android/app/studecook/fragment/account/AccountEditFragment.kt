@@ -1,4 +1,4 @@
-package com.android.app.studecook.ui.account
+package com.android.app.studecook.fragment.account
 
 import android.app.AlertDialog
 import android.content.Intent

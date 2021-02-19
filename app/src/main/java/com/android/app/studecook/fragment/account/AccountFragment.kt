@@ -1,4 +1,4 @@
-package com.android.app.studecook.ui.account
+package com.android.app.studecook.fragment.account
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,11 +11,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.app.studecook.MainActivity
 import com.android.app.studecook.R
 import com.android.app.studecook.adapter.MyRecipeAdapter
-import com.android.app.studecook.settings.SettingsActivity
-import com.android.app.studecook.ui.recipe.RecipeModel
+import com.android.app.studecook.model.UserModel
+import com.android.app.studecook.SettingsActivity
+import com.android.app.studecook.model.RecipeModel
 import com.bumptech.glide.Glide
+import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -49,11 +52,23 @@ class AccountFragment : Fragment() {
         }
 
         if (currentUser == null || currentUser.isAnonymous)
-            root.text_account_anonymous.text = getString(R.string.text_account_anonymous) // TODO: 16-Feb-21 Quand il est anonyme rajouter un bouton qui l'emmmène sur la page de connexion
+            loadAnonymous(root)
         else
             loadUserData(root)
 
         return root
+    }
+
+    private fun loadAnonymous(root: View) {
+        root.text_ano.text = getString(R.string.text_account_anonymous)
+
+        root.button_ano_connection.setOnClickListener {
+            AuthUI.getInstance()
+                    .signOut(requireContext())
+                    .addOnCompleteListener {
+                        startActivity(Intent(this.context, MainActivity::class.java))
+                    }
+        }
     }
 
     private fun loadUserData(root: View) {
@@ -75,7 +90,7 @@ class AccountFragment : Fragment() {
             if (user.subs!!.isEmpty())
                 Toast.makeText(context, getString(R.string.toast_no_subs), Toast.LENGTH_LONG).show()
             else
-                findNavController().navigate(R.id.action_navigation_account_to_accountSubsFragment)
+                findNavController().navigate(AccountFragmentDirections.actionNavigationAccountToAccountSubsFragment(user.subs!!.toTypedArray()))
         }
 
         root.button_acount_edit.setOnClickListener {

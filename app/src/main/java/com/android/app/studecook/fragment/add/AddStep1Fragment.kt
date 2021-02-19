@@ -1,4 +1,4 @@
-package com.android.app.studecook.ui.add
+package com.android.app.studecook.fragment.add
 
 import android.content.Context
 import android.content.SharedPreferences

@@ -1,4 +1,4 @@
-package com.android.app.studecook.ui.home
+package com.android.app.studecook.fragment.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.android.app.studecook.R
+import com.android.app.studecook.adapter.ViewPagerAdapter
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : Fragment() {

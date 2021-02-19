@@ -1,4 +1,4 @@
-package com.android.app.studecook.ui.account
+package com.android.app.studecook.fragment.account
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -14,7 +15,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.app.studecook.R
 import com.android.app.studecook.adapter.HisRecipeAdapter
-import com.android.app.studecook.ui.recipe.RecipeModel
+import com.android.app.studecook.model.UserModel
+import com.android.app.studecook.model.RecipeModel
 import com.bumptech.glide.Glide
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
@@ -30,6 +32,7 @@ class AccountViewFragment : Fragment() {
 
     private val db = FirebaseFirestore.getInstance()
     private val args by navArgs<AccountViewFragmentArgs>()
+    private val currentUser = FirebaseAuth.getInstance().currentUser
 
     private var recipeAdapter: HisRecipeAdapter? = null
 
@@ -70,23 +73,29 @@ class AccountViewFragment : Fragment() {
     }
 
     private fun initButtons(root: View, uid: String) {
-        db.collection(getString(R.string.collection_users))
-                .document(FirebaseAuth.getInstance().currentUser!!.uid)
-                .get()
-                .addOnSuccessListener { doc ->
-                    val user = doc.toObject<UserModel>()!!
-                    if (user.subs!!.contains(uid)) {
-                        root.button_view_acc_sub.alpha = 0.1F
-                        root.button_view_acc_unsub.alpha = 1F
+        if (currentUser == null || currentUser.isAnonymous) {
+            root.button_view_acc_sub.setOnClickListener {
+                Toast.makeText(context, getString(R.string.text_forbid_ano), Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            db.collection(getString(R.string.collection_users))
+                    .document(currentUser.uid)
+                    .get()
+                    .addOnSuccessListener { doc ->
+                        val user = doc.toObject<UserModel>()!!
+                        if (user.subs!!.contains(uid)) {
+                            root.button_view_acc_sub.alpha = 0.1F
+                            root.button_view_acc_unsub.alpha = 1F
+                        }
                     }
-                }
 
-        root.button_view_acc_sub.setOnClickListener {
-            sub(root.button_view_acc_sub, root.button_view_acc_unsub, uid)
-        }
+            root.button_view_acc_sub.setOnClickListener {
+                sub(root.button_view_acc_sub, root.button_view_acc_unsub, uid)
+            }
 
-        root.button_view_acc_unsub.setOnClickListener {
-            unsub(root.button_view_acc_unsub, root.button_view_acc_sub, uid)
+            root.button_view_acc_unsub.setOnClickListener {
+                unsub(root.button_view_acc_unsub, root.button_view_acc_sub, uid)
+            }
         }
     }
 

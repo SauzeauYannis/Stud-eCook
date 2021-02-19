@@ -1,4 +1,4 @@
-package com.android.app.studecook.ui.recipe
+package com.android.app.studecook.fragment.recipe
 
 import android.os.Bundle
 import android.text.SpannableString
@@ -15,7 +15,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.android.app.studecook.R
-import com.android.app.studecook.ui.account.UserModel
+import com.android.app.studecook.model.RecipeModel
+import com.android.app.studecook.model.UserModel
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

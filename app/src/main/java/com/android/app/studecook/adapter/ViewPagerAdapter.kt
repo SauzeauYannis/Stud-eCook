@@ -1,4 +1,4 @@
-package com.android.app.studecook.ui.home
+package com.android.app.studecook.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.app.studecook.R
-import com.android.app.studecook.adapter.HomeRecipeAdapter
-import com.android.app.studecook.adapter.RecipeAdapter
-import com.android.app.studecook.ui.account.UserModel
-import com.android.app.studecook.ui.recipe.RecipeModel
+import com.android.app.studecook.model.UserModel
+import com.android.app.studecook.model.RecipeModel
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
@@ -27,6 +25,7 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
 
     private val db = FirebaseFirestore.getInstance()
     private val collectionReference = db.collection("recipes")
+    private val currentUser = FirebaseAuth.getInstance().currentUser
 
     private var recipeAdapter: RecipeAdapter? = null
 
@@ -40,7 +39,7 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
     override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int
-    ): ViewPagerAdapter.Pager2ViewHolder {
+    ): Pager2ViewHolder {
         return Pager2ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_swipe_home, parent, false))
     }
 
@@ -48,7 +47,7 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
         return 3
     }
 
-    override fun onBindViewHolder(holder: ViewPagerAdapter.Pager2ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: Pager2ViewHolder, position: Int) {
         holder.itemFabFilter.setOnClickListener {
             val rotation: Animation by lazy {
                 AnimationUtils.loadAnimation(holder.itemView.context, R.anim.rotation)
@@ -83,27 +82,31 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
     }
 
     private fun loadSubsPage(holder: Pager2ViewHolder) {
-        db.collection("users")
-                .document(FirebaseAuth.getInstance().currentUser!!.uid)
-                .get()
-                .addOnSuccessListener { doc ->
-                    val user = doc.toObject<UserModel>()!!
-                    if (user.subs!!.isEmpty()) {
-                        holder.itemText.visibility = TextView.VISIBLE
-                        holder.itemFabFilter.visibility = FloatingActionButton.INVISIBLE
-                    } else {
-                        val query = collectionReference.orderBy("date", Query.Direction.DESCENDING)
-                                .whereIn("uid", user.subs!!)
-                        val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
-                                .setQuery(query, RecipeModel::class.java)
-                                .build()
+        if (currentUser == null || currentUser.isAnonymous) {
+            noRecipe(holder)
+            holder.itemText.text = holder.itemText.context.getString(R.string.text_forbid_ano)
+        } else {
+            db.collection("users")
+                    .document(currentUser.uid)
+                    .get()
+                    .addOnSuccessListener { doc ->
+                        val user = doc.toObject<UserModel>()!!
+                        if (user.subs!!.isEmpty()) {
+                            noRecipe(holder)
+                        } else {
+                            val query = collectionReference.orderBy("date", Query.Direction.DESCENDING)
+                                    .whereIn("uid", user.subs!!)
+                            val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
+                                    .setQuery(query, RecipeModel::class.java)
+                                    .build()
 
-                        recipeAdapter = HomeRecipeAdapter(firestoreRecyclerOptions)
-                        holder.itemRecycler.layoutManager = GridLayoutManager(holder.itemRecycler.context, 2, LinearLayoutManager.VERTICAL, false)
-                        holder.itemRecycler.adapter = recipeAdapter
-                        recipeAdapter!!.startListening()
+                            recipeAdapter = HomeRecipeAdapter(firestoreRecyclerOptions)
+                            holder.itemRecycler.layoutManager = GridLayoutManager(holder.itemRecycler.context, 2, LinearLayoutManager.VERTICAL, false)
+                            holder.itemRecycler.adapter = recipeAdapter
+                            recipeAdapter!!.startListening()
+                        }
                     }
-                }
+        }
     }
 
     private fun loadHomePage(holder: Pager2ViewHolder) {
@@ -119,27 +122,36 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
     }
 
     private fun loadFavPage(holder: Pager2ViewHolder) {
-        db.collection("users")
-                .document(FirebaseAuth.getInstance().currentUser!!.uid)
-                .get()
-                .addOnSuccessListener { doc ->
-                    val user = doc.toObject<UserModel>()!!
-                    if (user.favorites!!.isEmpty()) {
-                        holder.itemText.visibility = TextView.VISIBLE
-                        holder.itemFabFilter.visibility = FloatingActionButton.INVISIBLE
-                    } else {
-                        val query = db.collection("recipes").orderBy("date", Query.Direction.DESCENDING)
-                                .whereIn("__name__", user.favorites!!)
-                        val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
-                                .setQuery(query, RecipeModel::class.java)
-                                .build()
+        if (currentUser == null || currentUser.isAnonymous) {
+            noRecipe(holder)
+            holder.itemText.text = holder.itemText.context.getString(R.string.text_forbid_ano)
+        } else {
+            db.collection("users")
+                    .document(currentUser.uid)
+                    .get()
+                    .addOnSuccessListener { doc ->
+                        val user = doc.toObject<UserModel>()!!
+                        if (user.favorites!!.isEmpty()) {
+                            noRecipe(holder)
+                        } else {
+                            val query = db.collection("recipes").orderBy("date", Query.Direction.DESCENDING)
+                                    .whereIn("__name__", user.favorites!!)
+                            val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
+                                    .setQuery(query, RecipeModel::class.java)
+                                    .build()
 
-                        recipeAdapter = HomeRecipeAdapter(firestoreRecyclerOptions)
-                        holder.itemRecycler.layoutManager = GridLayoutManager(holder.itemRecycler.context, 2, LinearLayoutManager.VERTICAL, false)
-                        holder.itemRecycler.adapter = recipeAdapter
-                        recipeAdapter!!.startListening()
+                            recipeAdapter = HomeRecipeAdapter(firestoreRecyclerOptions)
+                            holder.itemRecycler.layoutManager = GridLayoutManager(holder.itemRecycler.context, 2, LinearLayoutManager.VERTICAL, false)
+                            holder.itemRecycler.adapter = recipeAdapter
+                            recipeAdapter!!.startListening()
+                        }
                     }
-                }
+        }
+    }
+
+    private fun noRecipe(holder: Pager2ViewHolder) {
+        holder.itemText.visibility = TextView.VISIBLE
+        holder.itemFabFilter.visibility = FloatingActionButton.INVISIBLE
     }
 
     fun startListening() {
