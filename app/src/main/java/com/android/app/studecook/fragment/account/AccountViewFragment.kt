@@ -102,7 +102,7 @@ class AccountViewFragment : Fragment() {
     private fun sub(subButton: Button, unsubButton: Button, uid: String) {
         if (subButton.alpha == 1F) {
             db.collection(getString(R.string.collection_users))
-                    .document(FirebaseAuth.getInstance().currentUser!!.uid)
+                    .document(currentUser!!.uid)
                     .update("subs", FieldValue.arrayUnion(uid))
             subButton.alpha = 0.1F
             unsubButton.alpha = 1F
@@ -112,7 +112,7 @@ class AccountViewFragment : Fragment() {
     private fun unsub(unsubButton: Button, subButton: Button, uid: String) {
         if (unsubButton.alpha == 1F) {
             db.collection(getString(R.string.collection_users))
-                    .document(FirebaseAuth.getInstance().currentUser!!.uid)
+                    .document(currentUser!!.uid)
                     .update("subs", FieldValue.arrayRemove(uid))
             unsubButton.alpha = 0.1F
             subButton.alpha = 1F

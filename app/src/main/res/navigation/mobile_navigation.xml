@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navigation_home_to_recipeFragment"
             app:destination="@id/recipeFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_account"
+            app:destination="@id/navigation_account" />
     </fragment>
 
     <fragment
@@ -32,6 +35,9 @@
         <action
             android:id="@+id/action_navigation_account_to_accountSubsFragment"
             app:destination="@id/accountSubsFragment" />
+        <action
+            android:id="@+id/action_navigation_account_self"
+            app:destination="@id/navigation_account" />
     </fragment>
 
     <fragment

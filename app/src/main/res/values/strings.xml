@@ -46,8 +46,24 @@
     <!-- Recipe Page -->
     <string name="text_fav">Like:</string>
     <string name="text_propoced_by">Proposed by</string>
+    <string name="text_recipe_utensils">Utensils list:</string>
+    <string name="text_recipe_ingr">Ingredients list:</string>
     <string name="text_recipe_steps">Steps list:</string>
-    
+    <string name="button_recipe_add_fav">Add to your favourites</string>
+    <string-array name="nb_array">
+        <item>For 1 people</item>
+        <item>For 2 people</item>
+        <item>For 3 people</item>
+        <item>For 4 people</item>
+        <item>For 5 people</item>
+        <item>For 6 people</item>
+        <item>For 7 people</item>
+        <item>For 8 people</item>
+        <item>For 9 people</item>
+        <item>For 10 people</item>
+    </string-array>
+    <string name="dialog_fav">The recipe has been added to your favourites</string>
+
     <!-- Search Page -->
     <string name="search_query">Look for a recipe</string>
 
@@ -58,6 +74,8 @@
     <string name="image_my_account">Your account picture</string>
     <string name="text_account_my_recipe">My shared recipes:</string>
     <string name="toast_no_subs">You haven\'t subscriptions</string>
+    <string name="dialog_delete_title">Delete this recipe</string>
+    <string name="dialog_delete_message">Do you want to delete this recipe?</string>
     <!-- Fragment Account Edit -->
     <string name="text_account_name">Account name:</string>
     <string name="text_account_desc">Account description:</string>

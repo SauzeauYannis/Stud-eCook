@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -22,6 +24,7 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FirebaseStorage
@@ -102,7 +105,7 @@ class AccountFragment : Fragment() {
 
         setUpRecyclerView(root, uid)
 
-        recipeAdapter!!.startListening()
+        recipeAdapter?.startListening()
     }
 
     private fun loadImage(imagePath: String?, imageView: ImageView) {
@@ -123,9 +126,10 @@ class AccountFragment : Fragment() {
         val query  = db.collection(getString(R.string.collection_recipes))
                 .whereEqualTo("uid", uid)
                 .orderBy("date", Query.Direction.DESCENDING)
+
         val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
-                    .setQuery(query, RecipeModel::class.java)
-                    .build()
+                .setQuery(query, RecipeModel::class.java)
+                .build()
 
         recipeAdapter = MyRecipeAdapter(firestoreRecyclerOptions)
 

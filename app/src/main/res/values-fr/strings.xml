@@ -133,7 +133,7 @@
     <string name="alert_account_edit_message">Êtes de vous sûr de vouloir ignorer les modifications ?</string>
     <string name="alert_account_edit_validate">Les modifications ont bien étés prises en compte</string>
     <string name="error_account_edit">Erreur : Connexion avec le serveur</string>
-    <string name="text_recipe_steps">Liste des recettes :</string>
+    <string name="text_recipe_steps">Liste des étapes :</string>
     <string name="image_subs_account">photo du compte de %s</string>
     <string name="button_subs">S\'abonner</string>
     <string name="button_unsubs">Se désabonner</string>
@@ -143,4 +143,22 @@
     <string name="text_forbid_ano">Connectez-vous pour cette fonctionnalité !</string>
     <string name="button_ano_connection">Se connecter</string>
     <string name="dialog_continue_ano">Continuer en tant qu\'invité</string>
+    <string name="dialog_delete_title">Supprimer cette recette</string>
+    <string name="dialog_delete_message">Voulez-vous supprimer cette recette ?</string>
+    <string name="text_recipe_ingr">Liste des ingrédients :</string>
+    <string name="text_recipe_utensils">Liste des ustensiles :</string>
+    <string name="button_recipe_add_fav">Ajouter à vos favoris</string>
+    <string-array name="nb_array">
+        <item>Pour 1 personne</item>
+        <item>Pour 2 personnes</item>
+        <item>Pour 3 personnes</item>
+        <item>Pour 4 personnes</item>
+        <item>Pour 5 personnes</item>
+        <item>Pour 6 personnes</item>
+        <item>Pour 7 personnes</item>
+        <item>Pour 8 personnes</item>
+        <item>Pour 9 personnes</item>
+        <item>Pour 10 personnes</item>
+    </string-array>
+    <string name="dialog_fav">La recette a bien été ajouté à vos favoris</string>
 </resources>

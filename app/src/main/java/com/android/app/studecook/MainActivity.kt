@@ -7,15 +7,23 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.android.app.studecook.fragment.home.HomeFragmentDirections
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 
 open class MainActivity : AppCompatActivity() {
+
+    private val db = Firebase.firestore
+
+    private lateinit var navController: NavController
 
     companion object {
         const val RC_SIGN_IN = 123
@@ -30,13 +38,15 @@ open class MainActivity : AppCompatActivity() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
+        navController = navHostFragment.navController
 
         nav_view.setupWithNavController(navController)
-        if(FirebaseAuth.getInstance().currentUser == null) {
+
+        if (FirebaseAuth.getInstance().currentUser == null) {
             createSignInIntent()
         }
     }
@@ -64,8 +74,9 @@ open class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == Activity.RESULT_OK) {
-                if (!FirebaseAuth.getInstance().currentUser!!.isAnonymous)
+                if (!FirebaseAuth.getInstance().currentUser!!.isAnonymous) {
                     saveUser()
+                }
                 else
                     dialogAnonymous()
             }
@@ -84,7 +95,6 @@ open class MainActivity : AppCompatActivity() {
                             .signOut(this)
                             .addOnCompleteListener {
                                 onRestart()
-                                //startActivity(Intent(this, this::class.java))
                             }
                 }
                 .show()
@@ -92,7 +102,6 @@ open class MainActivity : AppCompatActivity() {
 
     private fun saveUser() {
         val currentUser = FirebaseAuth.getInstance().currentUser
-        val db = Firebase.firestore
         val userRef = db.collection(getString(R.string.collection_users)).document(currentUser!!.uid)
 
         userRef.get()
@@ -108,7 +117,10 @@ open class MainActivity : AppCompatActivity() {
                         userRef.set(user)
                                 .addOnSuccessListener {
                                     Toast.makeText(this, getString(R.string.toast_welcome), Toast.LENGTH_LONG).show()
+                                    navController.navigate(HomeFragmentDirections.actionNavigationHomeToNavigationAccount())
                                 }
+                    } else {
+                        navController.navigate(HomeFragmentDirections.actionNavigationHomeToNavigationAccount())
                     }
                 }
     }

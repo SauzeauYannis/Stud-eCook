@@ -1,8 +1,9 @@
 package com.android.app.studecook.adapter
 
-import android.widget.Toast
+import android.app.AlertDialog
 import androidx.fragment.app.findFragment
 import androidx.navigation.fragment.NavHostFragment
+import com.android.app.studecook.R
 import com.android.app.studecook.fragment.account.AccountFragment
 import com.android.app.studecook.fragment.account.AccountFragmentDirections
 import com.android.app.studecook.model.RecipeModel
@@ -18,8 +19,22 @@ class MyRecipeAdapter(options: FirestoreRecyclerOptions<RecipeModel>) : RecipeAd
             NavHostFragment.findNavController(accountFragment).navigate(action)
         }
         holder.recipe.setOnLongClickListener {
-            Toast.makeText(holder.recipe.context, "TODO: delete recipe", Toast.LENGTH_LONG).show() // TODO: 15-Feb-21 Delete recipe
-            true
+            val context = holder.recipe.context
+            AlertDialog.Builder(context)
+                    .setTitle(context.getString(R.string.dialog_delete_title))
+                    .setMessage(context.getString(R.string.dialog_delete_message))
+                    .setPositiveButton(android.R.string.ok) { _, _ ->
+                        snapshots.getSnapshot(position).reference.delete()
+                        val accountFragment = holder.itemView.findFragment<AccountFragment>()
+                        NavHostFragment.findNavController(accountFragment).navigate(
+                                AccountFragmentDirections.actionNavigationAccountSelf()
+                        )
+                    }
+                    .setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                        dialog.cancel()
+                    }
+                    .show()
+            false
         }
     }
 }

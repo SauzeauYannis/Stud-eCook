@@ -1,5 +1,6 @@
 package com.android.app.studecook.fragment.recipe
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -8,8 +9,7 @@ import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -19,14 +19,18 @@ import com.android.app.studecook.model.RecipeModel
 import com.android.app.studecook.model.UserModel
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_recipe.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class RecipeFragment : Fragment() {
 
     private val db = FirebaseFirestore.getInstance()
+    private val currentUser = FirebaseAuth.getInstance().currentUser
     private val args by navArgs<RecipeFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,12 +66,72 @@ class RecipeFragment : Fragment() {
 
         loadIcons(root, recipe)
 
-        // TODO: 17-Feb-21  Afficher la liste des recettes
+        loadOwner(recipe, root)
 
-        // TODO: 17-Feb-21  Afficher le nombre de personnes
+        loadUtensils(recipe, root)
 
-        // TODO: 17-Feb-21  Afficher la liste des ingrédients
+        loadNbPeople(root, recipe)
 
+        loadIngredients(recipe, root, recipe.ingredientsQuantity!!)
+
+        loadSteps(recipe, root)
+
+        clickableFavorite(root.button_recipe_fav, recipe.date!!)
+
+        return root
+    }
+
+    private fun loadNbPeople(root: View, recipe: RecipeModel) {
+        ArrayAdapter.createFromResource(
+                root.context,
+                R.array.nb_array,
+                android.R.layout.simple_spinner_item
+        ).also { arrayAdapter ->
+            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            root.spinner_nb.adapter = arrayAdapter
+            root.spinner_nb.setSelection(
+                    recipe.number!! - 1
+            )
+        }
+
+        root.spinner_nb.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                val factor = (position + 1).toFloat() / recipe.number!!.toFloat()
+                val oldQuantity = recipe.ingredientsQuantity!!
+                val newQuantity = ArrayList<String>(oldQuantity.size)
+                for (ing in oldQuantity)
+                    newQuantity.add((ing.toLong() * factor).toString())
+                loadIngredients(recipe, root, newQuantity)
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+    }
+
+    private fun loadIngredients(recipe: RecipeModel, root: View, quantity: List<String>) {
+        root.layout_ing.removeAllViews()
+        for (i in quantity.indices) {
+            val ingredientText = TextView(context)
+            var type = ""
+            if (recipe.ingredientsType!![i].toInt() > 0)
+                type = resources.getStringArray(R.array.ingredient_type_array)[recipe.ingredientsType!![i].toInt()]
+            val text = "- ${quantity[i]} $type ${recipe.ingredientsName!![i]}"
+            ingredientText.text = text
+            ingredientText.textSize = 16F
+            root.layout_ing.addView(ingredientText)
+        }
+    }
+
+    private fun loadUtensils(recipe: RecipeModel, root: View) {
+        for (utensils in recipe.utensils!!) {
+            val utensilText = TextView(context)
+            val text = "- $utensils"
+            utensilText.text = text
+            utensilText.textSize = 16F
+            root.layout_utensils.addView(utensilText)
+        }
+    }
+
+    private fun loadSteps(recipe: RecipeModel, root: View) {
         var count = 1
         for (steps in recipe.steps!!) {
             val stepText = TextView(context)
@@ -77,15 +141,15 @@ class RecipeFragment : Fragment() {
             root.layout_steps.addView(stepText)
             count++
         }
+    }
 
+    private fun loadOwner(recipe: RecipeModel, root: View) {
         db.collection("users")
                 .document(recipe.uid!!)
                 .get().addOnSuccessListener { doc ->
                     val user = doc.toObject<UserModel>()!!
                     clickableOwner(root.text_recipe_owner, user, recipe.uid!!)
                 }
-
-        return root
     }
 
     private fun loadImage(imagePath: String?, imageView: ImageView) {
@@ -137,7 +201,29 @@ class RecipeFragment : Fragment() {
         text.movementMethod = LinkMovementMethod.getInstance()
     }
 
-    private fun clickableFavorite() {
-        //TODO: 16-Feb-21 ajouter ou enlever la recette des favoris
+    private fun clickableFavorite(buttonRecipeFav: Button, date: Date) {
+        buttonRecipeFav.setOnClickListener {
+            if (currentUser == null || currentUser.isAnonymous) {
+                Toast.makeText(context, getString(R.string.text_forbid_ano), Toast.LENGTH_SHORT).show()
+            } else {
+                db.collection(getString(R.string.collection_recipes))
+                        .whereEqualTo("date", date)
+                        .get()
+                        .addOnSuccessListener { docs ->
+                            for (doc in docs) {
+                                db.collection(getString(R.string.collection_users))
+                                        .document(currentUser.uid)
+                                        .update("favorites", FieldValue.arrayUnion(doc.id))
+                                AlertDialog.Builder(context)
+                                        .setMessage(getString(R.string.dialog_fav))
+                                        .setPositiveButton(android.R.string.ok) { dialog, _ ->
+                                            dialog.cancel()
+                                        }
+                                        .show()
+                                break
+                            }
+                        }
+            }
+        }
     }
 }
