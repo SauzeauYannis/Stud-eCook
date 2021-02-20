@@ -161,4 +161,6 @@
         <item>Pour 10 personnes</item>
     </string-array>
     <string name="dialog_fav">La recette a bien été ajouté à vos favoris</string>
+    <string name="settings_info_title">Plus d\'info</string>
+    <string name="open_source_librarie">Licences Open Source</string>
 </resources>

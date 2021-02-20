@@ -213,4 +213,7 @@
     <!-- Cloud Firestore (database) -->
     <string name="collection_recipes" translatable="false">recipes</string>
     <string name="collection_users" translatable="false">users</string>
+    <string name="settings_info_title">More informations</string>
+    <string name="setting_open_source" translatable="false">setting_open_source</string>
+    <string name="open_source_librarie">Open Source libraries</string>
 </resources>

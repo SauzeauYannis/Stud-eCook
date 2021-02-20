@@ -11,6 +11,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.firebase.ui.auth.AuthUI
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class SettingsActivity : AppCompatActivity() {
@@ -35,6 +36,7 @@ class SettingsActivity : AppCompatActivity() {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
             darkModeSetting()
             accountSetting()
+            openSourceLibrarie()
         }
 
         private fun darkModeSetting() {
@@ -59,6 +61,8 @@ class SettingsActivity : AppCompatActivity() {
                 }
             }
         }
+        
+
 
         private fun accountSetting() {
             val account = findPreference<Preference>(getString(R.string.setting_account))
@@ -90,6 +94,15 @@ class SettingsActivity : AppCompatActivity() {
                     Toast.makeText(this.context, getString(R.string.account_off), Toast.LENGTH_SHORT).show()
                     false
                 }
+            }
+        }
+
+        private fun openSourceLibrarie() {
+            val open_source = findPreference<Preference>(getString(R.string.setting_open_source))
+
+            open_source?.setOnPreferenceClickListener {
+                startActivity(Intent(this.context, OssLicensesMenuActivity::class.java))
+                false
             }
         }
     }

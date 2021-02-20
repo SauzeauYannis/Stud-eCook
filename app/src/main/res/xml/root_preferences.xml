@@ -20,4 +20,12 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/settings_info_title">
+
+        <Preference
+            android:key="@string/setting_open_source"
+            android:title="@string/open_source_librarie" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
