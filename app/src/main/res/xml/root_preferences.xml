@@ -24,7 +24,7 @@
 
         <Preference
             android:key="@string/setting_open_source"
-            android:title="@string/open_source_librarie" />
+            android:title="@string/open_source_libraries" />
 
     </PreferenceCategory>
 

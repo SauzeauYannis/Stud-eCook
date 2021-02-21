@@ -42,6 +42,8 @@
     <string name="text_home_sub">Recipes of your subscriptions</string>
     <string name="text_home_favorite">Your favourite recipes</string>
     <string name="text_no_recipe">No recipes available</string>
+    <string name="dialog_unfav_title">Remove the recipe from your favourites</string>
+    <string name="dialog_unfav_message">Do you want to remove this recipe from your favourites?</string>
 
     <!-- Recipe Page -->
     <string name="text_fav">Like:</string>
@@ -107,6 +109,10 @@
     <string name="account_on">Account name : %s</string>
     <string name="account_off">You are already not sign</string>
     <string name="alert_setting_account">Do you want to sign out ?</string>
+    <!-- Settings More information -->
+    <string name="settings_info_title">More information</string>
+    <string name="setting_open_source" translatable="false">setting_open_source</string>
+    <string name="open_source_libraries">Open Source libraries</string>
 
     <!-- Add fragment -->
     <string name="text_add_title">Add your recipe Step Step %d/5</string>
@@ -213,7 +219,4 @@
     <!-- Cloud Firestore (database) -->
     <string name="collection_recipes" translatable="false">recipes</string>
     <string name="collection_users" translatable="false">users</string>
-    <string name="settings_info_title">More informations</string>
-    <string name="setting_open_source" translatable="false">setting_open_source</string>
-    <string name="open_source_librarie">Open Source libraries</string>
 </resources>

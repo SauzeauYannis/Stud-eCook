@@ -140,7 +140,7 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
                                     .setQuery(query, RecipeModel::class.java)
                                     .build()
 
-                            recipeAdapter = HomeRecipeAdapter(firestoreRecyclerOptions)
+                            recipeAdapter = HomeFavRecipeAdapter(firestoreRecyclerOptions)
                             holder.itemRecycler.layoutManager = GridLayoutManager(holder.itemRecycler.context, 2, LinearLayoutManager.VERTICAL, false)
                             holder.itemRecycler.adapter = recipeAdapter
                             recipeAdapter!!.startListening()

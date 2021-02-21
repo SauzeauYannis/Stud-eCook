@@ -19,8 +19,10 @@ import com.android.app.studecook.model.RecipeModel
 import com.android.app.studecook.model.UserModel
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_recipe.view.*
@@ -76,7 +78,7 @@ class RecipeFragment : Fragment() {
 
         loadSteps(recipe, root)
 
-        clickableFavorite(root.button_recipe_fav, recipe.date!!)
+        clickableFavorite(root.button_recipe_fav, recipe.date!!, recipe.fav!!, root.text_recipe_fav)
 
         return root
     }
@@ -201,29 +203,50 @@ class RecipeFragment : Fragment() {
         text.movementMethod = LinkMovementMethod.getInstance()
     }
 
-    private fun clickableFavorite(buttonRecipeFav: Button, date: Date) {
-        buttonRecipeFav.setOnClickListener {
-            if (currentUser == null || currentUser.isAnonymous) {
-                Toast.makeText(context, getString(R.string.text_forbid_ano), Toast.LENGTH_SHORT).show()
-            } else {
-                db.collection(getString(R.string.collection_recipes))
-                        .whereEqualTo("date", date)
-                        .get()
-                        .addOnSuccessListener { docs ->
-                            for (doc in docs) {
-                                db.collection(getString(R.string.collection_users))
-                                        .document(currentUser.uid)
-                                        .update("favorites", FieldValue.arrayUnion(doc.id))
-                                AlertDialog.Builder(context)
-                                        .setMessage(getString(R.string.dialog_fav))
-                                        .setPositiveButton(android.R.string.ok) { dialog, _ ->
-                                            dialog.cancel()
-                                        }
-                                        .show()
-                                break
-                            }
-                        }
-            }
+    private fun clickableFavorite(buttonRecipeFav: Button, date: Date, fav: Int, textFav: TextView) {
+        db.collection(getString(R.string.collection_recipes))
+                .whereEqualTo("date", date)
+                .get()
+                .addOnSuccessListener { docs ->
+                    for (doc in docs) {
+                        db.collection(getString(R.string.collection_users))
+                                .document(currentUser!!.uid)
+                                .get()
+                                .addOnSuccessListener { document ->
+                                    val favList = document.get("favorites") as List<*>
+                                    if (favList.contains(doc.id)) {
+                                        buttonRecipeFav.alpha = 0.1F
+                                        buttonRecipeFav.isEnabled = false
+                                    } else {
+                                        buttonRecipeFav.setOnClickListener {
+                                            if (currentUser.isAnonymous) {
+                                                Toast.makeText(context, getString(R.string.text_forbid_ano), Toast.LENGTH_SHORT).show()
+                                            } else {
+                                                addToFavorite(buttonRecipeFav, doc, fav, currentUser, textFav)
+                                            }
+                                    }
+                                }
+                    }
+                }
         }
+    }
+
+    private fun addToFavorite(buttonRecipeFav: Button, doc: QueryDocumentSnapshot, fav: Int, currentUser: FirebaseUser, textFav: TextView) {
+        db.collection(getString(R.string.collection_recipes))
+                .document(doc.id)
+                .update("fav", fav + 1)
+        db.collection(getString(R.string.collection_users))
+                .document(currentUser.uid)
+                .update("favorites", FieldValue.arrayUnion(doc.id))
+        AlertDialog.Builder(context)
+                .setMessage(getString(R.string.dialog_fav))
+                .setPositiveButton(android.R.string.ok) { dialog, _ ->
+                    dialog.cancel()
+                }
+                .show()
+        textFav.text = (fav + 1).toString()
+        buttonRecipeFav.alpha = 0.1F
+        buttonRecipeFav.isEnabled = false
+        return
     }
 }
