@@ -227,5 +227,5 @@
     <string name="setting_eula_summary">End-user license agreement</string>
     <string name="setting_contact">Contact us</string>
     <string name="setting_contact_key" translatable="false">setting_contact_us_key</string>
-    <string name="setting_contact_summary">studecook@gmail.com (click to copy)</string>
+    <string name="setting_contact_summary">studecook@gmail.com</string>
 </resources>

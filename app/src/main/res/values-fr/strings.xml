@@ -169,5 +169,5 @@
     <string name="setting_eula">CGU</string>
     <string name="setting_eula_summary">Conditions générales d\'utilisation</string>
     <string name="setting_contact">Nous contacter</string>
-    <string name="setting_contact_summary">studecook@gmail.com (cliquez pour copier)</string>
+    <string name="setting_contact_summary">studecook@gmail.com</string>
 </resources>

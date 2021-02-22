@@ -1,8 +1,6 @@
 package com.android.app.studecook
 
 import android.app.AlertDialog
-import android.content.ClipData
-import android.content.ClipboardManager
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,7 +8,6 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
@@ -42,7 +39,8 @@ class SettingsActivity : AppCompatActivity() {
             accountSetting()
             openSourceLibrarie()
             appEULA()
-            //contactUs()
+            contactUs()
+            version()
         }
 
         private fun darkModeSetting() {
@@ -114,7 +112,7 @@ class SettingsActivity : AppCompatActivity() {
 
         private fun appEULA() {
             val eula = findPreference<Preference>(getString(R.string.setting_eula_key))
-            val openURL = Intent(android.content.Intent.ACTION_VIEW)
+            val openURL = Intent(Intent.ACTION_VIEW)
 
             eula?.setOnPreferenceClickListener {
                 openURL.data = Uri.parse("https://strikza.github.io/studecookEULA.com/")
@@ -123,16 +121,26 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
-        /*private fun contactUs() {
+        private fun contactUs() {
             val contact = findPreference<Preference>(getString(R.string.setting_contact_key))
-            val mail = "studecook@gmail.com"
+            val send = Intent(Intent.ACTION_SENDTO)
 
             contact?.setOnPreferenceClickListener {
-                val clipboard = getSystemService<ClipboardManager>(Context.CLIPBOARD_SERVICE) -> Ne fonctionne pas, et je n'en trouve pas la cause
-                val clipData = ClipData.newPlainText("texte", mail)
-                clipboard?.setPrimaryClip(clipData)
+                send.type = "text/plain"
+                send.data = Uri.parse("mailto:studecook@gmail.com")
+
+                send.putExtra(Intent.EXTRA_SUBJECT, "Contact")
+                send.putExtra(Intent.EXTRA_TEXT, "")
+
+                startActivity(Intent.createChooser(send, "Choose Email Client..."))
+
                 false
             }
-        }*/
+        }
+
+        private fun version() {
+            val version = findPreference<Preference>(getString(R.string.App_version))
+            version?.summary = BuildConfig.VERSION_NAME
+        }
     }
 }

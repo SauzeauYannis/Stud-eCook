@@ -15,8 +15,7 @@
 
         <Preference
             android:key="@string/App_version"
-            android:title="@string/setting_version_title"
-            android:summary="@string/setting_version_summary"/>
+            android:title="@string/setting_version_title" />
 
         <Preference
             android:key="@string/setting_eula_key"
