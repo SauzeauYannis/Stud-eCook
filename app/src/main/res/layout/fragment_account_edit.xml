@@ -46,23 +46,24 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:background="@drawable/round_accent"
         android:text="@string/button_add_picture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_account_edit"
-        app:layout_constraintTop_toBottomOf="@+id/text_account_edit_title" />
+        app:layout_constraintTop_toBottomOf="@+id/text_account_edit_title"
+        style="@style/Widget.MaterialComponents.Button.Icon"/>
 
     <Button
         android:id="@+id/button_account_edit_delete"
+        style="@style/Widget.MaterialComponents.Button.Icon"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:background="@drawable/round_accent"
         android:text="@string/button_delete_picture"
-        app:layout_constraintBottom_toBottomOf="@+id/image_account_edit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/image_account_edit" />
+        app:layout_constraintStart_toEndOf="@+id/image_account_edit"
+        app:layout_constraintTop_toBottomOf="@+id/button_account_edit_add" />
 
     <TextView
         android:id="@+id/text_account_edit_name"
@@ -138,12 +139,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:background="@drawable/round_accent"
-        android:drawableStart="@drawable/ic_check"
         android:padding="6dp"
         android:text="@string/button_account_edit_validate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_edit_account_desc" />
+        app:layout_constraintTop_toBottomOf="@+id/text_edit_account_desc"
+        app:icon="@drawable/ic_check"
+        style="@style/Widget.MaterialComponents.Button.Icon"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

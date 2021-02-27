@@ -94,13 +94,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/round_accent"
-                android:drawableStart="@drawable/ic_add2"
                 android:padding="8dp"
                 android:text="@string/button_add_step"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                app:icon="@drawable/ic_add2"
+                style="@style/Widget.MaterialComponents.Button.Icon" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

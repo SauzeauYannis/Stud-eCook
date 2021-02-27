@@ -49,13 +49,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:background="@drawable/round_accent"
-        android:drawableStart="@drawable/ic_add2"
         android:padding="8dp"
         android:text="@string/button_add_picture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_add_picture" />
+        app:layout_constraintTop_toBottomOf="@+id/text_add_picture"
+        app:icon="@drawable/ic_add2"
+        style="@style/Widget.MaterialComponents.Button.Icon"/>
 
     <ImageView
         android:id="@+id/image_add_recipe"
@@ -79,12 +79,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:background="@drawable/round_accent"
-        android:drawableStart="@drawable/ic_delete"
         android:padding="8dp"
         android:text="@string/button_delete_picture"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_add_recipe" />
+        app:layout_constraintTop_toBottomOf="@+id/image_add_recipe"
+        app:icon="@drawable/ic_delete"
+        style="@style/Widget.MaterialComponents.Button.Icon"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_add_next"
