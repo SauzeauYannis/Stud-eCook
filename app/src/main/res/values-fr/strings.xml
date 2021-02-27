@@ -170,4 +170,19 @@
     <string name="setting_eula_summary">Conditions générales d\'utilisation</string>
     <string name="setting_contact">Nous contacter</string>
     <string name="setting_contact_summary">studecook@gmail.com</string>
+    <string name="filtre">FILTRES</string>
+    <string name="filtre_nouveautes">Nouveautés</string>
+    <string name="filtre_les_mieux_notes">Les mieux notés</string>
+    <string name="filtre_les_moins_cheres">Les moins chères</string>
+    <string name="filtre_les_plus_rapides">Les plus rapides</string>
+    <string name="filtre_text_premierFiltre">Trier par :</string>
+    <string name="filtre_text_regime">Régime : </string>
+    <string name="filtre_classique">Classique</string>
+    <string name="filtre_vegan">Végan</string>
+    <string name="filtre_vegetarien">Végétarien</string>
+    <string name="filtre_text_categorie">Catégorie :</string>
+    <string name="filtre_entree">Entrée</string>
+    <string name="filtre_plat">Plat</string>
+    <string name="filtre_dessert">Déssert</string>
+    <string name="filtre_boisson">Boisson</string>
 </resources>
