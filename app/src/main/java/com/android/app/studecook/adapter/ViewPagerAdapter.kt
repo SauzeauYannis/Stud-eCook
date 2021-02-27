@@ -1,9 +1,11 @@
 package com.android.app.studecook.adapter
 
 import android.app.Dialog
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.TextView
@@ -54,6 +56,12 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
                 AnimationUtils.loadAnimation(holder.itemView.context, R.anim.rotation)
             }
             it.startAnimation(rotation)
+
+            val dialog = Dialog(holder.itemFabFilter.context)
+            dialog.setCancelable(true)
+            dialog.setContentView(R.layout.filter_dialog)
+            dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.show()
         }
 
         holder.itemSwipe.setOnRefreshListener {
