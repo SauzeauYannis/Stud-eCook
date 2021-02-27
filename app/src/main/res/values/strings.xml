@@ -226,4 +226,19 @@
     <string name="setting_contact">Contact us</string>
     <string name="setting_contact_key" translatable="false">setting_contact_us_key</string>
     <string name="setting_contact_summary">studecook@gmail.com</string>
+    <string name="filtre">FILTERS</string>
+    <string name="filtre_nouveautes">Newers</string>
+    <string name="filtre_les_mieux_notes">Top rated</string>
+    <string name="filtre_les_moins_cheres">Cheapest</string>
+    <string name="filtre_les_plus_rapides">Fastest</string>
+    <string name="filtre_text_premierFiltre">Sort by :</string>
+    <string name="filtre_text_regime">Diet : </string>
+    <string name="filtre_classique">Classic</string>
+    <string name="filtre_vegan">Vegan</string>
+    <string name="filtre_vegetarien">Vegetarian</string>
+    <string name="filtre_text_categorie">Category :</string>
+    <string name="filtre_entree">Entree</string>
+    <string name="filtre_plat">Dish</string>
+    <string name="filtre_dessert">Dessert</string>
+    <string name="filtre_boisson">Drink</string>
 </resources>
