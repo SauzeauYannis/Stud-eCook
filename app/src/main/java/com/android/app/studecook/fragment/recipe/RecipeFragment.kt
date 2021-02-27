@@ -124,9 +124,10 @@ class RecipeFragment : Fragment() {
     }
 
     private fun loadUtensils(recipe: RecipeModel, root: View) {
-        for (utensils in recipe.utensils!!) {
+        for (u in recipe.utensils!!) {
             val utensilText = TextView(context)
-            val text = "- $utensils"
+            val utensil = resources.getStringArray(R.array.utensil_array)[u.toInt()]
+            val text = "- $utensil"
             utensilText.text = text
             utensilText.textSize = 16F
             root.layout_utensils.addView(utensilText)

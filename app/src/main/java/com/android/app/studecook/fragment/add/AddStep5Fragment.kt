@@ -28,6 +28,7 @@ import com.google.firebase.firestore.ktx.firestore
 import kotlinx.android.synthetic.main.fragment_add_step5.*
 import kotlinx.android.synthetic.main.fragment_add_step5.view.*
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
 
 
@@ -141,7 +142,7 @@ class AddStep5Fragment : Fragment() {
         val number = sharedPref?.getInt(getString(R.string.saved_add_number_key), 0)
         val type = sharedPref?.getInt(getString(R.string.saved_add_type_key), 0)
         val diet = sharedPref?.getInt(getString(R.string.saved_add_diet_key), 0)
-        val utensils = sharedPref?.getStringSet(getString(R.string.saved_add_utensils_key), HashSet<String>())?.toList()
+        val utensilsNum = generateUtensilsNum(sharedPref)
         val ingredientsQuantity = sharedPref?.getString(getString(R.string.saved_add_ingredients_quantity_key), null)?.split(",")
         val ingredientsType = sharedPref?.getString(getString(R.string.saved_add_ingredients_type_key), null)?.split(",")
         val ingredientsName = sharedPref?.getString(getString(R.string.saved_add_ingredients_name_key), null)?.split(",")
@@ -154,7 +155,7 @@ class AddStep5Fragment : Fragment() {
                 "number" to number,
                 "type" to type,
                 "diet" to diet,
-                "utensils" to utensils,
+                "utensils" to utensilsNum,
                 "ingredientsQuantity" to ingredientsQuantity,
                 "ingredientsType" to ingredientsType,
                 "ingredientsName" to ingredientsName,
@@ -181,5 +182,20 @@ class AddStep5Fragment : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(context, getString(R.string.text_add_recipe_failure), Toast.LENGTH_LONG).show()
             }
+    }
+
+    private fun generateUtensilsNum(sharedPref: SharedPreferences?): ArrayList<Int> {
+        val utensilsNum = ArrayList<Int>()
+        val utensils = sharedPref?.getStringSet(getString(R.string.saved_add_utensils_key), HashSet<String>())?.toList()
+        val utensilsArray = resources.getStringArray(R.array.utensil_array)
+        for (u in utensils!!) {
+            for (i in utensilsArray.indices) {
+                if (u == utensilsArray[i]) {
+                    utensilsNum.add(i)
+                    break
+                }
+            }
+        }
+        return utensilsNum
     }
 }

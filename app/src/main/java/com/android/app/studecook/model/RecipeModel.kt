@@ -20,5 +20,5 @@ class RecipeModel : Parcelable {
     var time: Int? = null
     var type: Int? = null
     var uid: String? = null
-    var utensils: List<String>? = null
+    var utensils: List<Long>? = null
 }

@@ -92,7 +92,7 @@ class AddStep2Fragment : Fragment() {
 
     private fun saveData(sharedPref: SharedPreferences, root: View) {
         with(sharedPref.edit()) {
-            putInt(getString(R.string.saved_add_number_key), root.seek_add.progress)
+            putInt(getString(R.string.saved_add_number_key), root.seek_add.progress + 1)
             putInt(getString(R.string.saved_add_type_key), root.array_add_type.selectedItemPosition)
             putInt(getString(R.string.saved_add_diet_key), root.array_add_diet.selectedItemPosition)
             apply()
