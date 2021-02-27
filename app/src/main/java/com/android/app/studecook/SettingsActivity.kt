@@ -2,6 +2,7 @@ package com.android.app.studecook
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
@@ -37,6 +38,9 @@ class SettingsActivity : AppCompatActivity() {
             darkModeSetting()
             accountSetting()
             openSourceLibrarie()
+            appEULA()
+            contactUs()
+            version()
         }
 
         private fun darkModeSetting() {
@@ -98,12 +102,45 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         private fun openSourceLibrarie() {
-            val open_source = findPreference<Preference>(getString(R.string.setting_open_source))
+            val openSource = findPreference<Preference>(getString(R.string.setting_open_source))
 
-            open_source?.setOnPreferenceClickListener {
+            openSource?.setOnPreferenceClickListener {
                 startActivity(Intent(this.context, OssLicensesMenuActivity::class.java))
                 false
             }
+        }
+
+        private fun appEULA() {
+            val eula = findPreference<Preference>(getString(R.string.setting_eula_key))
+            val openURL = Intent(Intent.ACTION_VIEW)
+
+            eula?.setOnPreferenceClickListener {
+                openURL.data = Uri.parse("https://strikza.github.io/studecookEULA.com/")
+                startActivity(openURL)
+                false
+            }
+        }
+
+        private fun contactUs() {
+            val contact = findPreference<Preference>(getString(R.string.setting_contact_key))
+            val send = Intent(Intent.ACTION_SENDTO)
+
+            contact?.setOnPreferenceClickListener {
+                send.type = "text/plain"
+                send.data = Uri.parse("mailto:studecook@gmail.com")
+
+                send.putExtra(Intent.EXTRA_SUBJECT, "Contact")
+                send.putExtra(Intent.EXTRA_TEXT, "")
+
+                startActivity(Intent.createChooser(send, "Choose Email Client..."))
+
+                false
+            }
+        }
+
+        private fun version() {
+            val version = findPreference<Preference>(getString(R.string.App_version))
+            version?.summary = BuildConfig.VERSION_NAME
         }
     }
 }

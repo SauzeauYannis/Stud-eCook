@@ -2,7 +2,7 @@
 <resources>
     <string name="title_home">Recettes</string>
     <string name="title_add">Ajouter</string>
-    <string name="title_account">Compte</string>
+    <string name="title_other">Autre</string>
     <string name="text_add_title">Ajoute ta recette\nÉtape %d/5</string>
     <string name="menu_param">Paramètres</string>
     <string name="appearance_header">Thème</string>
@@ -159,8 +159,13 @@
         <item>Pour 10 personnes</item>
     </string-array>
     <string name="dialog_fav">La recette a bien été ajouté à vos favoris</string>
-    <string name="settings_info_title">Plus d\'info</string>
+    <string name="settings_info_title">Plus d\'informations</string>
     <string name="open_source_libraries">Licences Open Source</string>
     <string name="dialog_unfav_title">Enlever la recette de vos favoris</string>
     <string name="dialog_unfav_message">Voulez-vous enlever cette recette de vos favoris ?</string>
+    <string name="setting_eula_key">parametre_cgu</string>
+    <string name="setting_eula">CGU</string>
+    <string name="setting_eula_summary">Conditions générales d\'utilisation</string>
+    <string name="setting_contact">Nous contacter</string>
+    <string name="setting_contact_summary">studecook@gmail.com</string>
 </resources>

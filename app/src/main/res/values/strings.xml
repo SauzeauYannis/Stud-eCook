@@ -29,7 +29,7 @@
     <!-- Bottom navigation menu title -->
     <string name="title_home">Recipes</string>
     <string name="title_add">Add</string>
-    <string name="title_account">Account</string>
+    <string name="title_other">Other</string>
     
     <!-- Home -->
     <string name="image_search">Search button</string>
@@ -110,7 +110,7 @@
     <string name="account_off">You are already not sign</string>
     <string name="alert_setting_account">Do you want to sign out ?</string>
     <!-- Settings More information -->
-    <string name="settings_info_title">More information</string>
+    <string name="settings_info_title">More informations</string>
     <string name="setting_open_source" translatable="false">setting_open_source</string>
     <string name="open_source_libraries">Open Source libraries</string>
 
@@ -217,4 +217,13 @@
     <!-- Cloud Firestore (database) -->
     <string name="collection_recipes" translatable="false">recipes</string>
     <string name="collection_users" translatable="false">users</string>
+    <string name="App_version" translatable="false">app_version</string>
+    <string name="setting_version_title" translatable="false">Version</string>
+    <string name="setting_version_summary" translatable="false">1.0 (Beta)</string>
+    <string name="setting_eula_key">setting_eula</string>
+    <string name="setting_eula">EULA</string>
+    <string name="setting_eula_summary">End-user license agreement</string>
+    <string name="setting_contact">Contact us</string>
+    <string name="setting_contact_key" translatable="false">setting_contact_us_key</string>
+    <string name="setting_contact_summary">studecook@gmail.com</string>
 </resources>

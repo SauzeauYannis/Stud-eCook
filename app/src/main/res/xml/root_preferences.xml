@@ -11,20 +11,34 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/title_account">
+    <PreferenceCategory android:title="@string/settings_info_title">
+
+        <Preference
+            android:key="@string/App_version"
+            android:title="@string/setting_version_title" />
+
+        <Preference
+            android:key="@string/setting_eula_key"
+            android:title="@string/setting_eula"
+            android:summary="@string/setting_eula_summary"/>
+
+        <Preference
+            android:key="@string/setting_open_source"
+            android:title="@string/open_source_libraries" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/title_other">
+
+        <Preference
+            android:key="@string/setting_contact_key"
+            android:title="@string/setting_contact"
+            android:summary="@string/setting_contact_summary"/>
 
         <Preference
             android:key="@string/setting_account"
             android:title="@string/account_header"
             android:summary="@string/account_off" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory android:title="@string/settings_info_title">
-
-        <Preference
-            android:key="@string/setting_open_source"
-            android:title="@string/open_source_libraries" />
 
     </PreferenceCategory>
 

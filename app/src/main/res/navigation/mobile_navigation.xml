@@ -27,7 +27,7 @@
     <fragment
         android:id="@+id/navigation_account"
         android:name="com.android.app.studecook.fragment.account.AccountFragment"
-        android:label="@string/title_account"
+        android:label="@string/title_other"
         tools:layout="@layout/fragment_account" >
         <action
             android:id="@+id/action_navigation_account_to_recipeFragment"
