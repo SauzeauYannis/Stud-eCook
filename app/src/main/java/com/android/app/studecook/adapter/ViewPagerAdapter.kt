@@ -60,6 +60,7 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
             val dialog = Dialog(holder.itemFabFilter.context)
             dialog.setCancelable(true)
             dialog.setContentView(R.layout.filter_dialog)
+
             dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             dialog.show()
         }
