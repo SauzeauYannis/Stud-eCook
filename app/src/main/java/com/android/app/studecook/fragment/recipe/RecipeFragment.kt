@@ -101,8 +101,9 @@ class RecipeFragment : Fragment() {
                 val factor = (position + 1).toFloat() / recipe.number!!.toFloat()
                 val oldQuantity = recipe.ingredientsQuantity!!
                 val newQuantity = ArrayList<String>(oldQuantity.size)
+
                 for (ing in oldQuantity)
-                    newQuantity.add(((ing.toLong() * factor).toString()).replace("[1234567890]+(.0)", "0"))
+                    newQuantity.add(((ing.toLong() * factor).toString()).replace("[1234567890]+(.0)", ""))
                 loadIngredients(recipe, root, newQuantity)
             }
             override fun onNothingSelected(parent: AdapterView<*>) {}
