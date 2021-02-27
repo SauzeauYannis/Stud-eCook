@@ -55,7 +55,6 @@ class AddStep3Fragment : Fragment() {
         root.text_add_ingredients.append(getString(R.string.text_add_min_max, 1, maxIngredient))
 
         val listU = resources.getStringArray(R.array.utensil_array)
-        sort(listU)
         val check = BooleanArray(listU.size)
         val mUserUtensil = ArrayList<Int>()
         val savedUtensil = sharedPref!!.getStringSet(getString(R.string.saved_add_utensils_key), HashSet<String>())

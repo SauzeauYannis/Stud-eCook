@@ -155,18 +155,14 @@
     <string name="text_add_utensils_list">Utensils:</string>
     <string name="text_add_utensils_false">You need to add at least one utensil</string>
     <string-array name="utensil_array">
+        <item>Saucepan</item>
+        <item>Frying pan</item>
+        <item>Microwave</item>
+        <item>Oven</item>
         <item>Bowl</item>
         <item>Flat</item>
-        <item>Fryer</item>
-        <item>Frying pan</item>
-        <item>Knife</item>
-        <item>Microwave</item>
-        <item>Mixer</item>
-        <item>Oven</item>
         <item>Salad bowl</item>
-        <item>Saucepan</item>
-        <item>Spoon</item>
-        <item>Whisk</item>
+        <item>Other</item>
     </string-array>
     <string name="text_add_ingredient">Ingredients</string>
     <string name="edit_text_add_num_ingredient_hint" translatable="false">667</string>
@@ -177,6 +173,8 @@
         <item>Unit</item>
         <item>g</item>
         <item>ml</item>
+        <item>tsp</item>
+        <item>tbl</item>
     </string-array>
     <string name="text_add_ingredient_too_much">You have reach the maximum amount of ingredients</string>
     <string name="text_add_ingredient_false">You need to add at least one ingredient</string>

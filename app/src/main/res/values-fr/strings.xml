@@ -50,18 +50,14 @@
     </string-array>
     <string name="button_add_utensil">Ajouter ustensiles</string>
     <string-array name="utensil_array">
+        <item>Casserole</item>
+        <item>Poêle</item>
+        <item>Four</item>
+        <item>Micro-onde</item>
         <item>Bol</item>
         <item>Plat</item>
-        <item>Friteuse</item>
-        <item>Poêle</item>
-        <item>Couteau</item>
-        <item>Micro-onde</item>
-        <item>Mixer</item>
-        <item>Four</item>
         <item>Saladier</item>
-        <item>Casserole</item>
-        <item>Cuillère</item>
-        <item>Fouet</item>
+        <item>Autre</item>
     </string-array>
     <string name="dialog_title_utensil">Choisis les ustensiles requis</string>
     <string name="text_add_utensils_list">Ustensiles :</string>
@@ -73,6 +69,8 @@
         <item>Unité</item>
         <item>g</item>
         <item>ml</item>
+        <item>c.à.c</item>
+        <item>c.à.s</item>
     </string-array>
     <string name="text_add_ingredient_too_much">Vous avez atteint le nombre maximum d\'ingrédients</string>
     <string name="text_add_ingredient_false">Vous devez ajouter au moins un ingrédient</string>
