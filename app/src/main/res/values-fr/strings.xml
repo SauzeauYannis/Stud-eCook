@@ -168,7 +168,7 @@
     <string name="setting_eula_summary">Conditions générales d\'utilisation</string>
     <string name="setting_contact">Nous contacter</string>
     <string name="setting_contact_summary">studecook@gmail.com</string>
-    <string name="filtre">FILTRES</string>
+    <string name="filtre">Filtres</string>
     <string name="filtre_nouveautes">Nouveautés</string>
     <string name="filtre_les_mieux_notes">Les mieux notés</string>
     <string name="filtre_les_moins_cheres">Les moins chères</string>

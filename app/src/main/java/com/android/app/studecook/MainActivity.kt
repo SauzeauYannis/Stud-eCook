@@ -59,13 +59,15 @@ open class MainActivity : AppCompatActivity() {
         )
 
         startActivityForResult(
-            AuthUI.getInstance()
-                    .createSignInIntentBuilder()
-                    .setAvailableProviders(providers)
-                    .setTheme(R.style.AppTheme)
-                    .enableAnonymousUsersAutoUpgrade()
-                    .build(),
-            RC_SIGN_IN)
+                AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .setAvailableProviders(providers)
+                        .setTheme(R.style.AppTheme)
+                        .enableAnonymousUsersAutoUpgrade()
+                        .setTosAndPrivacyPolicyUrls("https://strikza.github.io/studecookEULA.com/", "https://strikza.github.io/studecookEULA.com/")
+                        .setLogo(R.drawable.ic_login) // TODO: 27-Feb-21 Changer par le logo de l'app
+                        .build(),
+                RC_SIGN_IN)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -77,6 +79,8 @@ open class MainActivity : AppCompatActivity() {
                 }
                 else
                     dialogAnonymous()
+            } else {
+                createSignInIntent()
             }
         }
     }

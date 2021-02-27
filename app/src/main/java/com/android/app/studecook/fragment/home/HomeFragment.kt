@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         current = root.image_home_disc
-        current.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorAccentLight))
+        current.setColorFilter(ContextCompat.getColor(requireContext(), R.color.primaryLightColor))
 
         root.image_home_search.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_home_to_homeSearchFragment)
@@ -95,7 +95,7 @@ class HomeFragment : Fragment() {
     private fun changeCurrent(newCurrent : ImageView) {
         current.colorFilter = newCurrent.colorFilter
         current = newCurrent
-        current.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorAccentLight))
+        current.setColorFilter(ContextCompat.getColor(requireContext(), R.color.primaryLightColor))
     }
 
     override fun onStart() {

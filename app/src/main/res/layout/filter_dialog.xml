@@ -24,10 +24,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
                 android:text="@string/filtre"
-                android:textSize="36sp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -48,7 +48,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
-                    android:text="@string/filtre_text_premierFiltre" />
+                    android:text="@string/filtre_text_premierFiltre"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <RadioButton
                     android:id="@+id/filtre_radio_nouveaux"
@@ -96,7 +97,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
-                    android:text="@string/filtre_text_categorie" />
+                    android:text="@string/filtre_text_categorie"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <RadioButton
                     android:id="@+id/filtre_radio_entree"
@@ -145,7 +147,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
-                    android:text="@string/filtre_text_regime" />
+                    android:text="@string/filtre_text_regime"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <RadioButton
                     android:id="@+id/filtre_radio_classique"
