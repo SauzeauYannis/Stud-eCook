@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.view.Window
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Button
+import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
@@ -60,8 +62,51 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
             val dialog = Dialog(holder.itemFabFilter.context)
             dialog.setCancelable(true)
             dialog.setContentView(R.layout.filter_dialog)
+
+            val b = dialog.findViewById<Button>(R.id.filtre_updateFilter)
+
+            b.setOnClickListener{
+                val filtrePrimaire = dialog.findViewById<RadioGroup>(R.id.filtre_radioGroup_filtrePrimaire)
+                val radioCheckedFiltrePrimaire = filtrePrimaire.checkedRadioButtonId
+                val indexFiltrePrimaire = filtrePrimaire.indexOfChild(filtrePrimaire.findViewById(radioCheckedFiltrePrimaire))
+
+                when(indexFiltrePrimaire) {
+                    1 -> Toast.makeText(holder.itemFabFilter.context, "1", Toast.LENGTH_SHORT).show()
+                    2 -> Toast.makeText(holder.itemFabFilter.context, "2", Toast.LENGTH_SHORT).show()
+                    3 -> Toast.makeText(holder.itemFabFilter.context, "3", Toast.LENGTH_SHORT).show()
+                    else -> Toast.makeText(holder.itemFabFilter.context, "4", Toast.LENGTH_SHORT).show();
+                }
+
+                val filtreRegime = dialog.findViewById<RadioGroup>(R.id.filtre_radioGroup_filtreRegime)
+                val radioCheckedFiltreRegime = filtreRegime.checkedRadioButtonId
+                val indexFiltreRegime = filtreRegime.indexOfChild(filtreRegime.findViewById(radioCheckedFiltreRegime))
+
+                when(indexFiltreRegime) {
+                    1 -> Toast.makeText(holder.itemFabFilter.context, "1", Toast.LENGTH_SHORT).show()
+                    2 -> Toast.makeText(holder.itemFabFilter.context, "2", Toast.LENGTH_SHORT).show()
+                    else -> Toast.makeText(holder.itemFabFilter.context, "3", Toast.LENGTH_SHORT).show();
+                }
+
+                val filtreCategory = dialog.findViewById<RadioGroup>(R.id.filtre_radioGroup_filtreCategorie)
+                val radioCheckedFiltreCategory = filtreCategory.checkedRadioButtonId
+                val indexFiltreCategory = filtreCategory.indexOfChild(filtreCategory.findViewById(radioCheckedFiltreCategory))
+
+                when(indexFiltreCategory) {
+                    1 -> Toast.makeText(holder.itemFabFilter.context, "1", Toast.LENGTH_SHORT).show()
+                    2 -> Toast.makeText(holder.itemFabFilter.context, "2", Toast.LENGTH_SHORT).show()
+                    3 -> Toast.makeText(holder.itemFabFilter.context, "3", Toast.LENGTH_SHORT).show()
+                    else -> Toast.makeText(holder.itemFabFilter.context, "4", Toast.LENGTH_SHORT).show();
+                }
+
+                dialog.dismiss()
+            }
+
+
+
             dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
             dialog.show()
+
         }
 
         holder.itemSwipe.setOnRefreshListener {

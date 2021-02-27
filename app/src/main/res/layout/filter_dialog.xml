@@ -54,6 +54,7 @@
                     android:id="@+id/filtre_radio_nouveaux"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:checked="true"
                     android:padding="8dp"
                     android:text="@string/filtre_nouveautes" />
 
@@ -101,6 +102,7 @@
                     android:id="@+id/filtre_radio_entree"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:checked="true"
                     android:padding="8dp"
                     android:text="@string/filtre_entree" />
 
@@ -149,6 +151,7 @@
                     android:id="@+id/filtre_radio_classique"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:checked="true"
                     android:padding="8dp"
                     android:text="@string/filtre_classique" />
 
