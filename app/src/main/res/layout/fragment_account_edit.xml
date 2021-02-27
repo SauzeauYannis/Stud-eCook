@@ -41,26 +41,26 @@
 
     <Button
         android:id="@+id/button_account_edit_add"
+        style="@style/Widget.MaterialComponents.Button.Icon"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:text="@string/button_add_picture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_account_edit"
-        app:layout_constraintTop_toBottomOf="@+id/text_account_edit_title"
-        style="@style/Widget.MaterialComponents.Button.Icon"/>
+        app:layout_constraintTop_toBottomOf="@+id/text_account_edit_title" />
 
     <Button
         android:id="@+id/button_account_edit_delete"
         style="@style/Widget.MaterialComponents.Button.Icon"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:text="@string/button_delete_picture"
+        app:layout_constraintBottom_toBottomOf="@+id/image_account_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_account_edit"
         app:layout_constraintTop_toBottomOf="@+id/button_account_edit_add" />
