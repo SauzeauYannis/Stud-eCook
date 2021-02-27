@@ -32,7 +32,7 @@
             android:id="@+id/filtre_filtrePrimaire_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16"
+            android:padding="16dp"
             android:text="@string/filtre_text_premierFiltre" />
 
         <RadioButton
@@ -75,7 +75,7 @@
             android:id="@+id/filtre_filtreRegime_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16"
+            android:padding="16dp"
             android:text="@string/filtre_text_regime" />
 
         <RadioButton
@@ -112,7 +112,7 @@
             android:id="@+id/filtre_filtreCategorie_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16"
+            android:padding="16dp"
             android:text="@string/filtre_text_categorie" />
 
         <RadioButton

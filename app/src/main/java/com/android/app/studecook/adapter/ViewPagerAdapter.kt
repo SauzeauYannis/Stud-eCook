@@ -1,5 +1,6 @@
 package com.android.app.studecook.adapter
 
+import android.app.Dialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
