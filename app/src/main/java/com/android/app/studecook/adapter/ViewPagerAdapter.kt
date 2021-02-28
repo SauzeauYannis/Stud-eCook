@@ -17,6 +17,7 @@ import com.android.app.studecook.model.RecipeModel
 import com.android.app.studecook.model.UserModel
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -75,35 +76,48 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
     }
 
     private fun generateQuery(dialog: Dialog, holder: Pager2ViewHolder): Query {
+
+        val checkPrim: SwitchMaterial = dialog.findViewById(R.id.switchPrimary)
+        val checkCat: SwitchMaterial = dialog.findViewById(R.id.switchCategory)
+        val checkDiet: SwitchMaterial = dialog.findViewById(R.id.switchDiet)
+
         var query: Query = collectionReference
 
         val filterPrimaries = dialog.findViewById<RadioGroup>(R.id.filter_radioGroup_primary)
         val radioCheckedFilterPrimaries = filterPrimaries.checkedRadioButtonId
 
-        when (filterPrimaries.indexOfChild(filterPrimaries.findViewById(radioCheckedFilterPrimaries))) {
-            1 -> Toast.makeText(holder.itemFabFilter.context, "1", Toast.LENGTH_SHORT).show()
-            2 -> Toast.makeText(holder.itemFabFilter.context, "2", Toast.LENGTH_SHORT).show()
-            3 -> Toast.makeText(holder.itemFabFilter.context, "3", Toast.LENGTH_SHORT).show()
-            else -> Toast.makeText(holder.itemFabFilter.context, "4", Toast.LENGTH_SHORT).show()
+
+        //TODO Clickable
+        if(checkPrim.isChecked){
+            when (filterPrimaries.indexOfChild(filterPrimaries.findViewById(radioCheckedFilterPrimaries))) {
+                1 -> query = query.orderBy("date",Query.Direction.DESCENDING)
+                2 -> query = query.orderBy("fav", Query.Direction.DESCENDING)
+                3 -> query = query.orderBy("price", Query.Direction.ASCENDING)
+                else -> query = query.orderBy("time", Query.Direction.ASCENDING)
+            }
         }
 
         val filterCategory = dialog.findViewById<RadioGroup>(R.id.filter_radioGroup_category)
         val radioCheckedFilterCategory = filterCategory.checkedRadioButtonId
-
-        when (filterCategory.indexOfChild(filterCategory.findViewById(radioCheckedFilterCategory))) {
-            1 -> query = query.whereEqualTo("type", 0)
-            2 -> query = query.whereEqualTo("type", 1)
-            3 -> query = query.whereEqualTo("type", 2)
-            else -> query = query.whereEqualTo("type", 3)
+        //TODO Clickable
+        if(checkCat.isChecked) {
+            when (filterCategory.indexOfChild(filterCategory.findViewById(radioCheckedFilterCategory))) {
+                1 -> query = query.whereEqualTo("type", 0)
+                2 -> query = query.whereEqualTo("type", 1)
+                3 -> query = query.whereEqualTo("type", 2)
+                else -> query = query.whereEqualTo("type", 3)
+            }
         }
 
         val filterRegime = dialog.findViewById<RadioGroup>(R.id.filter_radioGroup_diet)
         val radioCheckedFilterRegime = filterRegime.checkedRadioButtonId
-
-        when (filterRegime.indexOfChild(filterRegime.findViewById(radioCheckedFilterRegime))) {
-            1 -> Toast.makeText(holder.itemFabFilter.context, "1", Toast.LENGTH_SHORT).show()
-            2 -> Toast.makeText(holder.itemFabFilter.context, "2", Toast.LENGTH_SHORT).show()
-            else -> Toast.makeText(holder.itemFabFilter.context, "3", Toast.LENGTH_SHORT).show()
+        //TODO Clickable
+        if(checkDiet.isChecked) {
+            when (filterRegime.indexOfChild(filterRegime.findViewById(radioCheckedFilterRegime))) {
+                1 -> query = query.whereEqualTo("diet", 0)
+                2 -> query = query.whereEqualTo("diet", 1)
+                else -> query = query.whereEqualTo("diet", 2)
+            }
         }
 
         return query

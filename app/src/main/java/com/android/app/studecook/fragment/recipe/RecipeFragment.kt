@@ -206,30 +206,33 @@ class RecipeFragment : Fragment() {
     }
 
     private fun clickableFavorite(buttonRecipeFav: Button, date: Date, fav: Int, textFav: TextView) {
-        db.collection(getString(R.string.collection_recipes))
+        if(currentUser!=null && !(currentUser.isAnonymous)){
+            db.collection(getString(R.string.collection_recipes))
                 .whereEqualTo("date", date)
                 .get()
                 .addOnSuccessListener { docs ->
                     for (doc in docs) {
                         db.collection(getString(R.string.collection_users))
-                                .document(currentUser!!.uid)
-                                .get()
-                                .addOnSuccessListener { document ->
-                                    val favList = document.get("favorites") as List<*>
-                                    if (favList.contains(doc.id)) {
-                                        buttonRecipeFav.alpha = 0.1F
-                                        buttonRecipeFav.isEnabled = false
-                                    } else {
-                                        buttonRecipeFav.setOnClickListener {
-                                            if (currentUser.isAnonymous) {
-                                                Toast.makeText(context, getString(R.string.text_forbid_ano), Toast.LENGTH_SHORT).show()
-                                            } else {
-                                                addToFavorite(buttonRecipeFav, doc, fav, currentUser, textFav)
-                                            }
+                            .document(currentUser!!.uid)
+                            .get()
+                            .addOnSuccessListener { document ->
+                                val favList = document.get("favorites") as List<*>
+                                if (favList.contains(doc.id)) {
+                                    buttonRecipeFav.alpha = 0.1F
+                                    buttonRecipeFav.isEnabled = false
+                                } else {
+                                    buttonRecipeFav.setOnClickListener {
+                                            addToFavorite(buttonRecipeFav, doc, fav, currentUser, textFav)
+                                        }
                                     }
                                 }
+                            }
                     }
                 }
+        else {
+            buttonRecipeFav.setOnClickListener {
+                Toast.makeText(context, getString(R.string.text_forbid_ano), Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
