@@ -33,7 +33,7 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/title_other">
+    <PreferenceCategory android:title="@string/title_account">
 
         <Preference
             android:key="@string/setting_contact_key"

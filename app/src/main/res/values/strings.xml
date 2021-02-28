@@ -29,7 +29,7 @@
     <!-- Bottom navigation menu title -->
     <string name="title_home">Recipes</string>
     <string name="title_add">Add</string>
-    <string name="title_other">Other</string>
+    <string name="title_account">Account</string>
     
     <!-- Home -->
     <string name="image_search">Search button</string>

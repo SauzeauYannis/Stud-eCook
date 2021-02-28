@@ -2,7 +2,7 @@
 <resources>
     <string name="title_home">Recettes</string>
     <string name="title_add">Ajouter</string>
-    <string name="title_other">Autre</string>
+    <string name="title_account">Compte</string>
     <string name="text_add_title">Ajoute ta recette\nÉtape %d/5</string>
     <string name="menu_param">Paramètres</string>
     <string name="appearance_header">Thème</string>
@@ -185,5 +185,5 @@
         <item>Anglais</item>
         <item>Français</item>
     </string-array>
-    <string name="lang_title">Change langage</string>
+    <string name="lang_title">Changer le langage</string>
 </resources>

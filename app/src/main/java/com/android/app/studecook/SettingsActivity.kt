@@ -70,17 +70,28 @@ class SettingsActivity : AppCompatActivity() {
         }
         
         private fun langSetting() {
-            val listLang = findPreference<ListPreference>(getString(R.string.setting_lang))
+            var lang = "fr"
             val configuration = Configuration(resources.configuration)
             if (configuration.locale.displayLanguage != "français")
+                lang = "en"
+            val sharedPreferencesLang = requireContext().getSharedPreferences("lang", 0)
+            val langSetting = sharedPreferencesLang.getString("lang", lang)
+
+            val listLang = findPreference<ListPreference>(getString(R.string.setting_lang))
+            val sharedPreferences = requireContext().getSharedPreferences("lang", 0)
+
+            if (langSetting != "fr")
                 listLang?.setValueIndex(0)
             else
                 listLang?.setValueIndex(1)
+
             listLang?.setOnPreferenceChangeListener() { _, newValue ->
                 if (newValue == resources.getStringArray(R.array.lang_array)[0]) {
                     configuration.locale = Locale.ENGLISH
+                    sharedPreferences.edit().putString("lang", "en").apply()
                 } else {
                     configuration.locale = Locale.FRENCH
+                    sharedPreferences.edit().putString("lang", "fr").apply()
                 }
                 resources.updateConfiguration(configuration, resources.displayMetrics)
                 startActivity(Intent(this.context, SettingsActivity::class.java))
