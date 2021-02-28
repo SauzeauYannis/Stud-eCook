@@ -65,7 +65,7 @@ open class MainActivity : AppCompatActivity() {
                         .setTheme(R.style.AppTheme)
                         .enableAnonymousUsersAutoUpgrade()
                         .setTosAndPrivacyPolicyUrls("https://strikza.github.io/studecookEULA.com/", "https://strikza.github.io/studecookEULA.com/")
-                        .setLogo(R.drawable.ic_login) // TODO: 27-Feb-21 Changer par le logo de l'app
+                        .setLogo(R.drawable.ic_launcher) // TODO: 27-Feb-21 Changer par le logo de l'app
                         .build(),
                 RC_SIGN_IN)
     }

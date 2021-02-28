@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/filtre_NestedScrollView"
+        android:id="@+id/filter_scroll"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fillViewport="true"
@@ -20,20 +20,20 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/filtre_FiltreTitle"
+                android:id="@+id/filter_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
-                android:text="@string/filtre"
+                android:text="@string/filter"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <RadioGroup
-                android:id="@+id/filtre_radioGroup_filtrePrimaire"
+                android:id="@+id/filter_radioGroup_primary"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -41,48 +41,48 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/filtre_FiltreTitle">
+                app:layout_constraintTop_toBottomOf="@+id/filter_title">
 
                 <TextView
-                    android:id="@+id/filtre_filtrePrimaire_title"
+                    android:id="@+id/filter_primary_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
-                    android:text="@string/filtre_text_premierFiltre"
+                    android:text="@string/filter_primary"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <RadioButton
-                    android:id="@+id/filtre_radio_nouveaux"
+                    android:id="@+id/filter_radio_news"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:padding="8dp"
-                    android:text="@string/filtre_nouveautes" />
+                    android:text="@string/filter_news" />
 
                 <RadioButton
-                    android:id="@+id/filtre_radio_mieuxNotes"
+                    android:id="@+id/filter_radio_fav"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="@string/filtre_les_mieux_notes" />
+                    android:text="@string/filter_fav" />
 
                 <RadioButton
-                    android:id="@+id/filtre_radio_moinsCheres"
+                    android:id="@+id/filter_radio_cheap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="@string/filtre_les_moins_cheres" />
+                    android:text="@string/filter_cheap" />
 
                 <RadioButton
-                    android:id="@+id/filtre_radio_plusRapides"
+                    android:id="@+id/filter_radio_fast"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="@string/filtre_les_plus_rapides" />
+                    android:text="@string/filter_fast" />
             </RadioGroup>
 
             <RadioGroup
-                android:id="@+id/filtre_radioGroup_filtreCategorie"
+                android:id="@+id/filter_radioGroup_category"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -90,49 +90,49 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/filtre_radioGroup_filtrePrimaire">
+                app:layout_constraintTop_toBottomOf="@+id/filter_radioGroup_primary">
 
                 <TextView
-                    android:id="@+id/filtre_filtreCategorie_title"
+                    android:id="@+id/filter_category_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
-                    android:text="@string/filtre_text_categorie"
+                    android:text="@string/text_type"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <RadioButton
-                    android:id="@+id/filtre_radio_entree"
+                    android:id="@+id/filter_radio_starter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:padding="8dp"
-                    android:text="@string/filtre_entree" />
+                    android:text="@string/filter_starter" />
 
                 <RadioButton
-                    android:id="@+id/filtre_radio_plat"
+                    android:id="@+id/filter_radio_dish"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="@string/filtre_plat" />
+                    android:text="@string/filter_dish" />
 
                 <RadioButton
-                    android:id="@+id/filtre_radio_dessert"
+                    android:id="@+id/filter_radio_dessert"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="@string/filtre_dessert" />
+                    android:text="@string/filter_dessert" />
 
                 <RadioButton
-                    android:id="@+id/filtre_radio_boisson"
+                    android:id="@+id/filter_radio_drink"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="@string/filtre_boisson" />
+                    android:text="@string/filter_drink" />
 
             </RadioGroup>
 
             <RadioGroup
-                android:id="@+id/filtre_radioGroup_filtreRegime"
+                android:id="@+id/filter_radioGroup_diet"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -140,41 +140,41 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/filtre_radioGroup_filtreCategorie">
+                app:layout_constraintTop_toBottomOf="@+id/filter_radioGroup_category">
 
                 <TextView
-                    android:id="@+id/filtre_filtreRegime_title"
+                    android:id="@+id/filter_diet_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
-                    android:text="@string/filtre_text_regime"
+                    android:text="@string/text_diet"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <RadioButton
-                    android:id="@+id/filtre_radio_classique"
+                    android:id="@+id/filter_radio_classic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:padding="8dp"
-                    android:text="@string/filtre_classique" />
+                    android:text="@string/filter_classic" />
 
                 <RadioButton
-                    android:id="@+id/filtre_radio_vegan"
+                    android:id="@+id/filter_radio_vegan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="@string/filtre_vegan" />
+                    android:text="@string/filter_vegan" />
 
                 <RadioButton
-                    android:id="@+id/filtre_radio_vegetarien"
+                    android:id="@+id/filter_radio_vegetarian"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="@string/filtre_vegetarien" />
+                    android:text="@string/filter_vegetarian" />
             </RadioGroup>
 
             <Button
-                android:id="@+id/filtre_updateFilter"
+                android:id="@+id/filter_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -183,9 +183,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/filtre_radioGroup_filtreRegime"
+                app:layout_constraintTop_toBottomOf="@+id/filter_radioGroup_diet"
                 style="@style/Widget.MaterialComponents.Button.Icon" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

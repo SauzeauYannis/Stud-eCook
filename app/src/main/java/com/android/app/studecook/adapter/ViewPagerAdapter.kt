@@ -49,15 +49,21 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
     }
 
     override fun onBindViewHolder(holder: Pager2ViewHolder, position: Int) {
+        setUpRecyclerView(holder, position)
+
         holder.itemFabFilter.setOnClickListener {
             val dialog = Dialog(holder.itemFabFilter.context)
             dialog.setCancelable(true)
-            dialog.setContentView(R.layout.filter_dialog)
-            dialog.findViewById<Button>(R.id.filtre_updateFilter).setOnClickListener{
-                generateQuery(dialog, holder)
-                dialog.dismiss()
+            dialog.setContentView(R.layout.dialog_filter)
+            dialog.findViewById<Button>(R.id.filter_button).setOnClickListener{
+                val query = generateQuery(dialog, holder)
+                val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
+                        .setQuery(query, RecipeModel::class.java)
+                        .build()
+                recipeAdapter!!.updateOptions(firestoreRecyclerOptions)
+                dialog.hide()
             }
-            dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
             dialog.show()
 
         }
@@ -66,42 +72,41 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
             Toast.makeText(holder.itemView.context, holder.itemView.context.getString(R.string.toast_up_to_date), Toast.LENGTH_SHORT).show()
             holder.itemSwipe.isRefreshing = false
         }
-
-        setUpRecyclerView(holder, position)
     }
 
-    private fun generateQuery(dialog: Dialog, holder: Pager2ViewHolder) {
-        val filtrePrimaire = dialog.findViewById<RadioGroup>(R.id.filtre_radioGroup_filtrePrimaire)
-        val radioCheckedFiltrePrimaire = filtrePrimaire.checkedRadioButtonId
-        val indexFiltrePrimaire = filtrePrimaire.indexOfChild(filtrePrimaire.findViewById(radioCheckedFiltrePrimaire))
+    private fun generateQuery(dialog: Dialog, holder: Pager2ViewHolder): Query {
+        var query: Query = collectionReference
 
-        when (indexFiltrePrimaire) {
-            1 -> Toast.makeText(holder.itemFabFilter.context, "1", Toast.LENGTH_SHORT).show()
-            2 -> Toast.makeText(holder.itemFabFilter.context, "2", Toast.LENGTH_SHORT).show()
-            3 -> Toast.makeText(holder.itemFabFilter.context, "3", Toast.LENGTH_SHORT).show()
-            else -> Toast.makeText(holder.itemFabFilter.context, "4", Toast.LENGTH_SHORT).show();
-        }
+        val filterPrimaries = dialog.findViewById<RadioGroup>(R.id.filter_radioGroup_primary)
+        val radioCheckedFilterPrimaries = filterPrimaries.checkedRadioButtonId
 
-        val filtreRegime = dialog.findViewById<RadioGroup>(R.id.filtre_radioGroup_filtreRegime)
-        val radioCheckedFiltreRegime = filtreRegime.checkedRadioButtonId
-        val indexFiltreRegime = filtreRegime.indexOfChild(filtreRegime.findViewById(radioCheckedFiltreRegime))
-
-        when (indexFiltreRegime) {
-            1 -> Toast.makeText(holder.itemFabFilter.context, "1", Toast.LENGTH_SHORT).show()
-            2 -> Toast.makeText(holder.itemFabFilter.context, "2", Toast.LENGTH_SHORT).show()
-            else -> Toast.makeText(holder.itemFabFilter.context, "3", Toast.LENGTH_SHORT).show();
-        }
-
-        val filtreCategory = dialog.findViewById<RadioGroup>(R.id.filtre_radioGroup_filtreCategorie)
-        val radioCheckedFiltreCategory = filtreCategory.checkedRadioButtonId
-        val indexFiltreCategory = filtreCategory.indexOfChild(filtreCategory.findViewById(radioCheckedFiltreCategory))
-
-        when (indexFiltreCategory) {
+        when (filterPrimaries.indexOfChild(filterPrimaries.findViewById(radioCheckedFilterPrimaries))) {
             1 -> Toast.makeText(holder.itemFabFilter.context, "1", Toast.LENGTH_SHORT).show()
             2 -> Toast.makeText(holder.itemFabFilter.context, "2", Toast.LENGTH_SHORT).show()
             3 -> Toast.makeText(holder.itemFabFilter.context, "3", Toast.LENGTH_SHORT).show()
             else -> Toast.makeText(holder.itemFabFilter.context, "4", Toast.LENGTH_SHORT).show()
         }
+
+        val filterCategory = dialog.findViewById<RadioGroup>(R.id.filter_radioGroup_category)
+        val radioCheckedFilterCategory = filterCategory.checkedRadioButtonId
+
+        when (filterCategory.indexOfChild(filterCategory.findViewById(radioCheckedFilterCategory))) {
+            1 -> query = query.whereEqualTo("type", 0)
+            2 -> query = query.whereEqualTo("type", 1)
+            3 -> query = query.whereEqualTo("type", 2)
+            else -> query = query.whereEqualTo("type", 3)
+        }
+
+        val filterRegime = dialog.findViewById<RadioGroup>(R.id.filter_radioGroup_diet)
+        val radioCheckedFilterRegime = filterRegime.checkedRadioButtonId
+
+        when (filterRegime.indexOfChild(filterRegime.findViewById(radioCheckedFilterRegime))) {
+            1 -> Toast.makeText(holder.itemFabFilter.context, "1", Toast.LENGTH_SHORT).show()
+            2 -> Toast.makeText(holder.itemFabFilter.context, "2", Toast.LENGTH_SHORT).show()
+            else -> Toast.makeText(holder.itemFabFilter.context, "3", Toast.LENGTH_SHORT).show()
+        }
+
+        return query
     }
 
     private fun setUpRecyclerView(holder: Pager2ViewHolder, position: Int) {
