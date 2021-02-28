@@ -133,6 +133,12 @@
     <string name="setting_contact">Contact us</string>
     <string name="setting_contact_key" translatable="false">setting_contact_us_key</string>
     <string name="setting_contact_summary">studecook@gmail.com</string>
+    <string-array name="lang_array">
+        <item>English</item>
+        <item>French</item>
+    </string-array>
+    <string name="setting_lang" translatable="false">setting_lang</string>
+    <string name="lang_title">Change language</string>
 
     <!-- Add fragment -->
     <string name="text_add_title">Add your recipe Step Step %d/5</string>

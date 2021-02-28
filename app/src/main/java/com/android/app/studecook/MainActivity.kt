@@ -3,7 +3,9 @@ package com.android.app.studecook
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -12,9 +14,11 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.android.app.studecook.fragment.home.HomeFragmentDirections
 import com.firebase.ui.auth.AuthUI
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
 
 open class MainActivity : AppCompatActivity() {
@@ -28,8 +32,11 @@ open class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val currentNightMode = (resources.configuration.uiMode
+                and Configuration.UI_MODE_NIGHT_MASK)
+        val nightMode = currentNightMode == Configuration.UI_MODE_NIGHT_YES
         val sharedPreferences = getSharedPreferences("dark", 0)
-        val isDark = sharedPreferences.getBoolean("dark_mode", false)
+        val isDark = sharedPreferences.getBoolean("dark_mode", nightMode)
         if (isDark) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
@@ -51,11 +58,11 @@ open class MainActivity : AppCompatActivity() {
 
     private fun createSignInIntent() {
         val providers = arrayListOf(
-            AuthUI.IdpConfig.AnonymousBuilder().build(),
-            AuthUI.IdpConfig.EmailBuilder().build(),
-            AuthUI.IdpConfig.GoogleBuilder().build(),
-            AuthUI.IdpConfig.FacebookBuilder().build(),
-            AuthUI.IdpConfig.TwitterBuilder().build()
+                AuthUI.IdpConfig.AnonymousBuilder().build(),
+                AuthUI.IdpConfig.EmailBuilder().build(),
+                AuthUI.IdpConfig.GoogleBuilder().build(),
+                AuthUI.IdpConfig.FacebookBuilder().build(),
+                AuthUI.IdpConfig.TwitterBuilder().build()
         )
 
         startActivityForResult(

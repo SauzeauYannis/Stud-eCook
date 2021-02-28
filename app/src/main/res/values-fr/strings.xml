@@ -174,13 +174,16 @@
     <string name="filter_cheap">Les moins chères</string>
     <string name="filter_fast">Les plus rapides</string>
     <string name="filter_primary">Trier par :</string>
-    <string name="filtre_text_regime">Régime : </string>
     <string name="filter_classic">Classique</string>
     <string name="filter_vegan">Végan</string>
     <string name="filter_vegetarian">Végétarien</string>
-    <string name="filtre_text_categorie">Catégorie :</string>
     <string name="filter_starter">Entrée</string>
     <string name="filter_dish">Plat</string>
     <string name="filter_dessert">Déssert</string>
     <string name="filter_drink">Boisson</string>
+    <string-array name="lang_array">
+        <item>Anglais</item>
+        <item>Français</item>
+    </string-array>
+    <string name="lang_title">Change langage</string>
 </resources>

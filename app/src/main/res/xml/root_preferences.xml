@@ -3,11 +3,16 @@
     <PreferenceCategory android:title="@string/appearance_header">
 
         <SwitchPreference
-            android:defaultValue="false"
             android:key="@string/setting_dark"
             android:summaryOff="@string/dark_off"
             android:summaryOn="@string/dark_on"
             android:title="@string/dark_title" />
+
+        <ListPreference
+            android:entries="@array/lang_array"
+            android:entryValues="@array/lang_array"
+            android:key="@string/setting_lang"
+            android:title="@string/lang_title" />
 
     </PreferenceCategory>
 

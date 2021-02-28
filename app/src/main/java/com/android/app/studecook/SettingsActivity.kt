@@ -2,18 +2,21 @@ package com.android.app.studecook
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.firebase.ui.auth.AuthUI
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.firebase.auth.FirebaseAuth
+import java.util.*
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -36,22 +39,22 @@ class SettingsActivity : AppCompatActivity() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
             darkModeSetting()
+            langSetting()
             accountSetting()
-            openSourceLibrarie()
+            openSourceLibraries()
             appEULA()
             contactUs()
             version()
         }
 
         private fun darkModeSetting() {
-            val darkMode = findPreference<SwitchPreference>(getString(R.string.setting_dark))
-            val sharedPreferences = this.context?.getSharedPreferences("dark", 0)
+            val currentNightMode = (resources.configuration.uiMode
+                    and Configuration.UI_MODE_NIGHT_MASK)
+            val sharedPreferences = requireContext().getSharedPreferences("dark", 0)
 
-            if (sharedPreferences?.getBoolean("dark_mode", false)!!) {
-                darkMode?.setDefaultValue(true)
-            } else {
-                darkMode?.setDefaultValue(false)
-            }
+            val darkMode = findPreference<SwitchPreference>(getString(R.string.setting_dark))
+
+            darkMode?.isChecked = sharedPreferences.getBoolean("dark_mode", currentNightMode == Configuration.UI_MODE_NIGHT_YES)
 
             darkMode?.setOnPreferenceChangeListener { _, newValue ->
                 if (newValue as Boolean) {
@@ -61,12 +64,29 @@ class SettingsActivity : AppCompatActivity() {
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                     sharedPreferences.edit().putBoolean("dark_mode", false).apply()
-                    true
+                    false
                 }
             }
         }
         
-
+        private fun langSetting() {
+            val listLang = findPreference<ListPreference>(getString(R.string.setting_lang))
+            val configuration = Configuration(resources.configuration)
+            if (configuration.locale.displayLanguage != "français")
+                listLang?.setValueIndex(0)
+            else
+                listLang?.setValueIndex(1)
+            listLang?.setOnPreferenceChangeListener() { _, newValue ->
+                if (newValue == resources.getStringArray(R.array.lang_array)[0]) {
+                    configuration.locale = Locale.ENGLISH
+                } else {
+                    configuration.locale = Locale.FRENCH
+                }
+                resources.updateConfiguration(configuration, resources.displayMetrics)
+                startActivity(Intent(this.context, SettingsActivity::class.java))
+                false
+            }
+        }
 
         private fun accountSetting() {
             val account = findPreference<Preference>(getString(R.string.setting_account))
@@ -101,12 +121,12 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
-        private fun openSourceLibrarie() {
+        private fun openSourceLibraries() {
             val openSource = findPreference<Preference>(getString(R.string.setting_open_source))
 
             openSource?.setOnPreferenceClickListener {
                 startActivity(Intent(this.context, OssLicensesMenuActivity::class.java))
-                false
+                true
             }
         }
 
@@ -117,7 +137,7 @@ class SettingsActivity : AppCompatActivity() {
             eula?.setOnPreferenceClickListener {
                 openURL.data = Uri.parse("https://strikza.github.io/studecookEULA.com/")
                 startActivity(openURL)
-                false
+                true
             }
         }
 
@@ -134,7 +154,7 @@ class SettingsActivity : AppCompatActivity() {
 
                 startActivity(Intent.createChooser(send, "Choose Email Client..."))
 
-                false
+                true
             }
         }
 
