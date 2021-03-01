@@ -4,10 +4,7 @@ import android.app.Dialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.RadioGroup
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -52,10 +49,28 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
     override fun onBindViewHolder(holder: Pager2ViewHolder, position: Int) {
         setUpRecyclerView(holder, position)
 
+
+
         holder.itemFabFilter.setOnClickListener {
             val dialog = Dialog(holder.itemFabFilter.context)
             dialog.setCancelable(true)
             dialog.setContentView(R.layout.dialog_filter)
+
+
+            val checkPrim: SwitchMaterial = dialog.findViewById(R.id.switchPrimary)
+            val radioGroupPrim: RadioGroup = dialog.findViewById(R.id.filter_radioGroup_primary)
+
+            val checkCat: SwitchMaterial = dialog.findViewById(R.id.switchCategory)
+            val radioGroupCat: RadioGroup = dialog.findViewById(R.id.filter_radioGroup_category)
+
+            val checkDiet: SwitchMaterial = dialog.findViewById(R.id.switchDiet)
+            val radioGroupDiet: RadioGroup = dialog.findViewById(R.id.filter_radioGroup_diet)
+
+            setEnableRadioGroup(checkPrim,radioGroupPrim)
+            setEnableRadioGroup(checkCat,radioGroupCat)
+            setEnableRadioGroup(checkDiet,radioGroupDiet)
+
+
             dialog.findViewById<Button>(R.id.filter_button).setOnClickListener{
                 val query = generateQuery(dialog, holder)
                 val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
@@ -84,22 +99,23 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
         var query: Query = collectionReference
 
         val filterPrimaries = dialog.findViewById<RadioGroup>(R.id.filter_radioGroup_primary)
-        val radioCheckedFilterPrimaries = filterPrimaries.checkedRadioButtonId
 
-
-        //TODO Clickable
         if(checkPrim.isChecked){
-            when (filterPrimaries.indexOfChild(filterPrimaries.findViewById(radioCheckedFilterPrimaries))) {
-                1 -> query = query.orderBy("date",Query.Direction.DESCENDING)
-                2 -> query = query.orderBy("fav", Query.Direction.DESCENDING)
-                3 -> query = query.orderBy("price", Query.Direction.ASCENDING)
-                else -> query = query.orderBy("time", Query.Direction.ASCENDING)
+            for (i in 1 until filterPrimaries.childCount) {
+                val checkBox: CheckBox = filterPrimaries.getChildAt(i) as CheckBox
+                if(checkBox.isChecked){
+                    query = when (i) {
+                        1 -> query.orderBy("fav", Query.Direction.DESCENDING)
+                        2 -> query.orderBy("price", Query.Direction.ASCENDING)
+                        else -> query.orderBy("time", Query.Direction.ASCENDING)
+                    }
+                }
             }
         }
 
         val filterCategory = dialog.findViewById<RadioGroup>(R.id.filter_radioGroup_category)
         val radioCheckedFilterCategory = filterCategory.checkedRadioButtonId
-        //TODO Clickable
+
         if(checkCat.isChecked) {
             when (filterCategory.indexOfChild(filterCategory.findViewById(radioCheckedFilterCategory))) {
                 1 -> query = query.whereEqualTo("type", 0)
@@ -111,7 +127,7 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
 
         val filterRegime = dialog.findViewById<RadioGroup>(R.id.filter_radioGroup_diet)
         val radioCheckedFilterRegime = filterRegime.checkedRadioButtonId
-        //TODO Clickable
+
         if(checkDiet.isChecked) {
             when (filterRegime.indexOfChild(filterRegime.findViewById(radioCheckedFilterRegime))) {
                 1 -> query = query.whereEqualTo("diet", 0)
@@ -123,6 +139,13 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
         return query
     }
 
+    private fun setEnableRadioGroup(checkPrim:SwitchMaterial ,group: RadioGroup){
+        checkPrim.setOnClickListener{
+            for (i in 0 until group.childCount) {
+                group.getChildAt(i).isEnabled = checkPrim.isChecked
+            }
+        }
+    }
     private fun setUpRecyclerView(holder: Pager2ViewHolder, position: Int) {
         holder.itemSwipe.isRefreshing = true
 

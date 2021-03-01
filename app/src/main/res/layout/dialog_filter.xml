@@ -85,34 +85,26 @@
                     android:text="@string/filter_primary"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-                <RadioButton
-                    android:id="@+id/filter_radio_news"
+                <CheckBox
+                    android:id="@+id/filter_check_fav"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:padding="8dp"
-                    android:text="@string/filter_news" />
+                    android:text="@string/filter_fav"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-                <RadioButton
-                    android:id="@+id/filter_radio_fav"
+                <CheckBox
+                    android:id="@+id/filter_check_cheap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:text="@string/filter_fav" />
+                    android:text="@string/filter_cheap"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-                <RadioButton
-                    android:id="@+id/filter_radio_cheap"
+                <CheckBox
+                    android:id="@+id/filter_check_fast"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:text="@string/filter_cheap" />
-
-                <RadioButton
-                    android:id="@+id/filter_radio_fast"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:text="@string/filter_fast" />
+                    android:text="@string/filter_fast"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
             </RadioGroup>
 
@@ -194,18 +186,19 @@
                     android:text="@string/filter_classic" />
 
                 <RadioButton
+                    android:id="@+id/filter_radio_vegetarian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/filter_vegetarian" />
+
+                <RadioButton
                     android:id="@+id/filter_radio_vegan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
                     android:text="@string/filter_vegan" />
 
-                <RadioButton
-                    android:id="@+id/filter_radio_vegetarian"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:text="@string/filter_vegetarian" />
             </RadioGroup>
 
             <Button
