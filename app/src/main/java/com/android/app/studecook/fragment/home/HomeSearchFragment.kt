@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.android.app.studecook.R
 import com.android.app.studecook.model.RecipeModel
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.android.synthetic.main.fragment_search.view.*
 
@@ -47,6 +48,7 @@ class HomeSearchFragment : Fragment() {
         val recipeNames = ArrayList<String>()
 
         db.collection(getString(R.string.collection_recipes))
+                .orderBy("fav", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {

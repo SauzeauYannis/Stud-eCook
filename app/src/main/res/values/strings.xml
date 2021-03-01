@@ -139,6 +139,8 @@
     </string-array>
     <string name="setting_lang" translatable="false">setting_lang</string>
     <string name="lang_title">Change language</string>
+    <string name="github_key" translatable="false">github_key</string>
+    <string name="github">See the project on GitHub</string>
 
     <!-- Add fragment -->
     <string name="text_add_title">Add your recipe Step Step %d/5</string>

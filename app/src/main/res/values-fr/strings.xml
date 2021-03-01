@@ -186,4 +186,5 @@
         <item>Français</item>
     </string-array>
     <string name="lang_title">Changer le langage</string>
+    <string name="github">Voir le projet sur GitHub</string>
 </resources>

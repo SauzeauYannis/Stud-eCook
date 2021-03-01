@@ -55,22 +55,10 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
             val dialog = Dialog(holder.itemFabFilter.context)
             dialog.setCancelable(true)
             dialog.setContentView(R.layout.dialog_filter)
-
-
-            val checkPrim: SwitchMaterial = dialog.findViewById(R.id.switchPrimary)
-            val radioGroupPrim: RadioGroup = dialog.findViewById(R.id.filter_radioGroup_primary)
-
-            val checkCat: SwitchMaterial = dialog.findViewById(R.id.switchCategory)
-            val radioGroupCat: RadioGroup = dialog.findViewById(R.id.filter_radioGroup_category)
-
-            val checkDiet: SwitchMaterial = dialog.findViewById(R.id.switchDiet)
-            val radioGroupDiet: RadioGroup = dialog.findViewById(R.id.filter_radioGroup_diet)
-
-            setEnableRadioGroup(checkPrim,radioGroupPrim)
-            setEnableRadioGroup(checkCat,radioGroupCat)
-            setEnableRadioGroup(checkDiet,radioGroupDiet)
-
-
+            generateCheckButtons(dialog)
+            dialog.findViewById<ImageView>(R.id.image_hide_filter).setOnClickListener {
+                dialog.hide()
+            }
             dialog.findViewById<Button>(R.id.filter_button).setOnClickListener{
                 val query = generateQuery(dialog, holder)
                 val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
@@ -85,9 +73,29 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
         }
 
         holder.itemSwipe.setOnRefreshListener {
+            val query = collectionReference.orderBy("date", Query.Direction.DESCENDING)
+            val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
+                    .setQuery(query, RecipeModel::class.java)
+                    .build()
+            recipeAdapter!!.updateOptions(firestoreRecyclerOptions)
             Toast.makeText(holder.itemView.context, holder.itemView.context.getString(R.string.toast_up_to_date), Toast.LENGTH_SHORT).show()
             holder.itemSwipe.isRefreshing = false
         }
+    }
+
+    private fun generateCheckButtons(dialog: Dialog) {
+        val checkPrim: SwitchMaterial = dialog.findViewById(R.id.switchPrimary)
+        val radioGroupPrim: RadioGroup = dialog.findViewById(R.id.filter_radioGroup_primary)
+
+        val checkCat: SwitchMaterial = dialog.findViewById(R.id.switchCategory)
+        val radioGroupCat: RadioGroup = dialog.findViewById(R.id.filter_radioGroup_category)
+
+        val checkDiet: SwitchMaterial = dialog.findViewById(R.id.switchDiet)
+        val radioGroupDiet: RadioGroup = dialog.findViewById(R.id.filter_radioGroup_diet)
+
+        setEnableRadioGroup(checkPrim, radioGroupPrim)
+        setEnableRadioGroup(checkCat, radioGroupCat)
+        setEnableRadioGroup(checkDiet, radioGroupDiet)
     }
 
     private fun generateQuery(dialog: Dialog, holder: Pager2ViewHolder): Query {

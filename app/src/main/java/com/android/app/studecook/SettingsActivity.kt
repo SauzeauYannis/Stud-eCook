@@ -43,6 +43,7 @@ class SettingsActivity : AppCompatActivity() {
             accountSetting()
             openSourceLibraries()
             appEULA()
+            github()
             contactUs()
             version()
         }
@@ -147,6 +148,17 @@ class SettingsActivity : AppCompatActivity() {
 
             eula?.setOnPreferenceClickListener {
                 openURL.data = Uri.parse("https://strikza.github.io/studecookEULA.com/")
+                startActivity(openURL)
+                true
+            }
+        }
+
+        private fun github() {
+            val github = findPreference<Preference>(getString(R.string.github_key))
+            val openURL = Intent(Intent.ACTION_VIEW)
+
+            github?.setOnPreferenceClickListener {
+                openURL.data = Uri.parse("https://github.com/SauzeauYannis/Stud-eCook")
                 startActivity(openURL)
                 true
             }
