@@ -101,7 +101,7 @@
     <string name="account_name_false_long">Account name too long</string>
     <string name="desc_name_false_long">Description too long</string>
     <string name="alert_account_edit_title">Confirmation</string>
-    <string name="alert_account_edit_message">Are you sure you want to ignore the changes?</string>
+    <string name="alert_account_edit_message">Are you sure you want to ignore the changes ?</string>
     <string name="alert_account_edit_validate">The changes have been taken into consideration</string>
     <string name="error_account_edit">Error: Connection with server</string>
     <!-- Fragment Account View -->
@@ -193,7 +193,7 @@
         <item>Other</item>
     </string-array>
     <string name="text_add_ingredient">Ingredients</string>
-    <string name="edit_text_add_num_ingredient_hint" translatable="false">667</string>
+    <string name="edit_text_add_num_ingredient_hint" translatable="false">1</string>
     <string name="edit_text_add_ingredient_hint">Example: Flour</string>
     <string name="image_delete_ingredient">Delete current ingredient</string>
     <string name="button_add_ingredient">Add ingredient</string>

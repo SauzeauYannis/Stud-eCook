@@ -23,14 +23,14 @@
         <item>Chère : supérieur à 5 €</item>
     </string-array>
     <string name="edit_text_add_name_hint">Exemple : Cookie</string>
-    <string name="button_add_next">Boutton page suivante</string>
+    <string name="button_add_next">Bouton page suivante</string>
     <string name="account_on">Nom du compte : %s</string>
-    <string name="account_off">Vous n\'etes pas connecté</string>
+    <string name="account_off">Vous n\'êtes pas connecté</string>
     <string name="alert_setting_account">Voulez-vous être déconnecté</string>
     <string name="anonymous">Anonyme</string>
     <string name="account_header">Se déconnecter</string>
-    <string name="button_sent_data">Boutton validation de recette</string>
-    <string name="button_previous">Boutton page précédente</string>
+    <string name="button_sent_data">Bouton validation de recette</string>
+    <string name="button_previous">Bouton page précédente</string>
     <string name="add_name_false_short">Nom de recette trop court</string>
     <string name="add_name_false_long">Nom de recette trop long</string>
     <string name="add_name_false">Nom de recette invalide</string>
@@ -88,15 +88,15 @@
     <string name="button_add_picture">Ajouter une photo</string>
     <string name="text_no_account">Vous n\'êtes pas connecté</string>
     <string name="text_add_recipe_failure">Erreur : La recette n\'a pas pu être ajouté</string>
-    <string name="text_add_recipe_anonymous">Vous ne pouvez pas ajouté de recette en étant invité\nConnectez-vous !</string>
+    <string name="text_add_recipe_anonymous">Vous ne pouvez pas ajouter de recette en étant invité\nConnectez-vous !</string>
     <string name="dialog_add_title">La recette a été ajouté</string>
     <string name="dialog_add_text">Merci d\'avoir ajouté votre recette</string>
-    <string name="dialog_add_ok">Retour à l\'acceuil</string>
-    <string name="image_search">Boutton de recherche</string>
-    <string name="button_filter">Boutton de filtre</string>
-    <string name="button_home_sub">Boutton recettes de vos abonnement</string>
-    <string name="button_home_disc">Boutton découvrir des recettes</string>
-    <string name="button_home_fav">Boutton de vos recettes favorite</string>
+    <string name="dialog_add_ok">Retour à l\'accueil</string>
+    <string name="image_search">Bouton de recherche</string>
+    <string name="button_filter">Bouton de filtre</string>
+    <string name="button_home_sub">Bouton recettes de vos abonnement</string>
+    <string name="button_home_disc">Bouton découvrir des recettes</string>
+    <string name="button_home_fav">Bouton de vos recettes favorite</string>
     <string name="text_add_recipe_no_net">Erreur : Echec de la connexion</string>
     <string name="image_recipe">Image de la recette</string>
     <string name="text_add_recipe_failure_image">Erreur : Une image n\'a pas pu être envoyé</string>
@@ -179,7 +179,7 @@
     <string name="filter_vegetarian">Végétarien</string>
     <string name="filter_starter">Entrée</string>
     <string name="filter_dish">Plat</string>
-    <string name="filter_dessert">Déssert</string>
+    <string name="filter_dessert">Dessert</string>
     <string name="filter_drink">Boisson</string>
     <string-array name="lang_array">
         <item>Anglais</item>
