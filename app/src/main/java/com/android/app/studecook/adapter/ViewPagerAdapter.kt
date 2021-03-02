@@ -90,7 +90,7 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
                             setSwipe(holder, firestoreRecyclerOptions)
 
                             holder.itemFabFilter.setOnClickListener {
-                                generateFilterDialog(holder, query)
+                                generateFilterDialog(holder, collectionReference.whereIn("uid", user.subs!!))
                             }
 
                             recipeAdapter = HomeRecipeAdapter(firestoreRecyclerOptions)
@@ -111,7 +111,7 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
         setSwipe(holder, firestoreRecyclerOptions)
 
         holder.itemFabFilter.setOnClickListener {
-            generateFilterDialog(holder, query)
+            generateFilterDialog(holder, collectionReference)
         }
 
         recipeAdapter = HomeRecipeAdapter(firestoreRecyclerOptions)
@@ -133,14 +133,14 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
                         if (user.favorites!!.isEmpty()) {
                             noRecipe(holder)
                         } else {
-                            val query = db.collection("recipes").orderBy("date", Query.Direction.DESCENDING)
+                            val query = collectionReference.orderBy("date", Query.Direction.DESCENDING)
                                     .whereIn("__name__", user.favorites!!)
                             val firestoreRecyclerOptions = FirestoreRecyclerOptions.Builder<RecipeModel>()
                                     .setQuery(query, RecipeModel::class.java)
                                     .build()
 
                             holder.itemFabFilter.setOnClickListener {
-                                generateFilterDialog(holder, query)
+                                generateFilterDialog(holder, collectionReference.whereIn("__name__", user.favorites!!))
                             }
 
                             setSwipe(holder, firestoreRecyclerOptions)
