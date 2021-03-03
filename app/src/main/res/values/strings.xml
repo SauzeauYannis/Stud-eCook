@@ -21,7 +21,7 @@
     <string name="button_delete_picture">Delete picture</string>
     <string name="account_sub">My subscriptions</string>
     <string name="dialog_title_ano">Anonymous connection</string>
-    <string name="dialog_message_ano">Logging in as a guest allows you to view all the recipes available on the application.\nHowever, you cannot :\n- Add a recipe\n- You subscribe to a person\n- Add recipes to your favourites\nThese actions are reserved for those who have an account.\nWould you like to continue as a guest?\n</string>
+    <string name="dialog_message_ano">Logging in as a guest allows you to view all the recipes available on the application.\nHowever, you cannot :\n- Add a recipe\n- Subscribe to an user\n- Add recipes to your favourites\nThese actions are only available by logging in.\nWould you like to continue as a guest?\n</string>
     <string name="text_forbid_ano">Login for this feature!</string>
     <string name="button_ano_connection">Login</string>
     <string name="dialog_continue_ano">Continue as a guest</string>
@@ -35,7 +35,7 @@
     <string name="image_search">Search button</string>
     <string name="button_filter">Filter button</string>
     <string name="button_home_sub">Subscriptions recipe button</string>
-    <string name="button_home_disc">Discovery recipes button</string>
+    <string name="button_home_disc">Discover recipes button</string>
     <string name="button_home_fav">Your favorite recipes button</string>
     <string name="image_recipe">Image recipe</string>
     <string name="toast_up_to_date">You are up to date!</string>
@@ -62,7 +62,7 @@
 
     <!-- Recipe Page -->
     <string name="text_fav">Like:</string>
-    <string name="text_propoced_by">Proposed by</string>
+    <string name="text_propoced_by">Suggested by</string>
     <string name="text_recipe_utensils">Utensils list:</string>
     <string name="text_recipe_ingr">Ingredients list:</string>
     <string name="text_recipe_steps">Steps list:</string>
@@ -102,19 +102,19 @@
     <string name="desc_name_false_long">Description too long</string>
     <string name="alert_account_edit_title">Confirmation</string>
     <string name="alert_account_edit_message">Are you sure you want to ignore the changes ?</string>
-    <string name="alert_account_edit_validate">The changes have been taken into consideration</string>
+    <string name="alert_account_edit_validate">Changes have been made</string>
     <string name="error_account_edit">Error: Connection with server</string>
     <!-- Fragment Account View -->
     <string name="image_subs_account">Account picture</string>
     <string name="button_subs">Subscribe</string>
     <string name="button_unsubs">Unsubscribe</string>
-    <string name="text_view_acc_recipe">His shared recipes:</string>
+    <string name="text_view_acc_recipe">Shared recipes:</string>
 
     <!-- Settings -->
     <string name="menu_param">Settings</string>
     <string name="appearance_header">Theme</string>
     <string name="setting_dark" translatable="false">setting_dark</string>
-    <string name="dark_title">Activate the dark theme</string>
+    <string name="dark_title">Activate dark theme</string>
     <string name="dark_off">Dark theme off</string>
     <string name="dark_on">Dark theme on</string>
     <string name="account_header">Sign out</string>
@@ -124,7 +124,7 @@
     <string name="alert_setting_account">Do you want to sign out ?</string>
     <string name="settings_info_title">More informations</string>
     <string name="setting_open_source" translatable="false">setting_open_source</string>
-    <string name="open_source_libraries">Open Source libraries</string>
+    <string name="open_source_libraries">Open Source Libraries</string>
     <string name="App_version" translatable="false">app_version</string>
     <string name="setting_version_title" translatable="false">Version</string>
     <string name="setting_eula_key">setting_eula</string>
@@ -152,7 +152,7 @@
     <string name="edit_text_add_name_hint">Example: Cookie</string>
     <string name="add_name_false_short">Recipe name too short</string>
     <string name="add_name_false_long">Recipe name too long</string>
-    <string name="add_name_false">Name of recipe is not good</string>
+    <string name="add_name_false">Recipe name is not good</string>
     <string-array name="time_array">
         <item>Fast: less than 30min</item>
         <item>Medium: between 30min and 1h30</item>
@@ -198,7 +198,7 @@
     <string name="image_delete_ingredient">Delete current ingredient</string>
     <string name="button_add_ingredient">Add ingredient</string>
     <string-array name="ingredient_type_array">
-        <item>Unit</item>
+        <item>unit</item>
         <item>g</item>
         <item>ml</item>
         <item>tsp</item>
@@ -213,7 +213,7 @@
     <string name="button_add_step">Add Step</string>
     <string name="image_delete_step">Delete current step</string>
     <string name="text_add_ingredient_hint">Step %d</string>
-    <string name="text_add_step_too_much">You can\'t add one more step</string>
+    <string name="text_add_step_too_much">You can\'t add more step</string>
     <string name="text_add_step_empty">You need to add at least one step</string>
     <string name="text_add_step_isEmpty">You need to complete all steps</string>
     <!-- fragment 5 -->
@@ -222,7 +222,7 @@
     <string name="text_add_recipe_failure">Error: The recipe can\'t be upload</string>
     <string name="text_add_recipe_no_net">Error: Connection failure!</string>
     <string name="text_add_recipe_failure_image">Error: Image can\'t be upload!</string>
-    <string name="text_add_recipe_anonymous">You can\'t add a recipe if you are anonymous\nPlease login!</string>
+    <string name="text_add_recipe_anonymous">You can\'t add a recipe if you are a guest.\nPlease login in!</string>
     <string name="dialog_add_title">Recipe has been added</string>
     <string name="dialog_add_text">Thank you for adding your recipe!</string>
     <string name="dialog_add_ok">Return to home</string>

@@ -13,12 +13,12 @@
     <string name="text_time">Temps :</string>
     <string name="text_price">Prix :</string>
     <string-array name="time_array">
-        <item>Rapide : inférieur à 30min</item>
-        <item>Moyen : entre 30min et 1h30min</item>
-        <item>Long : supérieur à 1h30min</item>
+        <item>Rapide : inférieur à 30 min</item>
+        <item>Moyen : entre 30 min et 1 h 30 min</item>
+        <item>Long : supérieur à 1 h 30 min</item>
     </string-array>
     <string-array name="price_array">
-        <item>Pas chère: inférieur à 3 €</item>
+        <item>Pas chère : inférieur à 3 €</item>
         <item>Moyen : entre 3 € et 5 €</item>
         <item>Chère : supérieur à 5 €</item>
     </string-array>
@@ -86,24 +86,24 @@
     <string name="text_add_step_isEmpty">Vous devez compléter toutes les étapes</string>
     <string name="text_add_picture">Photo (optionnel)</string>
     <string name="button_add_picture">Ajouter une photo</string>
-    <string name="text_no_account">Vous n\'êtes pas connecté</string>
+    <string name="text_no_account">Vous n\'êtes pas connecté·e</string>
     <string name="text_add_recipe_failure">Erreur : La recette n\'a pas pu être ajouté</string>
-    <string name="text_add_recipe_anonymous">Vous ne pouvez pas ajouter de recette en étant invité\nConnectez-vous !</string>
+    <string name="text_add_recipe_anonymous">Vous ne pouvez pas ajouter de recette en étant invité·e\nConnectez-vous !</string>
     <string name="dialog_add_title">La recette a été ajouté</string>
-    <string name="dialog_add_text">Merci d\'avoir ajouté votre recette</string>
+    <string name="dialog_add_text">Merci d\'avoir ajouté ta recette</string>
     <string name="dialog_add_ok">Retour à l\'accueil</string>
     <string name="image_search">Bouton de recherche</string>
     <string name="button_filter">Bouton de filtre</string>
-    <string name="button_home_sub">Bouton recettes de vos abonnement</string>
+    <string name="button_home_sub">Bouton recettes de vos abonnements</string>
     <string name="button_home_disc">Bouton découvrir des recettes</string>
-    <string name="button_home_fav">Bouton de vos recettes favorite</string>
+    <string name="button_home_fav">Bouton de vos recettes favorites</string>
     <string name="text_add_recipe_no_net">Erreur : Echec de la connexion</string>
     <string name="image_recipe">Image de la recette</string>
-    <string name="text_add_recipe_failure_image">Erreur : Une image n\'a pas pu être envoyé</string>
+    <string name="text_add_recipe_failure_image">Erreur : Une image n\'a pas pu être envoyée</string>
     <string name="text_add_min_max">" (%d à %d) :"</string>
     <string name="toast_up_to_date">Vous êtes à jour !</string>
     <string name="search_query">Chercher une recette</string>
-    <string name="text_home_sub">Les recettes de vos abonnés</string>
+    <string name="text_home_sub">Les recettes de vos abonné·e·s</string>
     <string name="text_home_favorite">Vos recettes favorites</string>
     <string name="text_no_recipe">Pas de recettes disponibles</string>
     <string name="image_desc_add">Image de la recette</string>
@@ -128,19 +128,19 @@
     <string name="account_name_false_long">Nom de compte trop long</string>
     <string name="desc_name_false_long">Description trop longue</string>
     <string name="alert_account_edit_title">Confirmation</string>
-    <string name="alert_account_edit_message">Êtes de vous sûr de vouloir ignorer les modifications ?</string>
-    <string name="alert_account_edit_validate">Les modifications ont bien étés prises en compte</string>
+    <string name="alert_account_edit_message">Êtes-vous sûr·e de vouloir ignorer les modifications ?</string>
+    <string name="alert_account_edit_validate">Les modifications ont bien été prises en compte</string>
     <string name="error_account_edit">Erreur : Connexion avec le serveur</string>
     <string name="text_recipe_steps">Liste des étapes :</string>
     <string name="image_subs_account">photo du compte de %s</string>
     <string name="button_subs">S\'abonner</string>
     <string name="button_unsubs">Se désabonner</string>
     <string name="text_view_acc_recipe">Ses recettes partagées :</string>
-    <string name="dialog_title_ano">Connexion en tant qu\'invité</string>
-    <string name="dialog_message_ano">La connexion en tant qu\'invité permet de regarder toutes les recettes disponibles sur l\'application.\nCependant, vous ne pouvez pas :\n- Ajouter une recette\n- Vous abonnez à une personne\n- Ajouter des recettes en favoris\nCes actions sont réservés à ceux qui ont un compte.\nVoulez vous continuer en tant qu\'invité ?</string>
+    <string name="dialog_title_ano">Connexion en tant qu\'invité·e</string>
+    <string name="dialog_message_ano">La connexion en tant qu\'invité·e permet de regarder toutes les recettes disponibles sur l\'application.\nCependant, vous ne pouvez pas :\n- Ajouter une recette\n- Vous abonnez à une personne\n- Ajouter des recettes en favoris\nCes actions sont uniquement possibles en vous connectant.\nVoulez vous continuer en tant qu\'invité·e ?</string>
     <string name="text_forbid_ano">Connectez-vous pour cette fonctionnalité !</string>
     <string name="button_ano_connection">Se connecter</string>
-    <string name="dialog_continue_ano">Continuer en tant qu\'invité</string>
+    <string name="dialog_continue_ano">Continuer en tant qu\'invité·e</string>
     <string name="dialog_delete_title">Supprimer cette recette</string>
     <string name="dialog_delete_message">Voulez-vous supprimer cette recette ?</string>
     <string name="text_recipe_ingr">Liste des ingrédients :</string>
@@ -158,7 +158,7 @@
         <item>Pour 9 personnes</item>
         <item>Pour 10 personnes</item>
     </string-array>
-    <string name="dialog_fav">La recette a bien été ajouté à vos favoris</string>
+    <string name="dialog_fav">La recette a bien été ajoutée à vos favoris</string>
     <string name="settings_info_title">Plus d\'informations</string>
     <string name="open_source_libraries">Licences Open Source</string>
     <string name="dialog_unfav_title">Enlever la recette de vos favoris</string>
@@ -170,7 +170,7 @@
     <string name="setting_contact_summary">studecook@gmail.com</string>
     <string name="filter">Filtres</string>
     <string name="filter_news">Nouveautés</string>
-    <string name="filter_fav">Les mieux notés</string>
+    <string name="filter_fav">Les mieux notées</string>
     <string name="filter_cheap">Les moins chères</string>
     <string name="filter_fast">Les plus rapides</string>
     <string name="filter_primary">Trier par :</string>
