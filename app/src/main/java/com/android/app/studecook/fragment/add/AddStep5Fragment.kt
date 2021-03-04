@@ -139,7 +139,7 @@ class AddStep5Fragment : Fragment() {
         val name = sharedPref?.getString(getString(R.string.saved_add_name_key), "")
         val time = sharedPref?.getInt(getString(R.string.saved_add_time_key), 0)
         val price = sharedPref?.getInt(getString(R.string.saved_add_price_key), 0)
-        val number = sharedPref?.getInt(getString(R.string.saved_add_number_key), 0)
+        val number = sharedPref?.getInt(getString(R.string.saved_add_number_key), 1)
         val type = sharedPref?.getInt(getString(R.string.saved_add_type_key), 0)
         val diet = sharedPref?.getInt(getString(R.string.saved_add_diet_key), 0)
         val utensilsNum = generateUtensilsNum(sharedPref)
