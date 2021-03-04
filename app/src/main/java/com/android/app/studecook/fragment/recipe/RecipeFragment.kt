@@ -117,7 +117,7 @@ class RecipeFragment : Fragment() {
             var type = ""
             if (recipe.ingredientsType!![i].toInt() > 0)
                 type = resources.getStringArray(R.array.ingredient_type_array)[recipe.ingredientsType!![i].toInt()]
-            val text = "- ${quantity[i]} $type ${recipe.ingredientsName!![i]}"
+            val text = "- ${quantity[i]}$type ${recipe.ingredientsName!![i]}"
             ingredientText.text = text
             ingredientText.textSize = 16F
             root.layout_ing.addView(ingredientText)
@@ -213,7 +213,7 @@ class RecipeFragment : Fragment() {
                 .addOnSuccessListener { docs ->
                     for (doc in docs) {
                         db.collection(getString(R.string.collection_users))
-                            .document(currentUser!!.uid)
+                            .document(currentUser.uid)
                             .get()
                             .addOnSuccessListener { document ->
                                 val favList = document.get("favorites") as List<*>

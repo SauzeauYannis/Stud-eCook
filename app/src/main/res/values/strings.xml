@@ -51,7 +51,7 @@
     <string name="filter_fav">Top rated</string>
     <string name="filter_cheap">Cheapest</string>
     <string name="filter_fast">Fastest</string>
-    <string name="filter_primary">Sort by :</string>
+    <string name="filter_primary">Sort by:</string>
     <string name="filter_classic">Classic</string>
     <string name="filter_vegan">Vegan</string>
     <string name="filter_vegetarian">Vegetarian</string>
@@ -101,7 +101,7 @@
     <string name="account_name_false_long">Account name too long</string>
     <string name="desc_name_false_long">Description too long</string>
     <string name="alert_account_edit_title">Confirmation</string>
-    <string name="alert_account_edit_message">Are you sure you want to ignore the changes ?</string>
+    <string name="alert_account_edit_message">Are you sure you want to ignore the changes?</string>
     <string name="alert_account_edit_validate">Changes have been made</string>
     <string name="error_account_edit">Error: Connection with server</string>
     <!-- Fragment Account View -->

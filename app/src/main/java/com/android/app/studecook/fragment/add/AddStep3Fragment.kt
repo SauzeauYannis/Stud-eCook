@@ -18,12 +18,11 @@ import androidx.navigation.fragment.findNavController
 import com.android.app.studecook.R
 import kotlinx.android.synthetic.main.fragment_add_step3.*
 import kotlinx.android.synthetic.main.fragment_add_step3.view.*
-import kotlinx.android.synthetic.main.fragment_add_step3.view.button_add_next
-import kotlinx.android.synthetic.main.fragment_add_step3.view.button_back
-import kotlinx.android.synthetic.main.fragment_add_step3.view.text_add_title
 import kotlinx.android.synthetic.main.layout_add_ingredient.view.*
-import java.util.ArrayList
-import java.util.Arrays.sort
+import java.util.*
+import kotlin.collections.HashSet
+import kotlin.collections.indices
+import kotlin.collections.sort
 
 class AddStep3Fragment : Fragment() {
 

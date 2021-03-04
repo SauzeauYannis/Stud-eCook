@@ -47,6 +47,7 @@ open class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Suppress("DEPRECATION")
     private fun setLanguage() {
         var lang = "fr"
         val configuration = Configuration(resources.configuration)

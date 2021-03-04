@@ -69,7 +69,8 @@ class SettingsActivity : AppCompatActivity() {
                 }
             }
         }
-        
+
+        @Suppress("DEPRECATION")
         private fun langSetting() {
             var lang = "fr"
             val configuration = Configuration(resources.configuration)
@@ -86,7 +87,7 @@ class SettingsActivity : AppCompatActivity() {
             else
                 listLang?.setValueIndex(1)
 
-            listLang?.setOnPreferenceChangeListener() { _, newValue ->
+            listLang?.setOnPreferenceChangeListener { _, newValue ->
                 if (newValue == resources.getStringArray(R.array.lang_array)[0]) {
                     configuration.locale = Locale.ENGLISH
                     sharedPreferences.edit().putString("lang", "en").apply()

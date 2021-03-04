@@ -5,8 +5,6 @@ import androidx.fragment.app.findFragment
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.NavHostFragment
 import com.android.app.studecook.R
-import com.android.app.studecook.fragment.account.AccountFragment
-import com.android.app.studecook.fragment.account.AccountFragmentDirections
 import com.android.app.studecook.fragment.home.HomeFragment
 import com.android.app.studecook.fragment.home.HomeFragmentDirections
 import com.android.app.studecook.model.RecipeModel
