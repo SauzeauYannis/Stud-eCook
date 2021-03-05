@@ -11,7 +11,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.android.app.studecook"
+        applicationId "com.mobile.app.studecook"
         minSdkVersion 19
         targetSdkVersion 30
         versionCode 1

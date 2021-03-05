@@ -1,42 +1,41 @@
 {
   "project_info": {
-    "project_number": "460122007726",
-    "firebase_url": "https://stud-ecook-145d7.firebaseio.com",
-    "project_id": "stud-ecook-145d7",
-    "storage_bucket": "stud-ecook-145d7.appspot.com"
+    "project_number": "519138226048",
+    "project_id": "stud-ecook-9b711",
+    "storage_bucket": "stud-ecook-9b711.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:460122007726:android:f2a64bb530c7ac133ea53f",
+        "mobilesdk_app_id": "1:519138226048:android:cf149d4f563e0716765b65",
         "android_client_info": {
-          "package_name": "com.android.app.studecook"
+          "package_name": "com.mobile.app.studecook"
         }
       },
       "oauth_client": [
         {
-          "client_id": "460122007726-u5oo9lqape3m64379sqjh1m6mtqbo6e9.apps.googleusercontent.com",
+          "client_id": "519138226048-bh1vqlme53lv7kiabe6814eonsu4rtnk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.android.app.studecook",
-            "certificate_hash": "bafba515472ae1bc980d2ff9c9833e14c2d5a1ad"
+            "package_name": "com.mobile.app.studecook",
+            "certificate_hash": "1f5ac17d228b6270bf80aef49f347fe452108df6"
           }
         },
         {
-          "client_id": "460122007726-cfpv1e0t4uk80h0ef7sbmq13a1ng07g1.apps.googleusercontent.com",
+          "client_id": "519138226048-cp0c6h3hnuo6kbf3bl9lpl9au8rad4qq.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA160Pt8Vqb-wPd78b4iHPbekFrN_p9DqE"
+          "current_key": "AIzaSyBypLvpQuG91d3qNlzgMD0-rt5aiWkXUY8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "460122007726-cfpv1e0t4uk80h0ef7sbmq13a1ng07g1.apps.googleusercontent.com",
+              "client_id": "519138226048-cp0c6h3hnuo6kbf3bl9lpl9au8rad4qq.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
