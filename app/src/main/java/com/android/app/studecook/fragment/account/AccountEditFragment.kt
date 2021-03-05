@@ -32,6 +32,7 @@ class AccountEditFragment : Fragment() {
     private val db = Firebase.firestore
 
     private var imageUri: Uri? = null
+    private var changeImage = false
 
     private lateinit var textInputName: TextInputLayout
     private lateinit var textInputDesc: TextInputLayout
@@ -68,6 +69,7 @@ class AccountEditFragment : Fragment() {
         }
 
         root.button_account_edit_add.setOnClickListener {
+            changeImage = true
             addPicture()
         }
 
@@ -176,10 +178,13 @@ class AccountEditFragment : Fragment() {
         return if (imageUri != null) {
             val storageRef = Firebase.storage.reference
             val imagePath = "usersImage/$uid"
-            val imageRef = storageRef.child(imagePath)
 
-            imageRef.putFile(imageUri!!).addOnFailureListener {
-                Toast.makeText(context, getString(R.string.text_add_recipe_failure_image), Toast.LENGTH_LONG).show()
+            if (changeImage) {
+                val imageRef = storageRef.child(imagePath)
+
+                imageRef.putFile(imageUri!!).addOnFailureListener {
+                    Toast.makeText(context, getString(R.string.text_add_recipe_failure_image), Toast.LENGTH_LONG).show()
+                }
             }
 
             imagePath

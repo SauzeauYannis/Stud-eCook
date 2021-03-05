@@ -47,6 +47,11 @@ open class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onRestart() {
+        setLanguage()
+        super.onRestart()
+    }
+
     @Suppress("DEPRECATION")
     private fun setLanguage() {
         var lang = "fr"
