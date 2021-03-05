@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
+import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,8 +22,7 @@ import kotlinx.android.synthetic.main.fragment_add_step3.view.*
 import kotlinx.android.synthetic.main.layout_add_ingredient.view.*
 import java.util.*
 import kotlin.collections.HashSet
-import kotlin.collections.indices
-import kotlin.collections.sort
+
 
 class AddStep3Fragment : Fragment() {
 
@@ -42,9 +42,9 @@ class AddStep3Fragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_add_step3, container, false)
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
@@ -56,7 +56,10 @@ class AddStep3Fragment : Fragment() {
         val listU = resources.getStringArray(R.array.utensil_array)
         val check = BooleanArray(listU.size)
         val mUserUtensil = ArrayList<Int>()
-        val savedUtensil = sharedPref!!.getStringSet(getString(R.string.saved_add_utensils_key), HashSet<String>())
+        val savedUtensil = sharedPref!!.getStringSet(
+            getString(R.string.saved_add_utensils_key),
+            HashSet<String>()
+        )
 
         for (i in listU.indices) {
             for (utensil in savedUtensil!!) {
@@ -67,24 +70,36 @@ class AddStep3Fragment : Fragment() {
             }
         }
 
-        val savedIngredientNumber = sharedPref.getInt(getString(R.string.saved_add_ingredient_number_key), 0)
+        val savedIngredientNumber = sharedPref.getInt(
+            getString(R.string.saved_add_ingredient_number_key),
+            0
+        )
 
         if (savedIngredientNumber > 0) {
-            val savedIngredientsQuantity = sharedPref.getString(getString(R.string.saved_add_ingredients_quantity_key), null)?.split(",")
-            val savedIngredientsType = sharedPref.getString(getString(R.string.saved_add_ingredients_type_key), null)?.split(",")
-            val savedIngredientsName = sharedPref.getString(getString(R.string.saved_add_ingredients_name_key), null)?.split(",")
+            val savedIngredientsQuantity = sharedPref.getString(
+                getString(R.string.saved_add_ingredients_quantity_key),
+                null
+            )?.split(",")
+            val savedIngredientsType = sharedPref.getString(
+                getString(R.string.saved_add_ingredients_type_key),
+                null
+            )?.split(",")
+            val savedIngredientsName = sharedPref.getString(
+                getString(R.string.saved_add_ingredients_name_key),
+                null
+            )?.split(",")
 
             for (i in 0 until savedIngredientNumber) {
                 val ingredientView = generateIngredientView(container, root)
 
                 ingredientView!!.text_input_add_num_ingredient.setText(
-                        savedIngredientsQuantity?.get(i)
+                    savedIngredientsQuantity?.get(i)
                 )
                 ingredientView.array_add_ingredient_type.setSelection(
-                        savedIngredientsType?.get(i)!!.toInt()
+                    savedIngredientsType?.get(i)!!.toInt()
                 )
                 ingredientView.text_input_add_ingredient.setText(
-                        savedIngredientsName?.get(i)
+                    savedIngredientsName?.get(i)
                 )
 
                 root.layout_ingredient.addView(ingredientView)
@@ -127,17 +142,29 @@ class AddStep3Fragment : Fragment() {
                     ingredientCount++
                 }
             } else {
-                Toast.makeText(root.context, getString(R.string.text_add_ingredient_too_much), Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    root.context,
+                    getString(R.string.text_add_ingredient_too_much),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
 
         root.button_add_next.setOnClickListener {
             when {
                 root.text_add_utensils.text == getString(R.string.text_add_utensils_list) -> {
-                    Toast.makeText(root.context, getString(R.string.text_add_utensils_false), Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        root.context,
+                        getString(R.string.text_add_utensils_false),
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
                 ingredientCount == 0 -> {
-                    Toast.makeText(root.context, getString(R.string.text_add_ingredient_false), Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        root.context,
+                        getString(R.string.text_add_ingredient_false),
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
                 else -> {
                     if (isIngredientListGood(root.layout_ingredient, root.context)) {
@@ -156,7 +183,12 @@ class AddStep3Fragment : Fragment() {
         return root
     }
 
-    private fun saveData(mUserUtensil: ArrayList<Int>, listU: Array<String>, root: View, sharedPref: SharedPreferences) {
+    private fun saveData(
+        mUserUtensil: ArrayList<Int>,
+        listU: Array<String>,
+        root: View,
+        sharedPref: SharedPreferences
+    ) {
         val utensilsName = HashSet<String>()
         for (i in mUserUtensil) {
             utensilsName.add(listU[i])
@@ -174,20 +206,48 @@ class AddStep3Fragment : Fragment() {
         with(sharedPref.edit()) {
             putStringSet(getString(R.string.saved_add_utensils_key), utensilsName)
             putInt(getString(R.string.saved_add_ingredient_number_key), ingredientCount)
-            putString(getString(R.string.saved_add_ingredients_quantity_key), TextUtils.join(",", ingredientsQuantity))
-            putString(getString(R.string.saved_add_ingredients_type_key), TextUtils.join(",", ingredientsType))
-            putString(getString(R.string.saved_add_ingredients_name_key), TextUtils.join(",", ingredientsName))
+            putString(
+                getString(R.string.saved_add_ingredients_quantity_key), TextUtils.join(
+                    ",",
+                    ingredientsQuantity
+                )
+            )
+            putString(
+                getString(R.string.saved_add_ingredients_type_key), TextUtils.join(
+                    ",",
+                    ingredientsType
+                )
+            )
+            putString(
+                getString(R.string.saved_add_ingredients_name_key), TextUtils.join(
+                    ",",
+                    ingredientsName
+                )
+            )
             apply()
         }
     }
 
     private fun generateIngredientView(container: ViewGroup?, root: View): View? {
-        val ingredientView = layoutInflater.inflate(R.layout.layout_add_ingredient, container, false)
+        val ingredientView = layoutInflater.inflate(
+            R.layout.layout_add_ingredient,
+            container,
+            false
+        )
+
+        class NumericKeyBoardTransformationMethod :
+            PasswordTransformationMethod() {
+            override fun getTransformation(source: CharSequence, view: View): CharSequence {
+                return source
+            }
+        }
+
+        ingredientView.text_input_add_num_ingredient.transformationMethod = NumericKeyBoardTransformationMethod()
 
         ArrayAdapter.createFromResource(
-                root.context,
-                R.array.ingredient_type_array,
-                android.R.layout.simple_spinner_item
+            root.context,
+            R.array.ingredient_type_array,
+            android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             ingredientView.array_add_ingredient_type.adapter = adapter
@@ -218,10 +278,18 @@ class AddStep3Fragment : Fragment() {
     private fun isIngredientListGood(layout: LinearLayout, context: Context): Boolean {
         for (l in layout) {
             if (l.text_input_add_num_ingredient.text.toString().isEmpty()) {
-                Toast.makeText(context, getString(R.string.text_add_ingredient_num_empty), Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    context,
+                    getString(R.string.text_add_ingredient_num_empty),
+                    Toast.LENGTH_LONG
+                ).show()
                 return false
             } else if (l.text_input_add_ingredient.text.toString().isEmpty()) {
-                Toast.makeText(context, getString(R.string.text_add_ingredient_empty), Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    context,
+                    getString(R.string.text_add_ingredient_empty),
+                    Toast.LENGTH_LONG
+                ).show()
                 return false
             }
         }

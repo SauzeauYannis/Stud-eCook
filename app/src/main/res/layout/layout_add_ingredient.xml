@@ -13,7 +13,7 @@
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/edit_text_add_num_ingredient_hint"
-        android:inputType="numberDecimal"
+        android:inputType="numberPassword"
         android:textAlignment="center" />
 
     <Spinner
