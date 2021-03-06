@@ -208,6 +208,7 @@
     <string name="text_add_ingredient_false">You need to add at least one ingredient</string>
     <string name="text_add_ingredient_empty">You need to enter a ingredient name</string>
     <string name="text_add_ingredient_num_empty">You need to enter a quantity of ingredient</string>
+    <string name="text_add_ingredient_num_zero">The quantity of ingredient must not be equal to 0</string>
     <!-- fragment 4 -->
     <string name="text_add_step">Steps</string>
     <string name="button_add_step">Add Step</string>

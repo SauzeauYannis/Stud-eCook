@@ -105,7 +105,8 @@ class RecipeFragment : Fragment() {
                 for (ing in oldQuantity)
                     newQuantity.add(
                             "%.2f".format((ing.toLong() * factor))
-                                    .replace(",00", ""))
+                                    .replace(",00", "")
+                                    .replace(".00", ""))
                 loadIngredients(recipe, root, newQuantity)
             }
             override fun onNothingSelected(parent: AdapterView<*>) {}

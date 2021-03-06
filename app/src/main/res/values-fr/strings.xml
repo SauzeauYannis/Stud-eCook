@@ -187,4 +187,5 @@
     </string-array>
     <string name="lang_title">Changer le langage</string>
     <string name="github">Voir le projet sur GitHub</string>
+    <string name="text_add_ingredient_num_zero">La quantité d\'ingrédient doit être différente de 0</string>
 </resources>

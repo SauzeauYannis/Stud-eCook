@@ -291,6 +291,13 @@ class AddStep3Fragment : Fragment() {
                     Toast.LENGTH_LONG
                 ).show()
                 return false
+            } else if (l.text_input_add_num_ingredient.text.toString().toInt() < 1) {
+                Toast.makeText(
+                        context,
+                        getString(R.string.text_add_ingredient_num_zero),
+                        Toast.LENGTH_SHORT
+                ).show()
+                return false
             }
         }
         return true
