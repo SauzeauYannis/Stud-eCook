@@ -14,7 +14,7 @@ android {
         applicationId "com.mobile.app.studecook"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 3
+        versionCode 4
         versionName "1.04"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary true
@@ -73,7 +73,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging-ktx' // Messaging
     implementation 'com.google.firebase:firebase-analytics-ktx' // Analytics
     implementation 'com.google.firebase:firebase-messaging:21.0.1'
-    implementation 'com.google.firebase:firebase-inappmessaging-display:19.1.4'
+    implementation 'com.google.firebase:firebase-inappmessaging-display:19.1.5'
 
     //Authentication
     implementation 'com.firebaseui:firebase-ui-auth:7.1.1'

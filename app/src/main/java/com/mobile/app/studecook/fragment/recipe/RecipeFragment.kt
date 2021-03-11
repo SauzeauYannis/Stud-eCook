@@ -58,6 +58,10 @@ class RecipeFragment : Fragment() {
             findNavController().navigate(R.id.action_recipeFragment_to_navigation_home)
         }
 
+        root.button_report.setOnClickListener {
+            Toast.makeText(context, "TODO: Report la recette", Toast.LENGTH_SHORT).show()
+        }
+
         root.text_recipe_name.text = recipe.name
 
         loadImage(recipe.image, root.image_recipe)
