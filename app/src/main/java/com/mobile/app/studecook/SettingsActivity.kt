@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.ListPreference
@@ -26,6 +27,12 @@ class SettingsActivity : AppCompatActivity() {
         findViewById<ImageView>(R.id.button_settings_back).setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findViewById<ImageView>(R.id.button_settings_back).callOnClick()
+            }
+        }
+        this.onBackPressedDispatcher.addCallback(callback)
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()

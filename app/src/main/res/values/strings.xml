@@ -109,6 +109,8 @@
     <string name="button_subs">Subscribe</string>
     <string name="button_unsubs">Unsubscribe</string>
     <string name="text_view_acc_recipe">Shared recipes:</string>
+    <!-- Fragment Subs View -->
+    <string name="alert_sub_message">Do you want to unsubscribe from %s?</string>
 
     <!-- Settings -->
     <string name="menu_param">Settings</string>

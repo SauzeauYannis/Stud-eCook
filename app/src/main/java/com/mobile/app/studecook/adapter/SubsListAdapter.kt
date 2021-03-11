@@ -1,6 +1,8 @@
 package com.mobile.app.studecook.adapter
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -87,11 +89,19 @@ class SubsListAdapter(
         viewHolder.name!!.text = user?.name
 
         viewHolder.unsubButton!!.setOnClickListener {
-            db.collection("users")
-                    .document(FirebaseAuth.getInstance().currentUser!!.uid)
-                    .update("subs", FieldValue.arrayRemove(subId))
-            subs.remove(subId)
-            notifyDataSetChanged()
+            AlertDialog.Builder(context)
+                    .setTitle(context.getString(R.string.button_unsubs))
+                    .setMessage(context.getString(R.string.alert_sub_message, user?.name))
+                    .setPositiveButton(android.R.string.ok) { _, _ ->
+                        db.collection("users")
+                                .document(FirebaseAuth.getInstance().currentUser!!.uid)
+                                .update("subs", FieldValue.arrayRemove(subId))
+                        subs.remove(subId)
+                        notifyDataSetChanged()                    }
+                    .setNegativeButton(android.R.string.cancel) { dialogInterface, _ ->
+                        dialogInterface.cancel()
+                    }
+                    .show()
         }
     }
 

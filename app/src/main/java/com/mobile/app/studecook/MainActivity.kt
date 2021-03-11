@@ -94,9 +94,10 @@ open class MainActivity : AppCompatActivity() {
                         .createSignInIntentBuilder()
                         .setAvailableProviders(providers)
                         .setTheme(R.style.AppTheme)
+                        .setIsSmartLockEnabled(false)
                         .enableAnonymousUsersAutoUpgrade()
                         .setTosAndPrivacyPolicyUrls("https://strikza.github.io/studecookEULA.com/", "https://strikza.github.io/studecookEULA.com/")
-                        .setLogo(R.drawable.ic_launcher) // TODO: 27-Feb-21 Changer par le logo de l'app
+                        .setLogo(R.drawable.ic_launcher)
                         .build(),
             RC_SIGN_IN
         )
