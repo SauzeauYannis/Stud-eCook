@@ -80,6 +80,8 @@
         <item>For 10 people</item>
     </string-array>
     <string name="dialog_fav">The recipe has been added to your favourites</string>
+    <string name="alert_report_title">Report the recipe</string>
+    <string name="alert_report_message">Do you want to report this recipe for %s?</string>
 
     <!-- Search Page -->
     <string name="search_query">Look for a recipe</string>

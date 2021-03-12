@@ -35,45 +35,15 @@ class AddStep2Fragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_add_step2, container, false)
-        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+        val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
 
         root.text_add_title.text = getString(R.string.text_add_title, 2)
 
-        root.text_add_nbP.text = getString(R.string.text_add_nbP, sharedPref!!.getInt(getString(R.string.saved_add_number_key), 0) + 1)
-        root.seek_add.progress = sharedPref.getInt(getString(R.string.saved_add_number_key), 0)
+        loadSeekBar(root, sharedPref)
 
-        root.seek_add.setOnSeekBarChangeListener(object :
-            SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                root.text_add_nbP.text = getString(R.string.text_add_nbP, root.seek_add.progress + 1)
-            }
-            override fun onStartTrackingTouch(p0: SeekBar?) {}
-            override fun onStopTrackingTouch(p0: SeekBar?) {}
-        })
+        loadType(root, sharedPref)
 
-        ArrayAdapter.createFromResource(
-                root.context,
-                R.array.type_array,
-                android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            root.array_add_type.adapter = adapter
-            root.array_add_type.setSelection(
-                    sharedPref.getInt(getString(R.string.saved_add_type_key), 0)
-            )
-        }
-
-        ArrayAdapter.createFromResource(
-                root.context,
-                R.array.diet_array,
-                android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            root.array_add_diet.adapter = adapter
-            root.array_add_diet.setSelection(
-                    sharedPref.getInt(getString(R.string.saved_add_diet_key), 0)
-            )
-        }
+        loadDiet(root, sharedPref)
 
         root.button_add_next.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_add_step2_to_navigation_add_step3)
@@ -86,6 +56,49 @@ class AddStep2Fragment : Fragment() {
         }
 
         return root
+    }
+
+    private fun loadDiet(root: View, sharedPref: SharedPreferences) {
+        ArrayAdapter.createFromResource(
+                root.context,
+                R.array.diet_array,
+                android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            root.array_add_diet.adapter = adapter
+            root.array_add_diet.setSelection(
+                    sharedPref.getInt(getString(R.string.saved_add_diet_key), 0)
+            )
+        }
+    }
+
+    private fun loadType(root: View, sharedPref: SharedPreferences) {
+        ArrayAdapter.createFromResource(
+                root.context,
+                R.array.type_array,
+                android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            root.array_add_type.adapter = adapter
+            root.array_add_type.setSelection(
+                    sharedPref.getInt(getString(R.string.saved_add_type_key), 0)
+            )
+        }
+    }
+
+    private fun loadSeekBar(root: View, sharedPref: SharedPreferences?) {
+        root.text_add_nbP.text = getString(R.string.text_add_nbP, sharedPref!!.getInt(getString(R.string.saved_add_number_key), 1))
+        root.seek_add.progress = sharedPref.getInt(getString(R.string.saved_add_number_key), 1) - 1
+
+        root.seek_add.setOnSeekBarChangeListener(object :
+                SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                root.text_add_nbP.text = getString(R.string.text_add_nbP, root.seek_add.progress + 1)
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {}
+            override fun onStopTrackingTouch(p0: SeekBar?) {}
+        })
     }
 
     private fun saveData(sharedPref: SharedPreferences, root: View) {

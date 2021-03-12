@@ -1,6 +1,8 @@
 package com.mobile.app.studecook.fragment.recipe
 
 import android.app.AlertDialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -58,9 +60,7 @@ class RecipeFragment : Fragment() {
             findNavController().navigate(R.id.action_recipeFragment_to_navigation_home)
         }
 
-        root.button_report.setOnClickListener {
-            Toast.makeText(context, "TODO: Report la recette", Toast.LENGTH_SHORT).show()
-        }
+        reportRecipe(root, recipe)
 
         root.text_recipe_name.text = recipe.name
 
@@ -85,6 +85,25 @@ class RecipeFragment : Fragment() {
         clickableFavorite(root.button_recipe_fav, recipe.date!!, recipe.fav!!, root.text_recipe_fav)
 
         return root
+    }
+
+    private fun reportRecipe(root: View, recipe: RecipeModel) {
+        root.button_report.setOnClickListener {
+            AlertDialog.Builder(context)
+                    .setTitle(getString(R.string.alert_report_title))
+                    .setMessage(getString(R.string.alert_report_message, recipe.name))
+                    .setPositiveButton(android.R.string.ok) { _, _ ->
+                        val send = Intent(Intent.ACTION_SENDTO)
+                        send.data = Uri.parse("mailto:studecook@gmail.com")
+                        send.putExtra(Intent.EXTRA_SUBJECT, "Signalement")
+                        send.putExtra(Intent.EXTRA_TEXT, "Nom = ${recipe.name}")
+                        startActivity(send)
+                    }
+                    .setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                        dialog.cancel()
+                    }
+                    .show()
+        }
     }
 
     private fun loadNbPeople(root: View, recipe: RecipeModel) {

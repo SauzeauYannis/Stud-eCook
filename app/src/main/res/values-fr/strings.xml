@@ -189,4 +189,6 @@
     <string name="github">Voir le projet sur GitHub</string>
     <string name="text_add_ingredient_num_zero">La quantité d\'ingrédient doit être différente de 0</string>
     <string name="alert_sub_message">Voulez-vous vous désabonner de %s ?</string>
+    <string name="alert_report_title">Signaler la recette</string>
+    <string name="alert_report_message">Voulez-vous cette signaler cette recette de %s ?</string>
 </resources>
