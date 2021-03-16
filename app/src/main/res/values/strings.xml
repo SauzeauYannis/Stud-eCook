@@ -39,8 +39,8 @@
     <string name="button_home_fav">Your favorite recipes button</string>
     <string name="image_recipe">Image recipe</string>
     <string name="toast_up_to_date">You are up to date!</string>
-    <string name="text_home_sub">Recipes of your subscriptions</string>
-    <string name="text_home_favorite">Your favourite recipes</string>
+    <string name="text_home_sub">Subscriptions</string>
+    <string name="text_home_favorite">Favourites</string>
     <string name="text_no_recipe">No recipes available</string>
     <string name="dialog_unfav_title">Remove the recipe from your favourites</string>
     <string name="dialog_unfav_message">Do you want to remove this recipe from your favourites?</string>
