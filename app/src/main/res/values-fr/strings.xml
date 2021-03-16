@@ -103,7 +103,7 @@
     <string name="text_add_min_max">" (%d à %d) :"</string>
     <string name="toast_up_to_date">Vous êtes à jour !</string>
     <string name="search_query">Chercher une recette</string>
-    <string name="text_home_sub">Les recettes de vos abonné·e·s</string>
+    <string name="text_home_sub">Les recettes de vos abonnements</string>
     <string name="text_home_favorite">Vos recettes favorites</string>
     <string name="text_no_recipe">Pas de recettes disponibles</string>
     <string name="image_desc_add">Image de la recette</string>
