@@ -63,6 +63,7 @@
     <!-- Recipe Page -->
     <string name="text_fav">Like:</string>
     <string name="text_propoced_by">Suggested by</string>
+    <string name="text_date">on %s</string>
     <string name="text_recipe_utensils">Utensils list:</string>
     <string name="text_recipe_ingr">Ingredients list:</string>
     <string name="text_recipe_steps">Steps list:</string>
@@ -207,6 +208,7 @@
         <item>ml</item>
         <item>tsp</item>
         <item>tbl</item>
+        <item>none</item>
     </string-array>
     <string name="text_add_ingredient_too_much">You have reach the maximum amount of ingredients</string>
     <string name="text_add_ingredient_false">You need to add at least one ingredient</string>

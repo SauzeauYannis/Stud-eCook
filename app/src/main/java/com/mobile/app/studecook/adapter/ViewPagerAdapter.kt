@@ -5,13 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.setPadding
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.mobile.app.studecook.R
-import com.mobile.app.studecook.model.RecipeModel
-import com.mobile.app.studecook.model.UserModel
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.switchmaterial.SwitchMaterial
@@ -19,6 +17,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.toObject
+import com.mobile.app.studecook.R
+import com.mobile.app.studecook.model.RecipeModel
+import com.mobile.app.studecook.model.UserModel
 
 class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>() {
 
@@ -184,9 +185,28 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
         val checkDiet: SwitchMaterial = dialog.findViewById(R.id.switchDiet)
         val radioGroupDiet: RadioGroup = dialog.findViewById(R.id.filter_radioGroup_diet)
 
+        val checkUtensils: SwitchMaterial = dialog.findViewById(R.id.switchUtensils)
+        val radioGroupUtensils: RadioGroup = dialog.findViewById(R.id.filter_radioGroup_utensils)
+
+        initUtensilFilter(dialog, radioGroupUtensils)
+
         setEnableRadioGroup(checkPrim, radioGroupPrim)
         setEnableRadioGroup(checkCat, radioGroupCat)
         setEnableRadioGroup(checkDiet, radioGroupDiet)
+        setEnableRadioGroup(checkUtensils, radioGroupUtensils)
+    }
+
+    private fun initUtensilFilter(dialog: Dialog, radioGroupUtensils: RadioGroup) {
+        val utensilsList = dialog.context.resources.getStringArray(R.array.utensil_array)
+
+        for (utensil in utensilsList) {
+            val checkBox = CheckBox(dialog.context)
+            checkBox.text = utensil
+            checkBox.isChecked = true
+            val scale = dialog.context.resources.displayMetrics.density
+            checkBox.setPadding((8 * scale + 0.5f).toInt())
+            radioGroupUtensils.addView(checkBox)
+        }
     }
 
     private fun generateQuery(dialog: Dialog, query: Query): Query {
@@ -195,6 +215,7 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
         val checkPrim: SwitchMaterial = dialog.findViewById(R.id.switchPrimary)
         val checkCat: SwitchMaterial = dialog.findViewById(R.id.switchCategory)
         val checkDiet: SwitchMaterial = dialog.findViewById(R.id.switchDiet)
+        val checkUtensil: SwitchMaterial = dialog.findViewById(R.id.switchUtensils)
 
         val filterPrimaries = dialog.findViewById<RadioGroup>(R.id.filter_radioGroup_primary)
 
@@ -234,13 +255,26 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>
             }
         }
 
+        val filterUtensils = dialog.findViewById<RadioGroup>(R.id.filter_radioGroup_utensils)
+
+        if(checkUtensil.isChecked) {
+            val arrayList = ArrayList<Long>()
+            for (i in 1 until filterUtensils.childCount) {
+                val checkBox: CheckBox = filterUtensils.getChildAt(i) as CheckBox
+                if(checkBox.isChecked){
+                    arrayList.add((i - 1).toLong())
+                }
+            }
+            newQuery = newQuery.whereArrayContainsAny("utensils", arrayList)
+        }
+
         return newQuery
     }
 
-    private fun setEnableRadioGroup(checkPrim:SwitchMaterial ,group: RadioGroup){
-        checkPrim.setOnClickListener{
+    private fun setEnableRadioGroup(switchMaterial: SwitchMaterial, group: RadioGroup){
+        switchMaterial.setOnClickListener{
             for (i in 0 until group.childCount) {
-                group.getChildAt(i).isEnabled = checkPrim.isChecked
+                group.getChildAt(i).isEnabled = switchMaterial.isChecked
             }
         }
     }

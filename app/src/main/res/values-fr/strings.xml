@@ -71,6 +71,7 @@
         <item>ml</item>
         <item>c.à.c</item>
         <item>c.à.s</item>
+        <item>Aucune</item>
     </string-array>
     <string name="text_add_ingredient_too_much">Vous avez atteint le nombre maximum d\'ingrédients</string>
     <string name="text_add_ingredient_false">Vous devez ajouter au moins un ingrédient</string>
@@ -191,4 +192,5 @@
     <string name="alert_sub_message">Voulez-vous vous désabonner de %s ?</string>
     <string name="alert_report_title">Signaler la recette</string>
     <string name="alert_report_message">Voulez-vous cette signaler cette recette de %s ?</string>
+    <string name="text_date">le %s</string>
 </resources>

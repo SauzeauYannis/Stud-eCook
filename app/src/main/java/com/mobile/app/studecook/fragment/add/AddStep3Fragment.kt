@@ -9,10 +9,12 @@ import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isVisible
 import androidx.core.view.iterator
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -253,10 +255,23 @@ class AddStep3Fragment : Fragment() {
             ingredientView.array_add_ingredient_type.adapter = adapter
         }
 
+        ingredientView.array_add_ingredient_type.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                val none = position != 5
+                ingredientView.text_input_add_num_ingredient.isEnabled = none
+                ingredientView.text_input_add_num_ingredient.isVisible = none
+                if (!none) {
+                    ingredientView.text_input_add_num_ingredient.setText("1")
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+
         ingredientView.image_ingredient_delete.setOnClickListener {
             root.layout_ingredient.removeView(ingredientView)
             ingredientCount--
         }
+
         return ingredientView
     }
 
@@ -277,27 +292,31 @@ class AddStep3Fragment : Fragment() {
 
     private fun isIngredientListGood(layout: LinearLayout, context: Context): Boolean {
         for (l in layout) {
-            if (l.text_input_add_num_ingredient.text.toString().isEmpty()) {
-                Toast.makeText(
-                    context,
-                    getString(R.string.text_add_ingredient_num_empty),
-                    Toast.LENGTH_LONG
-                ).show()
-                return false
-            } else if (l.text_input_add_ingredient.text.toString().isEmpty()) {
-                Toast.makeText(
-                    context,
-                    getString(R.string.text_add_ingredient_empty),
-                    Toast.LENGTH_LONG
-                ).show()
-                return false
-            } else if (l.text_input_add_num_ingredient.text.toString().toInt() < 1) {
-                Toast.makeText(
-                        context,
-                        getString(R.string.text_add_ingredient_num_zero),
-                        Toast.LENGTH_SHORT
-                ).show()
-                return false
+            when {
+                l.text_input_add_num_ingredient.text.toString().isEmpty() -> {
+                    Toast.makeText(
+                            context,
+                            getString(R.string.text_add_ingredient_num_empty),
+                            Toast.LENGTH_LONG
+                    ).show()
+                    return false
+                }
+                l.text_input_add_ingredient.text.toString().isEmpty() -> {
+                    Toast.makeText(
+                            context,
+                            getString(R.string.text_add_ingredient_empty),
+                            Toast.LENGTH_LONG
+                    ).show()
+                    return false
+                }
+                l.text_input_add_num_ingredient.text.toString().toInt() < 1 -> {
+                    Toast.makeText(
+                            context,
+                            getString(R.string.text_add_ingredient_num_zero),
+                            Toast.LENGTH_SHORT
+                    ).show()
+                    return false
+                }
             }
         }
         return true

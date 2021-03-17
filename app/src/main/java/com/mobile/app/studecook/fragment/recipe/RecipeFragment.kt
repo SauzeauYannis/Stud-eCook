@@ -141,10 +141,14 @@ class RecipeFragment : Fragment() {
         for (i in quantity.indices) {
             val ingredientText = TextView(context)
             var type = ""
-            if (recipe.ingredientsType!![i].toInt() > 0)
+            if (recipe.ingredientsType!![i].toInt() in 1..4)
                 type = resources.getStringArray(R.array.ingredient_type_array)[recipe.ingredientsType!![i].toInt()]
             val text = "- ${quantity[i]}$type ${recipe.ingredientsName!![i]}"
             ingredientText.text = text
+            if (recipe.ingredientsType!![i].toInt() == 5) {
+                val t = "- ${recipe.ingredientsName!![i]}"
+                ingredientText.text = t
+            }
             ingredientText.textSize = 16F
             root.layout_ing.addView(ingredientText)
         }
@@ -178,7 +182,7 @@ class RecipeFragment : Fragment() {
                 .document(recipe.uid!!)
                 .get().addOnSuccessListener { doc ->
                     val user = doc.toObject<UserModel>()!!
-                    clickableOwner(root.text_recipe_owner, user, recipe.uid!!)
+                    clickableOwner(root.text_recipe_owner, user, recipe.uid!!, recipe.date!!)
                 }
     }
 
@@ -214,7 +218,7 @@ class RecipeFragment : Fragment() {
         root.text_recipe_fav.text = recipe.fav.toString()
     }
 
-    private fun clickableOwner(text: TextView, user: UserModel, uid: String) {
+    private fun clickableOwner(text: TextView, user: UserModel, uid: String, date: Date) {
         val name = user.name!!
         val clickableName = SpannableString(name)
         clickableName.setSpan(object : ClickableSpan() {
@@ -228,6 +232,7 @@ class RecipeFragment : Fragment() {
         }, 0, name.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         text.append(" ")
         text.append(clickableName)
+        text.append("\n" + getString(R.string.text_date, date.toLocaleString()))
         text.movementMethod = LinkMovementMethod.getInstance()
     }
 
