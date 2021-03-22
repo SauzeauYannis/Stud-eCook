@@ -14,7 +14,7 @@ android {
         applicationId "com.mobile.app.studecook"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 7
+        versionCode 8
         versionName "1.07"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary true
