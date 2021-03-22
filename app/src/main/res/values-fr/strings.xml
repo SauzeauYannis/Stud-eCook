@@ -193,4 +193,7 @@
     <string name="alert_report_title">Signaler la recette</string>
     <string name="alert_report_message">Voulez-vous cette signaler cette recette de %s ?</string>
     <string name="text_date">le %s</string>
+    <string name="alert_impossible_title">Action impossible</string>
+    <string name="alert_fav_message">Vous ne pouvez pas avoir plus de 10 recettes en favoris.\nAstuce : Si vous voulez supprimer une recettes de vos favoris, restez appuyé 3 secondes sur la recette dans la page de vos favoris.</string>
+    <string name="alert_sub_toomuch_message">Vous ne pouvez pas avoir plus de 10 abonnements !</string>
 </resources>

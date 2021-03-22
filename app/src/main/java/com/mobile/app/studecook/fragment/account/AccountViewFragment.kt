@@ -1,5 +1,6 @@
 package com.mobile.app.studecook.fragment.account
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -87,15 +88,23 @@ class AccountViewFragment : Fragment() {
                             root.button_view_acc_sub.alpha = 0.1F
                             root.button_view_acc_unsub.alpha = 1F
                         }
+
+                        root.button_view_acc_sub.setOnClickListener {
+                            if (user.subs!!.size < 10)
+                                sub(root.button_view_acc_sub, root.button_view_acc_unsub, uid)
+                            else {
+                                AlertDialog.Builder(requireContext())
+                                        .setTitle(getString(R.string.alert_impossible_title))
+                                        .setMessage(getString(R.string.alert_sub_toomuch_message))
+                                        .setPositiveButton(android.R.string.ok) { dialogInterface, _ -> dialogInterface.dismiss() }
+                                        .show()
+                            }
+                        }
+
+                        root.button_view_acc_unsub.setOnClickListener {
+                            unsub(root.button_view_acc_unsub, root.button_view_acc_sub, uid)
+                        }
                     }
-
-            root.button_view_acc_sub.setOnClickListener {
-                sub(root.button_view_acc_sub, root.button_view_acc_unsub, uid)
-            }
-
-            root.button_view_acc_unsub.setOnClickListener {
-                unsub(root.button_view_acc_unsub, root.button_view_acc_sub, uid)
-            }
         }
     }
 

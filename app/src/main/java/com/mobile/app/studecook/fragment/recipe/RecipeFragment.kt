@@ -1,6 +1,7 @@
 package com.mobile.app.studecook.fragment.recipe
 
 import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -253,7 +254,15 @@ class RecipeFragment : Fragment() {
                                     buttonRecipeFav.isEnabled = false
                                 } else {
                                     buttonRecipeFav.setOnClickListener {
+                                        if (favList.size < 10)
                                             addToFavorite(buttonRecipeFav, doc, fav, currentUser, textFav)
+                                        else {
+                                            AlertDialog.Builder(requireContext())
+                                                    .setTitle(getString(R.string.alert_impossible_title))
+                                                    .setMessage(getString(R.string.alert_fav_message))
+                                                    .setPositiveButton(android.R.string.ok) { dialogInterface, _ -> dialogInterface.dismiss() }
+                                                    .show()
+                                        }
                                         }
                                     }
                                 }

@@ -25,6 +25,8 @@
     <string name="text_forbid_ano">Login for this feature!</string>
     <string name="button_ano_connection">Login</string>
     <string name="dialog_continue_ano">Continue as a guest</string>
+    <string name="alert_impossible_title">Impossible action</string>
+
 
     <!-- Bottom navigation menu title -->
     <string name="title_home">Recipes</string>
@@ -83,6 +85,7 @@
     <string name="dialog_fav">The recipe has been added to your favourites</string>
     <string name="alert_report_title">Report the recipe</string>
     <string name="alert_report_message">Do you want to report this recipe for %s?</string>
+    <string name="alert_fav_message">You cannot have more than 10 recipes in your favourites.\nTip: If you want to remove a recipe from your favourites, press and hold the recipe for 3 seconds in your favourites page.</string>
 
     <!-- Search Page -->
     <string name="search_query">Look for a recipe</string>
@@ -112,6 +115,7 @@
     <string name="button_subs">Subscribe</string>
     <string name="button_unsubs">Unsubscribe</string>
     <string name="text_view_acc_recipe">Shared recipes:</string>
+    <string name="alert_sub_toomuch_message">You cannot have more than 10 subscriptions!</string>
     <!-- Fragment Subs View -->
     <string name="alert_sub_message">Do you want to unsubscribe from %s?</string>
 
